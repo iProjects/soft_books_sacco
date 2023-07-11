@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FD47AF4C-EE3B-4BF0-8A28-367CB5C4A9A4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReportsModule</RootNamespace>
+    <AssemblyName>ReportsModule</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp, Version=4.0.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\library\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\PDFGen.cs" />
+    <Compile Include="Viewer\SelectedFontsDTO.cs" />
+    <Compile Include="Viewer\VVX_File.cs" />
+    <Compile Include="Viewer\VVX_FileDialog.cs" />
+    <Compile Include="Viewer\VVX_ImageTools.cs" />
+    <Compile Include="Viewer\VVX_MsgBox.cs" />
+    <Compile Include="ViewModelBuilders\AbadonedandRefusedLoansViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\AccountingCashBookViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\ActiveLoansViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\ActiveSavingsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\AnticipatedTotallyRepaidLoansViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\BadClientViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\CashBookViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\ClientandLoanStatisticsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\ClientandShareofWomenViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\ClientInformationViewModelBuilders.cs" />
+    <Compile Include="ViewModelBuilders\ClosedContractsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\CollateralReportsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\CollectionSheetViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\CompulsorySavingsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\CreditCommitteeViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\CreditLifeInsuranceViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\DisbursementofTranchesViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\DisbursementsandreimbursementsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\DisbursementsperActivityViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\DisbursementsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\DormantCustomersViewModelsBuilder.cs" />
+    <Compile Include="ViewModelBuilders\DropoutReportViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\EvolutionofDisbursementViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\EvolutionOfTotalNoOfClientsModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\EvolutionOfOLBModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\EvolutionOfPARModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\EvolutionOfRepaymentsModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\EvolutionOfTotalNoOfContractsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\ExchangeRateGainLossViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\GuarantorsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\LoanCycleViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\LoanLossProvisionViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\LoanOfficerOLBandPaRViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\LoanOfficersDisbursementsandReimbursementsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\LoanRenewalHelperViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\LoansDisbursedViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\NotDisbursedLoansViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\OLBandLLPperLoanViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\OLBperClientViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\OLBperCollateralViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\PARAnalysisViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\PerformingLoansViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\ReassignedLoansViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\RepaymentsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\ResheduledLoansViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\ResidualMaturityViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\SavingsContractsViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\StatisticsperGenderViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\WrittenOffLoansViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\WrittenoffPenaltiesViewModelBuilder.cs" />
+    <Compile Include="ViewModels\AbadonedandRefusedLoansViewModel.cs" />
+    <Compile Include="ViewModels\ActiveLoansViewModels.cs" />
+    <Compile Include="ViewModels\ActiveSavingsViewModel.cs" />
+    <Compile Include="ViewModels\AnticipatedTotallyRepaidLoansViewModel.cs" />
+    <Compile Include="ViewModels\ClosedContractsViewModel.cs" />
+    <Compile Include="ViewModels\CollateralReportsViewModel.cs" />
+    <Compile Include="ViewModels\CollectionSheetViewModel.cs" />
+    <Compile Include="ViewModels\CompulsorySavingsViewModel.cs" />
+    <Compile Include="ViewModels\CreditCommitteeViewModel.cs" />
+    <Compile Include="ViewModels\CreditLifeInsuranceViewModel.cs" />
+    <Compile Include="ViewModels\DisbursementofTranchesViewModel.cs" />
+    <Compile Include="ViewModels\DisbursementsandreimbursementsViewModel.cs" />
+    <Compile Include="ViewModels\DisbursementsperActivityViewModel.cs" />
+    <Compile Include="ViewModels\DisbursementsViewModel.cs" />
+    <Compile Include="ViewModels\DropoutReportViewModel.cs" />
+    <Compile Include="ViewModels\EvolutionofDisbursementModel.cs" />
+    <Compile Include="ViewModels\EvolutionOfOLBModel.cs" />
+    <Compile Include="ViewModels\EvolutionOfPARModel.cs" />
+    <Compile Include="ViewModels\EvolutionOfRepaymentsModel.cs" />
+    <Compile Include="ViewModels\EvolutionOfTotalNoOfClientsViewModel.cs" />
+    <Compile Include="ViewModels\EvolutionOfTotalNoOfContractsViewModel.cs" />
+    <Compile Include="ViewModels\ExchangeRateGainorLossViewModel.cs" />
+    <Compile Include="ViewModels\LoanCycleViewModel.cs" />
+    <Compile Include="ViewModels\LoanLossProvisionViewModel.cs" />
+    <Compile Include="ViewModels\LoanOfficerDisbursementsandReimbursementsViewModel.cs" />
+    <Compile Include="ViewModels\LoanOfficersOLBandPaRViewModel.cs" />
+    <Compile Include="ViewModels\LoanRenewalHelperViewModel.cs" />
+    <Compile Include="ViewModels\LoansDisbursedViewModel.cs" />
+    <Compile Include="ViewModels\NotDisbursedLoansViewModel.cs" />
+    <Compile Include="ViewModels\OLBandLLPperLoanViewModel.cs" />
+    <Compile Include="ViewModels\OLBperCollateralViewModel.cs" />
+    <Compile Include="ViewModels\PARAnalysisViewModel.cs" />
+    <Compile Include="ViewModels\PerformingLoansViewModel.cs" />
+    <Compile Include="ViewModels\ReassignedLoansViewModel.cs" />
+    <Compile Include="ViewModels\RepaymentsViewModel.cs" />
+    <Compile Include="ViewModels\ResheduledLoansViewModel.cs" />
+    <Compile Include="ViewModels\ResidualMaturityViewModel.cs" />
+    <Compile Include="ViewModels\SavingsContractsViewModel.cs" />
+    <Compile Include="ViewModels\WrittenoffLoansViewModel.cs" />
+    <Compile Include="ViewModels\WrittenoffPenaltiesViewModel.cs" />
+    <Compile Include="Views\Excel\BadClientsViewModelExcelBulder.cs" />
+    <Compile Include="Views\Excel\ClientsandLoanStatisticsViewModelExcelBuilder.cs" />
+    <Compile Include="Views\Excel\ClientsandshareofWomenViewModelExcelBuilder.cs" />
+    <Compile Include="Views\Excel\DormantCustomersViewModelExcelBuilder.cs" />
+    <Compile Include="Views\Excel\GuarantorsViewModelExcelBuilder.cs" />
+    <Compile Include="Views\Excel\OLBperClientViewModelExcelBuilder.cs" />
+    <Compile Include="Views\Excel\StatisticsperGenderViewModelExcelBuilder.cs" />
+    <Compile Include="Views\PDF\AbadonedandRefusedLoansViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\AccountingCashBookPDFBuilder.cs" />
+    <Compile Include="Views\PDF\ActiveLoansViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\ActiveSavingsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\AnticipatedTotallyRepaidLoansViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\BadClientsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\ClientandLoanStatisticsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\ClientInformationViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\ClientandshareofWomenViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\ClosedContractsViewModelPDFBuilder .cs" />
+    <Compile Include="Views\PDF\CollateralReportsViewModelPDFBuilder .cs" />
+    <Compile Include="Views\PDF\CollectionSheetViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\CompulsorySavingsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\CreditCommitteeViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\CreditLifeInsuranceViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\DisbursementsandReimbursementsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\DisbursementsofTranchesViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\DisbursementsperActivityViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\DisbursementsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\DormantCustomerViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\DropoutReportsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\EvolutionofDisbursementPDFBuilder.cs" />
+    <Compile Include="Views\PDF\EvolutionOfOLBPDFBuilder.cs" />
+    <Compile Include="Views\PDF\EvolutionOfPARPDFBuilder.cs" />
+    <Compile Include="Views\PDF\EvolutionOfRepaymentsPDFBuilder.cs" />
+    <Compile Include="Views\PDF\EvolutionOfTotalNoOfClientsPDFBuilder.cs" />
+    <Compile Include="Views\PDF\EvolutionOfTotalNoOfContractsPDFBuilder.cs" />
+    <Compile Include="Views\PDF\ExchangeRateGainorLossViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\GeneralAccountingViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\GeneralLedgerViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\GuarantorsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\LoanCycleViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\LoanLossProvisionViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\LoanOfficerOLBandPaRViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\LoanOfficersDisbursementsandReimbursementsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\LoanRenewalHelperViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\LoansDisbursedViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\NotDisbursedLoansViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\OLBandLLPLoanViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\OLBperClientViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\OLBperCollateralViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\PARAnalysisViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\PerformingLoansViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\ReassignedLoansViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\RepaymentsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\ResheduledLoansViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\ResidualMaturityViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\SavingContractsViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\StatisticsperGenderViewModelPDFBuilder.cs" />
+    <Compile Include="Views\PDF\TrialBalanceViewModelPDFBuilder.cs" />
+    <Compile Include="ViewModels\AccountingCashBookViewModel.cs" />
+    <Compile Include="ViewModels\BadClientsViewModel.cs" />
+    <Compile Include="ViewModels\CashBookViewModels.cs" />
+    <Compile Include="ViewModels\CientandLoanStatisticsViewModel.cs" />
+    <Compile Include="ViewModels\ClientInformationViewModel.cs" />
+    <Compile Include="ViewModels\ClientsandShareofWomenViewModel.cs" />
+    <Compile Include="ViewModels\DormantCustomersViewModel.cs" />
+    <Compile Include="ViewModels\GeneralAccountingViewModels.cs" />
+    <Compile Include="ViewModels\GeneralLedgerViewModels.cs" />
+    <Compile Include="ViewModels\GuarantorsViewModel.cs" />
+    <Compile Include="ViewModels\OLBperClientViewModel.cs" />
+    <Compile Include="ViewModels\StatisticsPerGenderViewModel.cs" />
+    <Compile Include="ViewModels\TrialBalanceViewModels.cs" />
+    <Compile Include="Viewer\AccountingReportsPDFViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\AccountingReportsPDFViewer.Designer.cs">
+      <DependentUpon>AccountingReportsPDFViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\AllReportsPDFViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\AllReportsPDFViewer.Designer.cs">
+      <DependentUpon>AllReportsPDFViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\ClientReportsPDFViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\ClientReportsPDFViewer.Designer.cs">
+      <DependentUpon>ClientReportsPDFViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\ConsolidatedReportsPDFViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\ConsolidatedReportsPDFViewer.Designer.cs">
+      <DependentUpon>ConsolidatedReportsPDFViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\LoanReportsPDFViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\LoanReportsPDFViewer.Designer.cs">
+      <DependentUpon>LoanReportsPDFViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\SavingsReportsPDFViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\SavingsReportsPDFViewer.Designer.cs">
+      <DependentUpon>SavingsReportsPDFViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Viewer\StarredReportsPDFViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Viewer\StarredReportsPDFViewer.Designer.cs">
+      <DependentUpon>StarredReportsPDFViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PDF\WrittenOffLoansPDFBuilder.cs" />
+    <Compile Include="Views\PDF\WrittenoffPenaltiesViewModelPDFBuilder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Icons\Reports.ICO">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\AccountingReportsPDFViewer.resx">
+      <DependentUpon>AccountingReportsPDFViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\AllReportsPDFViewer.resx">
+      <DependentUpon>AllReportsPDFViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\ClientReportsPDFViewer.resx">
+      <DependentUpon>ClientReportsPDFViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\ConsolidatedReportsPDFViewer.resx">
+      <DependentUpon>ConsolidatedReportsPDFViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\LoanReportsPDFViewer.resx">
+      <DependentUpon>LoanReportsPDFViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\SavingsReportsPDFViewer.resx">
+      <DependentUpon>SavingsReportsPDFViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Viewer\StarredReportsPDFViewer.resx">
+      <DependentUpon>StarredReportsPDFViewer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ViewModelBuilders\GeneralAccountingVeiwModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\GeneralLedgerViewModelBuilder.cs" />
+    <Compile Include="ViewModelBuilders\TrialBalanceViewModelBuilder.cs" />
+    <Compile Include="Views\Excel\CashBookViewModelExcelBuilders.cs" />
+    <Compile Include="Views\Excel\GeneralAccountingViewModelExcelBuilders.cs" />
+    <Compile Include="Views\Excel\GeneralLedgerViewModelExcelBuilder.cs" />
+    <Compile Include="Views\Excel\TrialBalanceViewModelExcelBuilders.cs" />
+    <Compile Include="Views\PDF\CashBookViewModelPDFbuilder.cs" />
+    <Content Include="Resources\powermage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{92903B4E-D94B-4975-B325-EF8EC47D2B69}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{C707ED80-AB24-4D9C-8DBF-3D7A072F4DF5}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{B533E770-3E4F-4F98-88E0-313859AEEE01}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

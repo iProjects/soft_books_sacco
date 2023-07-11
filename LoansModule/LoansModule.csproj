@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1AB81311-093A-47C6-8C74-A5C65BFA1586}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LoansModule</RootNamespace>
+    <AssemblyName>LoansModule</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddLoanCollateral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddLoanCollateral.Designer.cs">
+      <DependentUpon>AddLoanCollateral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddCollateralProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddCollateralProductForm.Designer.cs">
+      <DependentUpon>AddCollateralProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddGuaranteeProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddGuaranteeProductForm.Designer.cs">
+      <DependentUpon>AddGuaranteeProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddLoanProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddLoanProductForm.Designer.cs">
+      <DependentUpon>AddLoanProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CollateralProductsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CollateralProductsListForm.Designer.cs">
+      <DependentUpon>CollateralProductsListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CollectionEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CollectionEditor.Designer.cs">
+      <DependentUpon>CollectionEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CycleObjectsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CycleObjectsForm.Designer.cs">
+      <DependentUpon>CycleObjectsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditCollateralProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditCollateralProductForm.Designer.cs">
+      <DependentUpon>EditCollateralProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditGuaranteeProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditGuaranteeProductForm.Designer.cs">
+      <DependentUpon>EditGuaranteeProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditLoanProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditLoanProductForm.Designer.cs">
+      <DependentUpon>EditLoanProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GuaranteeProductsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GuaranteeProductsListForm.Designer.cs">
+      <DependentUpon>GuaranteeProductsListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoanProductsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoanProductsListForm.Designer.cs">
+      <DependentUpon>LoanProductsListForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddLoanCollateral.resx">
+      <DependentUpon>AddLoanCollateral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddCollateralProductForm.resx">
+      <DependentUpon>AddCollateralProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddGuaranteeProductForm.resx">
+      <DependentUpon>AddGuaranteeProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddLoanProductForm.resx">
+      <DependentUpon>AddLoanProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CollateralProductsListForm.resx">
+      <DependentUpon>CollateralProductsListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CollectionEditor.resx">
+      <DependentUpon>CollectionEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CycleObjectsForm.resx">
+      <DependentUpon>CycleObjectsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditCollateralProductForm.resx">
+      <DependentUpon>EditCollateralProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditGuaranteeProductForm.resx">
+      <DependentUpon>EditGuaranteeProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditLoanProductForm.resx">
+      <DependentUpon>EditLoanProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GuaranteeProductsListForm.resx">
+      <DependentUpon>GuaranteeProductsListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoanProductsListForm.resx">
+      <DependentUpon>LoanProductsListForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{92903B4E-D94B-4975-B325-EF8EC47D2B69}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{C707ED80-AB24-4D9C-8DBF-3D7A072F4DF5}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{B533E770-3E4F-4F98-88E0-313859AEEE01}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\add.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\edit.ICO">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

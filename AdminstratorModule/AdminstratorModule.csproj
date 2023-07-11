@@ -1,0 +1,708 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{53C965BC-0067-4646-AB98-B2739E330C79}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AdminstratorModule</RootNamespace>
+    <AssemblyName>AdminstratorModule</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountClosureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AccountClosureForm.Designer.cs">
+      <DependentUpon>AccountClosureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountingJournalsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AccountingJournalsForm.Designer.cs">
+      <DependentUpon>AccountingJournalsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountingRulesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AccountingRulesForm.Designer.cs">
+      <DependentUpon>AccountingRulesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddAccountForm.Designer.cs">
+      <DependentUpon>AddAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddAccountingRulesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddAccountingRulesForm.Designer.cs">
+      <DependentUpon>AddAccountingRulesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddBanksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddBanksForm.Designer.cs">
+      <DependentUpon>AddBanksForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddBankBranchesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddBankBranchesForm.Designer.cs">
+      <DependentUpon>AddBankBranchesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddCOAForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddCOAForm.designer.cs">
+      <DependentUpon>AddCOAForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddCurrencyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddCurrencyForm.Designer.cs">
+      <DependentUpon>AddCurrencyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddCustomizableFieldsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddCustomizableFieldsForm.Designer.cs">
+      <DependentUpon>AddCustomizableFieldsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddEconomicActivityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddEconomicActivityForm.Designer.cs">
+      <DependentUpon>AddEconomicActivityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddFundingLineEventForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddFundingLineEventForm.Designer.cs">
+      <DependentUpon>AddFundingLineEventForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddFundingLineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddFundingLineForm.Designer.cs">
+      <DependentUpon>AddFundingLineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddLocationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddLocationsForm.Designer.cs">
+      <DependentUpon>AddLocationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddManualEntryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddManualEntryForm.Designer.cs">
+      <DependentUpon>AddManualEntryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddProvinceDistrictCityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddProvinceDistrictCityForm.Designer.cs">
+      <DependentUpon>AddProvinceDistrictCityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddStandardBookingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddStandardBookingForm.Designer.cs">
+      <DependentUpon>AddStandardBookingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddTellerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddTellerForm.Designer.cs">
+      <DependentUpon>AddTellerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuditTrailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AuditTrailForm.Designer.cs">
+      <DependentUpon>AuditTrailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BanksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BanksForm.Designer.cs">
+      <DependentUpon>BanksForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChangeApplicationDateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ChangeApplicationDateForm.Designer.cs">
+      <DependentUpon>ChangeApplicationDateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChartofAccountsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ChartofAccountsForm.Designer.cs">
+      <DependentUpon>ChartofAccountsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\COAForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\COAForm.Designer.cs">
+      <DependentUpon>COAForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContractCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ContractCodeForm.Designer.cs">
+      <DependentUpon>ContractCodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddPaymentMethod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddPaymentMethod.Designer.cs">
+      <DependentUpon>AddPaymentMethod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddGeneralSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddGeneralSettingsForm.Designer.cs">
+      <DependentUpon>AddGeneralSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddProvisioningRulesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddProvisioningRulesForm.Designer.cs">
+      <DependentUpon>AddProvisioningRulesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddPublicHolidaysForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddPublicHolidaysForm.Designer.cs">
+      <DependentUpon>AddPublicHolidaysForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddLoanScalesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddLoanScalesForm.Designer.cs">
+      <DependentUpon>AddLoanScalesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BookingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BookingsForm.Designer.cs">
+      <DependentUpon>BookingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditGeneralSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditGeneralSettingsForm.Designer.cs">
+      <DependentUpon>EditGeneralSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProvisioningRulesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditProvisioningRulesForm.Designer.cs">
+      <DependentUpon>EditProvisioningRulesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditLoanScalesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditLoanScalesForm.Designer.cs">
+      <DependentUpon>EditLoanScalesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditPublicHolidaysForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditPublicHolidaysForm.Designer.cs">
+      <DependentUpon>EditPublicHolidaysForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExoticShedulesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ExoticShedulesForm.Designer.cs">
+      <DependentUpon>ExoticShedulesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageFinancialPeriodsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ManageFinancialPeriodsForm.Designer.cs">
+      <DependentUpon>ManageFinancialPeriodsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FinancialPeriodsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FinancialPeriodsForm.Designer.cs">
+      <DependentUpon>FinancialPeriodsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditPaymentMethods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditPaymentMethods.Designer.cs">
+      <DependentUpon>EditPaymentMethods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentMethodsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PaymentMethodsForm.Designer.cs">
+      <DependentUpon>PaymentMethodsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreditClosureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CreditClosureForm.Designer.cs">
+      <DependentUpon>CreditClosureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CurrenciesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CurrenciesForm.Designer.cs">
+      <DependentUpon>CurrenciesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomizableFieldsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CustomizableFieldsForm.Designer.cs">
+      <DependentUpon>CustomizableFieldsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EconomicActivityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EconomicActivityForm.Designer.cs">
+      <DependentUpon>EconomicActivityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditBanksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditBanksForm.Designer.cs">
+      <DependentUpon>EditBanksForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditBankBranchesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditBankBranchesForm.Designer.cs">
+      <DependentUpon>EditBankBranchesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditCOAForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditCOAForm.designer.cs">
+      <DependentUpon>EditCOAForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditCurrencyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditCurrencyForm.Designer.cs">
+      <DependentUpon>EditCurrencyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditCustomizableFieldsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditCustomizableFieldsForm.Designer.cs">
+      <DependentUpon>EditCustomizableFieldsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditEconomicActivityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditEconomicActivityForm.Designer.cs">
+      <DependentUpon>EditEconomicActivityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditFundingLineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditFundingLineForm.Designer.cs">
+      <DependentUpon>EditFundingLineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProvinceDistrictCityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditProvinceDistrictCityForm.Designer.cs">
+      <DependentUpon>EditProvinceDistrictCityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditStandardBookingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditStandardBookingsForm.Designer.cs">
+      <DependentUpon>EditStandardBookingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditTellerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditTellerForm.Designer.cs">
+      <DependentUpon>EditTellerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExchangeRatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ExchangeRatesForm.Designer.cs">
+      <DependentUpon>ExchangeRatesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExportTransactionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ExportTransactionsForm.Designer.cs">
+      <DependentUpon>ExportTransactionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FundingLinesListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FundingLinesListForm.Designer.cs">
+      <DependentUpon>FundingLinesListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeneralLedgerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GeneralLedgerForm.Designer.cs">
+      <DependentUpon>GeneralLedgerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GeneralSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\GeneralSettingsForm.Designer.cs">
+      <DependentUpon>GeneralSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InstallmentTypesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\InstallmentTypesForm.Designer.cs">
+      <DependentUpon>InstallmentTypesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManualEntriesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ManualEntriesForm.Designer.cs">
+      <DependentUpon>ManualEntriesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProvinceDistrictCitiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ProvinceDistrictCitiesForm.Designer.cs">
+      <DependentUpon>ProvinceDistrictCitiesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReassignContractsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReassignContractsForm.Designer.cs">
+      <DependentUpon>ReassignContractsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SavingsClosureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SavingsClosureForm.Designer.cs">
+      <DependentUpon>SavingsClosureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SettingsForm.designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StandardBookingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\StandardBookingsForm.Designer.cs">
+      <DependentUpon>StandardBookingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrialBalanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\TrialBalanceForm.Designer.cs">
+      <DependentUpon>TrialBalanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UserSettingsForm.Designer.cs">
+      <DependentUpon>UserSettingsForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{92903B4E-D94B-4975-B325-EF8EC47D2B69}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{C707ED80-AB24-4D9C-8DBF-3D7A072F4DF5}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{B533E770-3E4F-4F98-88E0-313859AEEE01}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AccountClosureForm.resx">
+      <DependentUpon>AccountClosureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AccountingJournalsForm.resx">
+      <DependentUpon>AccountingJournalsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AccountingRulesForm.resx">
+      <DependentUpon>AccountingRulesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddAccountForm.resx">
+      <DependentUpon>AddAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddAccountingRulesForm.resx">
+      <DependentUpon>AddAccountingRulesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddBanksForm.resx">
+      <DependentUpon>AddBanksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddBankBranchesForm.resx">
+      <DependentUpon>AddBankBranchesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddCOAForm.resx">
+      <DependentUpon>AddCOAForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddCurrencyForm.resx">
+      <DependentUpon>AddCurrencyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddCustomizableFieldsForm.resx">
+      <DependentUpon>AddCustomizableFieldsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddEconomicActivityForm.resx">
+      <DependentUpon>AddEconomicActivityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddFundingLineEventForm.resx">
+      <DependentUpon>AddFundingLineEventForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddFundingLineForm.resx">
+      <DependentUpon>AddFundingLineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddLocationsForm.resx">
+      <DependentUpon>AddLocationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddManualEntryForm.resx">
+      <DependentUpon>AddManualEntryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddProvinceDistrictCityForm.resx">
+      <DependentUpon>AddProvinceDistrictCityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddStandardBookingForm.resx">
+      <DependentUpon>AddStandardBookingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddTellerForm.resx">
+      <DependentUpon>AddTellerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AuditTrailForm.resx">
+      <DependentUpon>AuditTrailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BanksForm.resx">
+      <DependentUpon>BanksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ChangeApplicationDateForm.resx">
+      <DependentUpon>ChangeApplicationDateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ChartofAccountsForm.resx">
+      <DependentUpon>ChartofAccountsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\COAForm.resx">
+      <DependentUpon>COAForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ContractCodeForm.resx">
+      <DependentUpon>ContractCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddPaymentMethod.resx">
+      <DependentUpon>AddPaymentMethod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddGeneralSettingsForm.resx">
+      <DependentUpon>AddGeneralSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddProvisioningRulesForm.resx">
+      <DependentUpon>AddProvisioningRulesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddPublicHolidaysForm.resx">
+      <DependentUpon>AddPublicHolidaysForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddLoanScalesForm.resx">
+      <DependentUpon>AddLoanScalesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BookingsForm.resx">
+      <DependentUpon>BookingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditGeneralSettingsForm.resx">
+      <DependentUpon>EditGeneralSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditProvisioningRulesForm.resx">
+      <DependentUpon>EditProvisioningRulesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditLoanScalesForm.resx">
+      <DependentUpon>EditLoanScalesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditPublicHolidaysForm.resx">
+      <DependentUpon>EditPublicHolidaysForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ExoticShedulesForm.resx">
+      <DependentUpon>ExoticShedulesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ManageFinancialPeriodsForm.resx">
+      <DependentUpon>ManageFinancialPeriodsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FinancialPeriodsForm.resx">
+      <DependentUpon>FinancialPeriodsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditPaymentMethods.resx">
+      <DependentUpon>EditPaymentMethods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PaymentMethodsForm.resx">
+      <DependentUpon>PaymentMethodsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CreditClosureForm.resx">
+      <DependentUpon>CreditClosureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CurrenciesForm.resx">
+      <DependentUpon>CurrenciesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CustomizableFieldsForm.resx">
+      <DependentUpon>CustomizableFieldsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EconomicActivityForm.resx">
+      <DependentUpon>EconomicActivityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditBanksForm.resx">
+      <DependentUpon>EditBanksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditBankBranchesForm.resx">
+      <DependentUpon>EditBankBranchesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditCOAForm.resx">
+      <DependentUpon>EditCOAForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditCurrencyForm.resx">
+      <DependentUpon>EditCurrencyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditCustomizableFieldsForm.resx">
+      <DependentUpon>EditCustomizableFieldsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditEconomicActivityForm.resx">
+      <DependentUpon>EditEconomicActivityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditFundingLineForm.resx">
+      <DependentUpon>EditFundingLineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditProvinceDistrictCityForm.resx">
+      <DependentUpon>EditProvinceDistrictCityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditStandardBookingsForm.resx">
+      <DependentUpon>EditStandardBookingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditTellerForm.resx">
+      <DependentUpon>EditTellerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ExchangeRatesForm.resx">
+      <DependentUpon>ExchangeRatesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ExportTransactionsForm.resx">
+      <DependentUpon>ExportTransactionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FundingLinesListForm.resx">
+      <DependentUpon>FundingLinesListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GeneralLedgerForm.resx">
+      <DependentUpon>GeneralLedgerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GeneralSettingsForm.resx">
+      <DependentUpon>GeneralSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\InstallmentTypesForm.resx">
+      <DependentUpon>InstallmentTypesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ManualEntriesForm.resx">
+      <DependentUpon>ManualEntriesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProvinceDistrictCitiesForm.resx">
+      <DependentUpon>ProvinceDistrictCitiesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReassignContractsForm.resx">
+      <DependentUpon>ReassignContractsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SavingsClosureForm.resx">
+      <DependentUpon>SavingsClosureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\StandardBookingsForm.resx">
+      <DependentUpon>StandardBookingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TrialBalanceForm.resx">
+      <DependentUpon>TrialBalanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UserSettingsForm.resx">
+      <DependentUpon>UserSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\add.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\defaultphoto.jpg" />
+    <Content Include="Resources\edit.ICO">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\SavingsClosure.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

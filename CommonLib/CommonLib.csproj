@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{92903B4E-D94B-4975-B325-EF8EC47D2B69}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommonLib</RootNamespace>
+    <AssemblyName>CommonLib</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BulkCopy.cs" />
+    <Compile Include="Extensions\DataExtensions.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="notificationdto.cs" />
+    <Compile Include="notificationmessageEventArgs.cs" />
+    <Compile Include="NotifyHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SBSystem.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libs\EFWinforms.dll" />
+    <Content Include="libs\EnvDTE.dll" />
+    <Content Include="libs\EnvDTE80.dll" />
+    <Content Include="libs\GSMCommServer.dll" />
+    <Content Include="libs\GSMCommShared.dll" />
+    <Content Include="libs\GSMCommunication.dll" />
+    <Content Include="libs\itextsharp.dll" />
+    <Content Include="libs\itextsharp.pdfa.dll" />
+    <Content Include="libs\iTextSharp.xml" />
+    <Content Include="libs\itextsharp.xtra.dll" />
+    <Content Include="libs\itextsharp_v5.dll" />
+    <Content Include="libs\Microsoft.AnalysisServices.dll" />
+    <Content Include="libs\Microsoft.AnalysisServices.SPClient.Interfaces.dll" />
+    <Content Include="libs\Microsoft.AnalysisServices.Xmla.dll" />
+    <Content Include="libs\Microsoft.DataTransformationServices.Controls.dll" />
+    <Content Include="libs\Microsoft.DataWarehouse.Interfaces.dll" />
+    <Content Include="libs\Microsoft.ExceptionMessageBox.dll" />
+    <Content Include="libs\Microsoft.MSXML.dll" />
+    <Content Include="libs\Microsoft.NetEnterpriseServers.ExceptionMessageBox.dll" />
+    <Content Include="libs\Microsoft.Office.Interop.Excel.dll" />
+    <Content Include="libs\Microsoft.Office.Interop.SmartTag.dll" />
+    <Content Include="libs\Microsoft.Office.Tools.Common.v9.0.dll" />
+    <Content Include="libs\Microsoft.Office.Tools.Excel.v9.0.dll" />
+    <Content Include="libs\Microsoft.Office.Tools.v9.0.dll" />
+    <Content Include="libs\Microsoft.SqlServer.ConnectionInfo.dll" />
+    <Content Include="libs\Microsoft.SqlServer.ConnectionInfoExtended.dll" />
+    <Content Include="libs\Microsoft.SqlServer.CustomControls.dll" />
+    <Content Include="libs\Microsoft.SqlServer.DataStorage.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Diagnostics.STrace.dll" />
+    <Content Include="libs\Microsoft.SqlServer.DlgGrid.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Dmf.Adapters.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Dmf.dll" />
+    <Content Include="libs\Microsoft.SqlServer.DmfSqlClrWrapper.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Dts.Design.dll" />
+    <Content Include="libs\Microsoft.SqlServer.DtsMsg.dll" />
+    <Content Include="libs\Microsoft.SqlServer.DTSPipelineWrap.dll" />
+    <Content Include="libs\Microsoft.SqlServer.DTSRuntimeWrap.dll" />
+    <Content Include="libs\Microsoft.SqlServer.GridControl.dll" />
+    <Content Include="libs\Microsoft.SQLServer.ManagedDTS.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Management.Collector.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Management.CollectorEnum.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Management.Dac.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Management.DacSerialization.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Management.MultiServerConnection.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Management.Sdk.Sfc.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Management.SmoMetadataProvider.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Management.SqlParser.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Management.Utility.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Management.UtilityEnum.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Msxml6_interop.dll" />
+    <Content Include="libs\Microsoft.SqlServer.OlapEnum.dll" />
+    <Content Include="libs\Microsoft.SqlServer.PipelineHost.dll" />
+    <Content Include="libs\Microsoft.SqlServer.PolicyEnum.dll" />
+    <Content Include="libs\Microsoft.SqlServer.RegSvrEnum.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Replication.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Rmo.dll" />
+    <Content Include="libs\Microsoft.SqlServer.ScriptTask.dll" />
+    <Content Include="libs\Microsoft.SqlServer.ServiceBrokerEnum.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Smo.dll" />
+    <Content Include="libs\Microsoft.SqlServer.SmoExtended.dll" />
+    <Content Include="libs\Microsoft.SqlServer.SqlClrProvider.dll" />
+    <Content Include="libs\Microsoft.SqlServer.SqlEnum.dll" />
+    <Content Include="libs\Microsoft.SqlServer.SqlTDiagM.dll" />
+    <Content Include="libs\Microsoft.SqlServer.SqlWmiManagement.dll" />
+    <Content Include="libs\Microsoft.SqlServer.SString.dll" />
+    <Content Include="libs\Microsoft.SqlServer.TxScript.dll" />
+    <Content Include="libs\Microsoft.SqlServer.Types.dll" />
+    <Content Include="libs\Microsoft.SqlServer.VSTAScriptingLib.dll" />
+    <Content Include="libs\Microsoft.SqlServer.WmiEnum.dll" />
+    <Content Include="libs\Microsoft.Vbe.Interop.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Designer.Interfaces.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.OLE.Interop.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.ProjectAggregator.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Shell.9.0.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Shell.Design.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Shell.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Shell.Interop.8.0.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Shell.Interop.9.0.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Shell.Interop.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.TextManager.Interop.8.0.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.TextManager.Interop.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Tools.Applications.DesignTime.v9.0.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Tools.Applications.Hosting.v9.0.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Tools.Applications.ProgrammingModel.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Tools.Applications.Runtime.v9.0.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.Tools.Applications.ServerDocument.v9.0.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.VSHelp.dll" />
+    <Content Include="libs\Microsoft.VisualStudio.VSHelp80.dll" />
+    <Content Include="libs\office.dll" />
+    <Content Include="libs\PDUConverter.dll" />
+    <Content Include="libs\stdole.dll" />
+    <Content Include="libs\System.Windows.Forms.Calendar.dll" />
+    <Content Include="libs\TSWizards.dll" />
+    <Content Include="libs\VSLangProj.dll" />
+    <Content Include="libs\VSTADTEProvider.Interop.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

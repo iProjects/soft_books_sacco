@@ -1,0 +1,2067 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SBSaccoDBModelStoreContainer" CdmEntityContainer="SBSaccoDBEntities">
+    <FunctionImportMapping FunctionImportName="Rep_Client_Personal_Information" FunctionName="SBSaccoDBModel.Store.Rep_Client_Personal_Information">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SBSaccoDBModel.ClientPersonalInformationCType">
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="sec_district" ColumnName="sec_district" />
+          <ScalarProperty Name="sec_city" ColumnName="sec_city" />
+          <ScalarProperty Name="sec_address" ColumnName="sec_address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="sec_phone" ColumnName="sec_phone" />
+          <ScalarProperty Name="sec_pers_phone" ColumnName="sec_pers_phone" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="picture2" ColumnName="picture2" />
+          <ScalarProperty Name="father_name" ColumnName="father_name" />
+          <ScalarProperty Name="id_number" ColumnName="id_number" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Rep_Client_Personal_Information_Savings" FunctionName="SBSaccoDBModel.Store.Rep_Client_Personal_Information_Savings">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SBSaccoDBModel.ClientPersonalInformationSavingsCType">
+          <ScalarProperty Name="balance_amount" ColumnName="balance_amount" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="closed_date" ColumnName="closed_date" />
+          <ScalarProperty Name="product_type" ColumnName="product_type" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="savings_code" ColumnName="savings_code" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Rep_Client_Personal_Information_Credit" FunctionName="SBSaccoDBModel.Store.Rep_Client_Personal_Information_Credit">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SBSaccoDBModel.ClientPersonalInformationCreditCType">
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="close_date" ColumnName="close_date" />
+          <ScalarProperty Name="total_late_days" ColumnName="total_late_days" />
+          <ScalarProperty Name="has_atr" ColumnName="has_atr" />
+          <ScalarProperty Name="olb" ColumnName="olb" />
+          <ScalarProperty Name="group_name" ColumnName="group_name" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="contract_code" ColumnName="contract_code" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AccountingClosures">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AccountingClosure">
+        <MappingFragment StoreEntitySet="AccountingClosure">
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="count_of_transactions" ColumnName="count_of_transactions" />
+          <ScalarProperty Name="date_of_closure" ColumnName="date_of_closure" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountingRules">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AccountingRule">
+        <MappingFragment StoreEntitySet="AccountingRules">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="credit_account_number_id" ColumnName="credit_account_number_id" />
+          <ScalarProperty Name="debit_account_number_id" ColumnName="debit_account_number_id" />
+          <ScalarProperty Name="event_attribute_id" ColumnName="event_attribute_id" />
+          <ScalarProperty Name="event_type" ColumnName="event_type" />
+          <ScalarProperty Name="booking_direction" ColumnName="booking_direction" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="rule_type" ColumnName="rule_type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountsCategories">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AccountsCategory">
+        <MappingFragment StoreEntitySet="AccountsCategory">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActionItems">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ActionItem">
+        <MappingFragment StoreEntitySet="ActionItems">
+          <ScalarProperty Name="method_name" ColumnName="method_name" />
+          <ScalarProperty Name="class_name" ColumnName="class_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdvancedFields">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AdvancedField">
+        <MappingFragment StoreEntitySet="AdvancedFields">
+          <ScalarProperty Name="is_unique" ColumnName="is_unique" />
+          <ScalarProperty Name="is_mandatory" ColumnName="is_mandatory" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="entity_id" ColumnName="entity_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdvancedFieldsCollections">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AdvancedFieldsCollection">
+        <MappingFragment StoreEntitySet="AdvancedFieldsCollections">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="field_id" ColumnName="field_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdvancedFieldsEntities">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AdvancedFieldsEntity">
+        <MappingFragment StoreEntitySet="AdvancedFieldsEntities">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdvancedFieldsLinkEntities">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AdvancedFieldsLinkEntity">
+        <MappingFragment StoreEntitySet="AdvancedFieldsLinkEntities">
+          <ScalarProperty Name="link_id" ColumnName="link_id" />
+          <ScalarProperty Name="link_type" ColumnName="link_type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdvancedFieldsTypes">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AdvancedFieldsType">
+        <MappingFragment StoreEntitySet="AdvancedFieldsTypes">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdvancedFieldsValues">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AdvancedFieldsValue">
+        <MappingFragment StoreEntitySet="AdvancedFieldsValues">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="field_id" ColumnName="field_id" />
+          <ScalarProperty Name="entity_field_id" ColumnName="entity_field_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlertSettings">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AlertSetting">
+        <MappingFragment StoreEntitySet="AlertSettings">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="parameter" ColumnName="parameter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AllowedRoleActions">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AllowedRoleAction">
+        <MappingFragment StoreEntitySet="AllowedRoleActions">
+          <ScalarProperty Name="allowed" ColumnName="allowed" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="action_item_id" ColumnName="action_item_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AllowedRoleMenus">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AllowedRoleMenu">
+        <MappingFragment StoreEntitySet="AllowedRoleMenus">
+          <ScalarProperty Name="allowed" ColumnName="allowed" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="menu_item_id" ColumnName="menu_item_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AmountCycles">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.AmountCycle">
+        <MappingFragment StoreEntitySet="AmountCycles">
+          <ScalarProperty Name="amount_max" ColumnName="amount_max" />
+          <ScalarProperty Name="amount_min" ColumnName="amount_min" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="cycle_id" ColumnName="cycle_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branches">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Branch">
+        <MappingFragment StoreEntitySet="Branches">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChartOfAccounts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ChartOfAccount">
+        <MappingFragment StoreEntitySet="ChartOfAccounts">
+          <ScalarProperty Name="rgt" ColumnName="rgt" />
+          <ScalarProperty Name="lft" ColumnName="lft" />
+          <ScalarProperty Name="parent_account_id" ColumnName="parent_account_id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="account_category_id" ColumnName="account_category_id" />
+          <ScalarProperty Name="type_code" ColumnName="type_code" />
+          <ScalarProperty Name="debit_plus" ColumnName="debit_plus" />
+          <ScalarProperty Name="label" ColumnName="label" />
+          <ScalarProperty Name="account_number" ColumnName="account_number" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="district_id" ColumnName="district_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientBranchHistories">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ClientBranchHistory">
+        <MappingFragment StoreEntitySet="ClientBranchHistory">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="client_id" ColumnName="client_id" />
+          <ScalarProperty Name="branch_to_id" ColumnName="branch_to_id" />
+          <ScalarProperty Name="branch_from_id" ColumnName="branch_from_id" />
+          <ScalarProperty Name="date_changed" ColumnName="date_changed" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClientTypes">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ClientType">
+        <MappingFragment StoreEntitySet="ClientTypes">
+          <ScalarProperty Name="type_name" ColumnName="type_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollateralProducts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CollateralProduct">
+        <MappingFragment StoreEntitySet="CollateralProducts">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollateralProperties">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CollateralProperty">
+        <MappingFragment StoreEntitySet="CollateralProperties">
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollateralPropertyCollections">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CollateralPropertyCollection">
+        <MappingFragment StoreEntitySet="CollateralPropertyCollections">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="property_id" ColumnName="property_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollateralPropertyTypes">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CollateralPropertyType">
+        <MappingFragment StoreEntitySet="CollateralPropertyTypes">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollateralPropertyValues">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CollateralPropertyValue">
+        <MappingFragment StoreEntitySet="CollateralPropertyValues">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="property_id" ColumnName="property_id" />
+          <ScalarProperty Name="contract_collateral_id" ColumnName="contract_collateral_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CollateralsLinkContracts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CollateralsLinkContract">
+        <MappingFragment StoreEntitySet="CollateralsLinkContracts">
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConsolidatedDatas">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ConsolidatedData">
+        <MappingFragment StoreEntitySet="ConsolidatedData">
+          <ScalarProperty Name="repayments_penalties" ColumnName="repayments_penalties" />
+          <ScalarProperty Name="repayments_commissions" ColumnName="repayments_commissions" />
+          <ScalarProperty Name="repayments_interest" ColumnName="repayments_interest" />
+          <ScalarProperty Name="repayments_principal" ColumnName="repayments_principal" />
+          <ScalarProperty Name="disbursements_fees" ColumnName="disbursements_fees" />
+          <ScalarProperty Name="disbursements_amount" ColumnName="disbursements_amount" />
+          <ScalarProperty Name="number_of_contracts" ColumnName="number_of_contracts" />
+          <ScalarProperty Name="number_of_clients" ColumnName="number_of_clients" />
+          <ScalarProperty Name="par" ColumnName="par" />
+          <ScalarProperty Name="olb" ColumnName="olb" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContractAccountingRules">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ContractAccountingRule">
+        <MappingFragment StoreEntitySet="ContractAccountingRules">
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+          <ScalarProperty Name="client_type" ColumnName="client_type" />
+          <ScalarProperty Name="savings_product_id" ColumnName="savings_product_id" />
+          <ScalarProperty Name="loan_product_id" ColumnName="loan_product_id" />
+          <ScalarProperty Name="product_type" ColumnName="product_type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContractAssignHistories">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ContractAssignHistory">
+        <MappingFragment StoreEntitySet="ContractAssignHistory">
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="loanofficerTo_id" ColumnName="loanofficerTo_id" />
+          <ScalarProperty Name="loanofficerFrom_id" ColumnName="loanofficerFrom_id" />
+          <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContractEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ContractEvent">
+        <MappingFragment StoreEntitySet="ContractEvents">
+          <ScalarProperty Name="payment_method_id" ColumnName="payment_method_id" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="teller_id" ColumnName="teller_id" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="is_exported" ColumnName="is_exported" />
+          <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="event_date" ColumnName="event_date" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="event_type" ColumnName="event_type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contracts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Contract">
+        <MappingFragment StoreEntitySet="Contracts">
+          <ScalarProperty Name="first_installment_date" ColumnName="first_installment_date" />
+          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+          <ScalarProperty Name="nsg_id" ColumnName="nsg_id" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="loan_purpose" ColumnName="loan_purpose" />
+          <ScalarProperty Name="align_disbursed_date" ColumnName="align_disbursed_date" />
+          <ScalarProperty Name="credit_commitee_code" ColumnName="credit_commitee_code" />
+          <ScalarProperty Name="credit_commitee_comment" ColumnName="credit_commitee_comment" />
+          <ScalarProperty Name="credit_commitee_date" ColumnName="credit_commitee_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="closed" ColumnName="closed" />
+          <ScalarProperty Name="close_date" ColumnName="close_date" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="branch_code" ColumnName="branch_code" />
+          <ScalarProperty Name="contract_code" ColumnName="contract_code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CorporatePersonBelongings">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CorporatePersonBelonging">
+        <MappingFragment StoreEntitySet="CorporatePersonBelonging">
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="corporate_id" ColumnName="corporate_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Corporates">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Corporate">
+        <MappingFragment StoreEntitySet="Corporates">
+          <ScalarProperty Name="loan_officer_id" ColumnName="loan_officer_id" />
+          <ScalarProperty Name="insertionType" ColumnName="insertionType" />
+          <ScalarProperty Name="legalForm" ColumnName="legalForm" />
+          <ScalarProperty Name="registre" ColumnName="registre" />
+          <ScalarProperty Name="fiscal_status" ColumnName="fiscal_status" />
+          <ScalarProperty Name="date_create" ColumnName="date_create" />
+          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+          <ScalarProperty Name="siret" ColumnName="siret" />
+          <ScalarProperty Name="employee_count" ColumnName="employee_count" />
+          <ScalarProperty Name="agrement_solidarity" ColumnName="agrement_solidarity" />
+          <ScalarProperty Name="agrement_date" ColumnName="agrement_date" />
+          <ScalarProperty Name="volunteer_count" ColumnName="volunteer_count" />
+          <ScalarProperty Name="small_name" ColumnName="small_name" />
+          <ScalarProperty Name="sigle" ColumnName="sigle" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Credits">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Credit">
+        <MappingFragment StoreEntitySet="Credit">
+          <ScalarProperty Name="exotic_id" ColumnName="exotic_id" />
+          <ScalarProperty Name="insurance" ColumnName="insurance" />
+          <ScalarProperty Name="loan_cycle" ColumnName="loan_cycle" />
+          <ScalarProperty Name="nmb_of_inst_max" ColumnName="nmb_of_inst_max" />
+          <ScalarProperty Name="nmb_of_inst_min" ColumnName="nmb_of_inst_min" />
+          <ScalarProperty Name="ir_max" ColumnName="ir_max" />
+          <ScalarProperty Name="ir_min" ColumnName="ir_min" />
+          <ScalarProperty Name="amount_max" ColumnName="amount_max" />
+          <ScalarProperty Name="amount_min" ColumnName="amount_min" />
+          <ScalarProperty Name="schedule_changed" ColumnName="schedule_changed" />
+          <ScalarProperty Name="anticipated_total_repayment_base" ColumnName="anticipated_total_repayment_base" />
+          <ScalarProperty Name="anticipated_partial_repayment_base" ColumnName="anticipated_partial_repayment_base" />
+          <ScalarProperty Name="maturity_loc" ColumnName="maturity_loc" />
+          <ScalarProperty Name="amount_under_loc" ColumnName="amount_under_loc" />
+          <ScalarProperty Name="number_of_drawings_loc" ColumnName="number_of_drawings_loc" />
+          <ScalarProperty Name="anticipated_partial_repayment_penalties" ColumnName="anticipated_partial_repayment_penalties" />
+          <ScalarProperty Name="grace_period_of_latefees" ColumnName="grace_period_of_latefees" />
+          <ScalarProperty Name="interest" ColumnName="interest" />
+          <ScalarProperty Name="synchronize" ColumnName="synchronize" />
+          <ScalarProperty Name="fundingLine_id" ColumnName="fundingLine_id" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_overdue_interest" ColumnName="non_repayment_penalties_based_on_overdue_interest" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_olb" ColumnName="non_repayment_penalties_based_on_olb" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_initial_amount" ColumnName="non_repayment_penalties_based_on_initial_amount" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_overdue_principal" ColumnName="non_repayment_penalties_based_on_overdue_principal" />
+          <ScalarProperty Name="bad_loan" ColumnName="bad_loan" />
+          <ScalarProperty Name="rescheduled" ColumnName="rescheduled" />
+          <ScalarProperty Name="written_off" ColumnName="written_off" />
+          <ScalarProperty Name="grace_period" ColumnName="grace_period" />
+          <ScalarProperty Name="loanofficer_id" ColumnName="loanofficer_id" />
+          <ScalarProperty Name="disbursed" ColumnName="disbursed" />
+          <ScalarProperty Name="anticipated_total_repayment_penalties" ColumnName="anticipated_total_repayment_penalties" />
+          <ScalarProperty Name="nb_of_installment" ColumnName="nb_of_installment" />
+          <ScalarProperty Name="installment_type" ColumnName="installment_type" />
+          <ScalarProperty Name="interest_rate" ColumnName="interest_rate" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="package_id" ColumnName="package_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreditEntryFees">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CreditEntryFee">
+        <MappingFragment StoreEntitySet="CreditEntryFees">
+          <ScalarProperty Name="fee_value" ColumnName="fee_value" />
+          <ScalarProperty Name="entry_fee_id" ColumnName="entry_fee_id" />
+          <ScalarProperty Name="credit_id" ColumnName="credit_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CreditInsuranceEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CreditInsuranceEvent">
+        <MappingFragment StoreEntitySet="CreditInsuranceEvents">
+          <ScalarProperty Name="principal" ColumnName="principal" />
+          <ScalarProperty Name="commission" ColumnName="commission" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Currencies">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Currency">
+        <MappingFragment StoreEntitySet="Currencies">
+          <ScalarProperty Name="use_cents" ColumnName="use_cents" />
+          <ScalarProperty Name="is_swapped" ColumnName="is_swapped" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="is_pivot" ColumnName="is_pivot" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CycleObjects">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CycleObject">
+        <MappingFragment StoreEntitySet="CycleObjects">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CycleParameters">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.CycleParameter">
+        <MappingFragment StoreEntitySet="CycleParameters">
+          <ScalarProperty Name="cycle_id" ColumnName="cycle_id" />
+          <ScalarProperty Name="cycle_object_id" ColumnName="cycle_object_id" />
+          <ScalarProperty Name="max" ColumnName="max" />
+          <ScalarProperty Name="min" ColumnName="min" />
+          <ScalarProperty Name="loan_cycle" ColumnName="loan_cycle" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cycles">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Cycle">
+        <MappingFragment StoreEntitySet="Cycles">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.District">
+        <MappingFragment StoreEntitySet="Districts">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="province_id" ColumnName="province_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EconomicActivities">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.EconomicActivity">
+        <MappingFragment StoreEntitySet="EconomicActivities">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EconomicActivityLoanHistories">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.EconomicActivityLoanHistory">
+        <MappingFragment StoreEntitySet="EconomicActivityLoanHistory">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="economic_activity_id" ColumnName="economic_activity_id" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employers">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Employer">
+        <MappingFragment StoreEntitySet="Employers">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="BankBranchSortCode" ColumnName="BankBranchSortCode" />
+          <ScalarProperty Name="NSSF" ColumnName="NSSF" />
+          <ScalarProperty Name="NHIF" ColumnName="NHIF" />
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="AuthorizedSignatory" ColumnName="AuthorizedSignatory" />
+          <ScalarProperty Name="Slogan" ColumnName="Slogan" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EntryFees">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.EntryFee">
+        <MappingFragment StoreEntitySet="EntryFees">
+          <ScalarProperty Name="cycle_id" ColumnName="cycle_id" />
+          <ScalarProperty Name="fee_index" ColumnName="fee_index" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="max" ColumnName="max" />
+          <ScalarProperty Name="min" ColumnName="min" />
+          <ScalarProperty Name="name_of_fee" ColumnName="name_of_fee" />
+          <ScalarProperty Name="id_product" ColumnName="id_product" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventAttributes">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.EventAttribute">
+        <MappingFragment StoreEntitySet="EventAttributes">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="event_type" ColumnName="event_type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventTypes">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.EventType">
+        <MappingFragment StoreEntitySet="EventTypes">
+          <ScalarProperty Name="accounting" ColumnName="accounting" />
+          <ScalarProperty Name="sort_order" ColumnName="sort_order" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="event_type" ColumnName="event_type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExchangeRates">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ExchangeRate">
+        <MappingFragment StoreEntitySet="ExchangeRates">
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="exchange_rate" ColumnName="exchange_rate" />
+          <ScalarProperty Name="exchange_date" ColumnName="exchange_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExoticInstallments">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ExoticInstallment">
+        <MappingFragment StoreEntitySet="ExoticInstallments">
+          <ScalarProperty Name="interest_coeff" ColumnName="interest_coeff" />
+          <ScalarProperty Name="principal_coeff" ColumnName="principal_coeff" />
+          <ScalarProperty Name="exotic_id" ColumnName="exotic_id" />
+          <ScalarProperty Name="number" ColumnName="number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exotics">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Exotic">
+        <MappingFragment StoreEntitySet="Exotics">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FiscalYears">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.FiscalYear">
+        <MappingFragment StoreEntitySet="FiscalYear">
+          <ScalarProperty Name="close_date" ColumnName="close_date" />
+          <ScalarProperty Name="open_date" ColumnName="open_date" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FundingLineAccountingRules">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.FundingLineAccountingRule">
+        <MappingFragment StoreEntitySet="FundingLineAccountingRules">
+          <ScalarProperty Name="funding_line_id" ColumnName="funding_line_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FundingLineEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.FundingLineEvent">
+        <MappingFragment StoreEntitySet="FundingLineEvents">
+          <ScalarProperty Name="contract_event_id" ColumnName="contract_event_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="fundingline_id" ColumnName="fundingline_id" />
+          <ScalarProperty Name="direction" ColumnName="direction" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FundingLines">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.FundingLine">
+        <MappingFragment StoreEntitySet="FundingLines">
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="purpose" ColumnName="purpose" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="begin_date" ColumnName="begin_date" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GeneralParameters">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.GeneralParameter">
+        <MappingFragment StoreEntitySet="GeneralParameters">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="key" ColumnName="key" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Group">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="loan_officer_id" ColumnName="loan_officer_id" />
+          <ScalarProperty Name="meeting_day" ColumnName="meeting_day" />
+          <ScalarProperty Name="establishment_date" ColumnName="establishment_date" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstallmentHistories">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.InstallmentHistory">
+        <MappingFragment StoreEntitySet="InstallmentHistory">
+          <ScalarProperty Name="olb" ColumnName="olb" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="pending" ColumnName="pending" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="delete_date" ColumnName="delete_date" />
+          <ScalarProperty Name="paid_date" ColumnName="paid_date" />
+          <ScalarProperty Name="fees_unpaid" ColumnName="fees_unpaid" />
+          <ScalarProperty Name="paid_fees" ColumnName="paid_fees" />
+          <ScalarProperty Name="paid_capital" ColumnName="paid_capital" />
+          <ScalarProperty Name="paid_interest" ColumnName="paid_interest" />
+          <ScalarProperty Name="interest_repayment" ColumnName="interest_repayment" />
+          <ScalarProperty Name="capital_repayment" ColumnName="capital_repayment" />
+          <ScalarProperty Name="expected_date" ColumnName="expected_date" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Installments">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Installment">
+        <MappingFragment StoreEntitySet="Installments">
+          <ScalarProperty Name="olb" ColumnName="olb" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="pending" ColumnName="pending" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="paid_fees" ColumnName="paid_fees" />
+          <ScalarProperty Name="paid_date" ColumnName="paid_date" />
+          <ScalarProperty Name="fees_unpaid" ColumnName="fees_unpaid" />
+          <ScalarProperty Name="paid_capital" ColumnName="paid_capital" />
+          <ScalarProperty Name="paid_interest" ColumnName="paid_interest" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="capital_repayment" ColumnName="capital_repayment" />
+          <ScalarProperty Name="interest_repayment" ColumnName="interest_repayment" />
+          <ScalarProperty Name="expected_date" ColumnName="expected_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstallmentTypes">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.InstallmentType">
+        <MappingFragment StoreEntitySet="InstallmentTypes">
+          <ScalarProperty Name="nb_of_months" ColumnName="nb_of_months" />
+          <ScalarProperty Name="nb_of_days" ColumnName="nb_of_days" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LinkBranchesPaymentMethods">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.LinkBranchesPaymentMethod">
+        <MappingFragment StoreEntitySet="LinkBranchesPaymentMethods">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="payment_method_id" ColumnName="payment_method_id" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LinkGuarantorCredits">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.LinkGuarantorCredit">
+        <MappingFragment StoreEntitySet="LinkGuarantorCredit">
+          <ScalarProperty Name="guarantee_desc" ColumnName="guarantee_desc" />
+          <ScalarProperty Name="guarantee_amount" ColumnName="guarantee_amount" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="tiers_id" ColumnName="tiers_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LinkPackagesExotics">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.LinkPackagesExotic">
+        <MappingFragment StoreEntitySet="LinkPackagesExotics">
+          <ScalarProperty Name="exotic_id" ColumnName="exotic_id" />
+          <ScalarProperty Name="package_id" ColumnName="package_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanAccountingMovements">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.LoanAccountingMovement">
+        <MappingFragment StoreEntitySet="LoanAccountingMovements">
+          <ScalarProperty Name="booking_type" ColumnName="booking_type" />
+          <ScalarProperty Name="fiscal_year_id" ColumnName="fiscal_year_id" />
+          <ScalarProperty Name="closure_id" ColumnName="closure_id" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="rule_id" ColumnName="rule_id" />
+          <ScalarProperty Name="exchange_rate" ColumnName="exchange_rate" />
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="is_exported" ColumnName="is_exported" />
+          <ScalarProperty Name="export_date" ColumnName="export_date" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="credit_account_number_id" ColumnName="credit_account_number_id" />
+          <ScalarProperty Name="debit_account_number_id" ColumnName="debit_account_number_id" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanDisbursmentEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.LoanDisbursmentEvent">
+        <MappingFragment StoreEntitySet="LoanDisbursmentEvents">
+          <ScalarProperty Name="interest" ColumnName="interest" />
+          <ScalarProperty Name="fees" ColumnName="fees" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanEntryFeeEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.LoanEntryFeeEvent">
+        <MappingFragment StoreEntitySet="LoanEntryFeeEvents">
+          <ScalarProperty Name="disbursement_event_id" ColumnName="disbursement_event_id" />
+          <ScalarProperty Name="fee" ColumnName="fee" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanInterestAccruingEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.LoanInterestAccruingEvent">
+        <MappingFragment StoreEntitySet="LoanInterestAccruingEvents">
+          <ScalarProperty Name="installment_number" ColumnName="installment_number" />
+          <ScalarProperty Name="rescheduled" ColumnName="rescheduled" />
+          <ScalarProperty Name="accrued_interest" ColumnName="accrued_interest" />
+          <ScalarProperty Name="interest_prepayment" ColumnName="interest_prepayment" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanScales">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.LoanScale">
+        <MappingFragment StoreEntitySet="LoanScale">
+          <ScalarProperty Name="ScaleMax" ColumnName="ScaleMax" />
+          <ScalarProperty Name="ScaleMin" ColumnName="ScaleMin" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoanShareAmounts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.LoanShareAmount">
+        <MappingFragment StoreEntitySet="LoanShareAmounts">
+          <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoansLinkSavingsBooks">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.LoansLinkSavingsBook">
+        <MappingFragment StoreEntitySet="LoansLinkSavingsBook">
+          <ScalarProperty Name="loan_percentage" ColumnName="loan_percentage" />
+          <ScalarProperty Name="savings_id" ColumnName="savings_id" />
+          <ScalarProperty Name="loan_id" ColumnName="loan_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ManualAccountingMovements">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ManualAccountingMovement">
+        <MappingFragment StoreEntitySet="ManualAccountingMovements">
+          <ScalarProperty Name="fiscal_year_id" ColumnName="fiscal_year_id" />
+          <ScalarProperty Name="closure_id" ColumnName="closure_id" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="exchange_rate" ColumnName="exchange_rate" />
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="is_exported" ColumnName="is_exported" />
+          <ScalarProperty Name="export_date" ColumnName="export_date" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="credit_account_number_id" ColumnName="credit_account_number_id" />
+          <ScalarProperty Name="debit_account_number_id" ColumnName="debit_account_number_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuItems">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.MenuItem">
+        <MappingFragment StoreEntitySet="MenuItems">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="component_name" ColumnName="component_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Monitorings">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Monitoring">
+        <MappingFragment StoreEntitySet="Monitoring">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="monitor" ColumnName="monitor" />
+          <ScalarProperty Name="purpose" ColumnName="purpose" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="object_id" ColumnName="object_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OverdueEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.OverdueEvent">
+        <MappingFragment StoreEntitySet="OverdueEvents">
+          <ScalarProperty Name="overdue_principal" ColumnName="overdue_principal" />
+          <ScalarProperty Name="overdue_days" ColumnName="overdue_days" />
+          <ScalarProperty Name="olb" ColumnName="olb" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Packages">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Package">
+        <MappingFragment StoreEntitySet="Packages">
+          <ScalarProperty Name="is_balloon" ColumnName="is_balloon" />
+          <ScalarProperty Name="use_entry_fees_cycles" ColumnName="use_entry_fees_cycles" />
+          <ScalarProperty Name="insurance_max" ColumnName="insurance_max" />
+          <ScalarProperty Name="insurance_min" ColumnName="insurance_min" />
+          <ScalarProperty Name="compulsory_amount_max" ColumnName="compulsory_amount_max" />
+          <ScalarProperty Name="compulsory_amount_min" ColumnName="compulsory_amount_min" />
+          <ScalarProperty Name="compulsory_amount" ColumnName="compulsory_amount" />
+          <ScalarProperty Name="use_compulsory_savings" ColumnName="use_compulsory_savings" />
+          <ScalarProperty Name="percentage_separate_collateral" ColumnName="percentage_separate_collateral" />
+          <ScalarProperty Name="percentage_separate_guarantor" ColumnName="percentage_separate_guarantor" />
+          <ScalarProperty Name="percentage_total_guarantor_collateral" ColumnName="percentage_total_guarantor_collateral" />
+          <ScalarProperty Name="set_separate_guarantor_collateral" ColumnName="set_separate_guarantor_collateral" />
+          <ScalarProperty Name="use_guarantor_collateral" ColumnName="use_guarantor_collateral" />
+          <ScalarProperty Name="allow_flexible_schedule" ColumnName="allow_flexible_schedule" />
+          <ScalarProperty Name="activated_loc" ColumnName="activated_loc" />
+          <ScalarProperty Name="maturity_loc_max" ColumnName="maturity_loc_max" />
+          <ScalarProperty Name="maturity_loc_min" ColumnName="maturity_loc_min" />
+          <ScalarProperty Name="maturity_loc" ColumnName="maturity_loc" />
+          <ScalarProperty Name="amount_under_loc_max" ColumnName="amount_under_loc_max" />
+          <ScalarProperty Name="amount_under_loc_min" ColumnName="amount_under_loc_min" />
+          <ScalarProperty Name="amount_under_loc" ColumnName="amount_under_loc" />
+          <ScalarProperty Name="number_of_drawings_loc" ColumnName="number_of_drawings_loc" />
+          <ScalarProperty Name="anticipated_total_repayment_base" ColumnName="anticipated_total_repayment_base" />
+          <ScalarProperty Name="anticipated_partial_repayment_base" ColumnName="anticipated_partial_repayment_base" />
+          <ScalarProperty Name="anticipated_partial_repayment_penalties_max" ColumnName="anticipated_partial_repayment_penalties_max" />
+          <ScalarProperty Name="anticipated_partial_repayment_penalties_min" ColumnName="anticipated_partial_repayment_penalties_min" />
+          <ScalarProperty Name="anticipated_partial_repayment_penalties" ColumnName="anticipated_partial_repayment_penalties" />
+          <ScalarProperty Name="grace_period_of_latefees" ColumnName="grace_period_of_latefees" />
+          <ScalarProperty Name="rounding_type" ColumnName="rounding_type" />
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="fundingLine_id" ColumnName="fundingLine_id" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_overdue_principal_max" ColumnName="non_repayment_penalties_based_on_overdue_principal_max" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_olb_max" ColumnName="non_repayment_penalties_based_on_olb_max" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_initial_amount_max" ColumnName="non_repayment_penalties_based_on_initial_amount_max" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_overdue_interest_max" ColumnName="non_repayment_penalties_based_on_overdue_interest_max" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_overdue_principal_min" ColumnName="non_repayment_penalties_based_on_overdue_principal_min" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_olb_min" ColumnName="non_repayment_penalties_based_on_olb_min" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_initial_amount_min" ColumnName="non_repayment_penalties_based_on_initial_amount_min" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_overdue_interest_min" ColumnName="non_repayment_penalties_based_on_overdue_interest_min" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_overdue_principal" ColumnName="non_repayment_penalties_based_on_overdue_principal" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_olb" ColumnName="non_repayment_penalties_based_on_olb" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_initial_amount" ColumnName="non_repayment_penalties_based_on_initial_amount" />
+          <ScalarProperty Name="non_repayment_penalties_based_on_overdue_interest" ColumnName="non_repayment_penalties_based_on_overdue_interest" />
+          <ScalarProperty Name="cycle_id" ColumnName="cycle_id" />
+          <ScalarProperty Name="charge_interest_within_grace_period" ColumnName="charge_interest_within_grace_period" />
+          <ScalarProperty Name="keep_expected_installment" ColumnName="keep_expected_installment" />
+          <ScalarProperty Name="loan_type" ColumnName="loan_type" />
+          <ScalarProperty Name="anticipated_total_repayment_penalties_max" ColumnName="anticipated_total_repayment_penalties_max" />
+          <ScalarProperty Name="anticipated_total_repayment_penalties_min" ColumnName="anticipated_total_repayment_penalties_min" />
+          <ScalarProperty Name="anticipated_total_repayment_penalties" ColumnName="anticipated_total_repayment_penalties" />
+          <ScalarProperty Name="number_of_installments_max" ColumnName="number_of_installments_max" />
+          <ScalarProperty Name="number_of_installments_min" ColumnName="number_of_installments_min" />
+          <ScalarProperty Name="number_of_installments" ColumnName="number_of_installments" />
+          <ScalarProperty Name="grace_period_max" ColumnName="grace_period_max" />
+          <ScalarProperty Name="grace_period_min" ColumnName="grace_period_min" />
+          <ScalarProperty Name="grace_period" ColumnName="grace_period" />
+          <ScalarProperty Name="installment_type" ColumnName="installment_type" />
+          <ScalarProperty Name="interest_rate_max" ColumnName="interest_rate_max" />
+          <ScalarProperty Name="interest_rate_min" ColumnName="interest_rate_min" />
+          <ScalarProperty Name="interest_rate" ColumnName="interest_rate" />
+          <ScalarProperty Name="amount_max" ColumnName="amount_max" />
+          <ScalarProperty Name="amount_min" ColumnName="amount_min" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="client_type" ColumnName="client_type" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackagesClientTypes">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.PackagesClientType">
+        <MappingFragment StoreEntitySet="PackagesClientTypes">
+          <ScalarProperty Name="package_id" ColumnName="package_id" />
+          <ScalarProperty Name="client_type_id" ColumnName="client_type_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentMethods">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.PaymentMethod">
+        <MappingFragment StoreEntitySet="PaymentMethods">
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="account_id" ColumnName="account_id" />
+          <ScalarProperty Name="is_pending_for_savings" ColumnName="is_pending_for_savings" />
+          <ScalarProperty Name="is_active_for_savings" ColumnName="is_active_for_savings" />
+          <ScalarProperty Name="is_pending_for_loans" ColumnName="is_pending_for_loans" />
+          <ScalarProperty Name="is_active_for_loans" ColumnName="is_active_for_loans" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonGroupBelongings">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.PersonGroupBelonging">
+        <MappingFragment StoreEntitySet="PersonGroupBelonging">
+          <ScalarProperty Name="left_date" ColumnName="left_date" />
+          <ScalarProperty Name="joined_date" ColumnName="joined_date" />
+          <ScalarProperty Name="currently_in" ColumnName="currently_in" />
+          <ScalarProperty Name="is_leader" ColumnName="is_leader" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Persons">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Person">
+        <MappingFragment StoreEntitySet="Persons">
+          <ScalarProperty Name="loan_officer_id" ColumnName="loan_officer_id" />
+          <ScalarProperty Name="first_appointment" ColumnName="first_appointment" />
+          <ScalarProperty Name="unemployment_months" ColumnName="unemployment_months" />
+          <ScalarProperty Name="povertylevel_healthsituation" ColumnName="povertylevel_healthsituation" />
+          <ScalarProperty Name="povertylevel_socialparticipation" ColumnName="povertylevel_socialparticipation" />
+          <ScalarProperty Name="povertylevel_economiceducation" ColumnName="povertylevel_economiceducation" />
+          <ScalarProperty Name="povertylevel_childreneducation" ColumnName="povertylevel_childreneducation" />
+          <ScalarProperty Name="mother_name" ColumnName="mother_name" />
+          <ScalarProperty Name="family_situation" ColumnName="family_situation" />
+          <ScalarProperty Name="first_contact" ColumnName="first_contact" />
+          <ScalarProperty Name="professional_situation" ColumnName="professional_situation" />
+          <ScalarProperty Name="professional_experience" ColumnName="professional_experience" />
+          <ScalarProperty Name="handicapped" ColumnName="handicapped" />
+          <ScalarProperty Name="bank_situation" ColumnName="bank_situation" />
+          <ScalarProperty Name="housing_situation" ColumnName="housing_situation" />
+          <ScalarProperty Name="CAF" ColumnName="CAF" />
+          <ScalarProperty Name="SS" ColumnName="SS" />
+          <ScalarProperty Name="study_level" ColumnName="study_level" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="birth_place" ColumnName="birth_place" />
+          <ScalarProperty Name="father_name" ColumnName="father_name" />
+          <ScalarProperty Name="image_path" ColumnName="image_path" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="monthly_expenditure" ColumnName="monthly_expenditure" />
+          <ScalarProperty Name="monthly_income" ColumnName="monthly_income" />
+          <ScalarProperty Name="nb_of_people" ColumnName="nb_of_people" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+          <ScalarProperty Name="capital_other_equipments" ColumnName="capital_other_equipments" />
+          <ScalarProperty Name="home_time_living_in" ColumnName="home_time_living_in" />
+          <ScalarProperty Name="home_size" ColumnName="home_size" />
+          <ScalarProperty Name="landplot_size" ColumnName="landplot_size" />
+          <ScalarProperty Name="livestock_type" ColumnName="livestock_type" />
+          <ScalarProperty Name="livestock_number" ColumnName="livestock_number" />
+          <ScalarProperty Name="children_basic_education" ColumnName="children_basic_education" />
+          <ScalarProperty Name="nb_of_children" ColumnName="nb_of_children" />
+          <ScalarProperty Name="nb_of_dependents" ColumnName="nb_of_dependents" />
+          <ScalarProperty Name="household_head" ColumnName="household_head" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="identification_data" ColumnName="identification_data" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonsPhotos">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.PersonsPhoto">
+        <MappingFragment StoreEntitySet="PersonsPhotos">
+          <ScalarProperty Name="picture_id" ColumnName="picture_id" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Project">
+        <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="corporate_registre" ColumnName="corporate_registre" />
+          <ScalarProperty Name="hometype" ColumnName="hometype" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="personalPhone" ColumnName="personalPhone" />
+          <ScalarProperty Name="home_phone" ColumnName="home_phone" />
+          <ScalarProperty Name="district_id" ColumnName="district_id" />
+          <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="corporate_financialPlanTotalAmount" ColumnName="corporate_financialPlanTotalAmount" />
+          <ScalarProperty Name="corporateFinancialPlanAmount" ColumnName="corporateFinancialPlanAmount" />
+          <ScalarProperty Name="corporate_financialPlanType" ColumnName="corporate_financialPlanType" />
+          <ScalarProperty Name="corporate_nbOfJobs" ColumnName="corporate_nbOfJobs" />
+          <ScalarProperty Name="corporate_CA" ColumnName="corporate_CA" />
+          <ScalarProperty Name="corporate_siret" ColumnName="corporate_siret" />
+          <ScalarProperty Name="corporate_FiscalStatus" ColumnName="corporate_FiscalStatus" />
+          <ScalarProperty Name="corporate_juridicStatus" ColumnName="corporate_juridicStatus" />
+          <ScalarProperty Name="corporate_name" ColumnName="corporate_name" />
+          <ScalarProperty Name="purpose" ColumnName="purpose" />
+          <ScalarProperty Name="concurrence" ColumnName="concurrence" />
+          <ScalarProperty Name="market" ColumnName="market" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="abilities" ColumnName="abilities" />
+          <ScalarProperty Name="begin_date" ColumnName="begin_date" />
+          <ScalarProperty Name="aim" ColumnName="aim" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="tiers_id" ColumnName="tiers_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Provinces">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Province">
+        <MappingFragment StoreEntitySet="Provinces">
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProvisionEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ProvisionEvent">
+        <MappingFragment StoreEntitySet="ProvisionEvents">
+          <ScalarProperty Name="overdue_days" ColumnName="overdue_days" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProvisioningRules">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ProvisioningRule">
+        <MappingFragment StoreEntitySet="ProvisioningRules">
+          <ScalarProperty Name="provisioning_value" ColumnName="provisioning_value" />
+          <ScalarProperty Name="number_of_days_max" ColumnName="number_of_days_max" />
+          <ScalarProperty Name="number_of_days_min" ColumnName="number_of_days_min" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PublicHolidays">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.PublicHoliday">
+        <MappingFragment StoreEntitySet="PublicHolidays">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questionnaires">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Questionnaire">
+        <MappingFragment StoreEntitySet="Questionnaire">
+          <ScalarProperty Name="is_sent" ColumnName="is_sent" />
+          <ScalarProperty Name="PurposeOfUsage" ColumnName="PurposeOfUsage" />
+          <ScalarProperty Name="Skype" ColumnName="Skype" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+          <ScalarProperty Name="NumberOfClients" ColumnName="NumberOfClients" />
+          <ScalarProperty Name="GrossPortfolio" ColumnName="GrossPortfolio" />
+          <ScalarProperty Name="OtherMessages" ColumnName="OtherMessages" />
+          <ScalarProperty Name="PositionInCompony" ColumnName="PositionInCompony" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rep_Active_Loans_Data">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Rep_Active_Loans_Data">
+        <MappingFragment StoreEntitySet="Rep_Active_Loans_Data">
+          <ScalarProperty Name="break_down_id" ColumnName="break_down_id" />
+          <ScalarProperty Name="olb" ColumnName="olb" />
+          <ScalarProperty Name="projects" ColumnName="projects" />
+          <ScalarProperty Name="in_groups" ColumnName="in_groups" />
+          <ScalarProperty Name="clients" ColumnName="clients" />
+          <ScalarProperty Name="corporate" ColumnName="corporate" />
+          <ScalarProperty Name="group" ColumnName="group" />
+          <ScalarProperty Name="individual" ColumnName="individual" />
+          <ScalarProperty Name="contracts" ColumnName="contracts" />
+          <ScalarProperty Name="break_down_type" ColumnName="break_down_type" />
+          <ScalarProperty Name="break_down" ColumnName="break_down" />
+          <ScalarProperty Name="load_date" ColumnName="load_date" />
+          <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rep_Disbursements_Data">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Rep_Disbursements_Data">
+        <MappingFragment StoreEntitySet="Rep_Disbursements_Data">
+          <ScalarProperty Name="fees" ColumnName="fees" />
+          <ScalarProperty Name="interest" ColumnName="interest" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="disbursement_date" ColumnName="disbursement_date" />
+          <ScalarProperty Name="loan_officer" ColumnName="loan_officer" />
+          <ScalarProperty Name="loan_cycle" ColumnName="loan_cycle" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="loan_product" ColumnName="loan_product" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="contract_code" ColumnName="contract_code" />
+          <ScalarProperty Name="load_date" ColumnName="load_date" />
+          <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rep_OLB_and_LLP_Data">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Rep_OLB_and_LLP_Data">
+        <MappingFragment StoreEntitySet="Rep_OLB_and_LLP_Data">
+          <ScalarProperty Name="rescheduled" ColumnName="rescheduled" />
+          <ScalarProperty Name="llp" ColumnName="llp" />
+          <ScalarProperty Name="llp_rate" ColumnName="llp_rate" />
+          <ScalarProperty Name="range_to" ColumnName="range_to" />
+          <ScalarProperty Name="range_from" ColumnName="range_from" />
+          <ScalarProperty Name="close_date" ColumnName="close_date" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="district_name" ColumnName="district_name" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="loan_officer_name" ColumnName="loan_officer_name" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="late_days" ColumnName="late_days" />
+          <ScalarProperty Name="interest" ColumnName="interest" />
+          <ScalarProperty Name="olb" ColumnName="olb" />
+          <ScalarProperty Name="contract_code" ColumnName="contract_code" />
+          <ScalarProperty Name="load_date" ColumnName="load_date" />
+          <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rep_Par_Analysis_Data">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Rep_Par_Analysis_Data">
+        <MappingFragment StoreEntitySet="Rep_Par_Analysis_Data">
+          <ScalarProperty Name="break_down_id" ColumnName="break_down_id" />
+          <ScalarProperty Name="clients_365" ColumnName="clients_365" />
+          <ScalarProperty Name="contracts_365" ColumnName="contracts_365" />
+          <ScalarProperty Name="par_365" ColumnName="par_365" />
+          <ScalarProperty Name="clients_181_365" ColumnName="clients_181_365" />
+          <ScalarProperty Name="contracts_181_365" ColumnName="contracts_181_365" />
+          <ScalarProperty Name="par_181_365" ColumnName="par_181_365" />
+          <ScalarProperty Name="clients_91_180" ColumnName="clients_91_180" />
+          <ScalarProperty Name="contracts_91_180" ColumnName="contracts_91_180" />
+          <ScalarProperty Name="par_91_180" ColumnName="par_91_180" />
+          <ScalarProperty Name="clients_61_90" ColumnName="clients_61_90" />
+          <ScalarProperty Name="contracts_61_90" ColumnName="contracts_61_90" />
+          <ScalarProperty Name="par_61_90" ColumnName="par_61_90" />
+          <ScalarProperty Name="clients_31_60" ColumnName="clients_31_60" />
+          <ScalarProperty Name="contracts_31_60" ColumnName="contracts_31_60" />
+          <ScalarProperty Name="par_31_60" ColumnName="par_31_60" />
+          <ScalarProperty Name="clients_1_30" ColumnName="clients_1_30" />
+          <ScalarProperty Name="contracts_1_30" ColumnName="contracts_1_30" />
+          <ScalarProperty Name="par_1_30" ColumnName="par_1_30" />
+          <ScalarProperty Name="clients_30" ColumnName="clients_30" />
+          <ScalarProperty Name="contracts_30" ColumnName="contracts_30" />
+          <ScalarProperty Name="par_30" ColumnName="par_30" />
+          <ScalarProperty Name="all_clients" ColumnName="all_clients" />
+          <ScalarProperty Name="all_contracts" ColumnName="all_contracts" />
+          <ScalarProperty Name="clients" ColumnName="clients" />
+          <ScalarProperty Name="contracts" ColumnName="contracts" />
+          <ScalarProperty Name="par" ColumnName="par" />
+          <ScalarProperty Name="olb" ColumnName="olb" />
+          <ScalarProperty Name="break_down_type" ColumnName="break_down_type" />
+          <ScalarProperty Name="break_down" ColumnName="break_down" />
+          <ScalarProperty Name="load_date" ColumnName="load_date" />
+          <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rep_Repayments_Data">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Rep_Repayments_Data">
+        <MappingFragment StoreEntitySet="Rep_Repayments_Data">
+          <ScalarProperty Name="written_off" ColumnName="written_off" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="interest" ColumnName="interest" />
+          <ScalarProperty Name="principal" ColumnName="principal" />
+          <ScalarProperty Name="late_fee" ColumnName="late_fee" />
+          <ScalarProperty Name="early_fee" ColumnName="early_fee" />
+          <ScalarProperty Name="loan_product_name" ColumnName="loan_product_name" />
+          <ScalarProperty Name="loan_officer_name" ColumnName="loan_officer_name" />
+          <ScalarProperty Name="district_name" ColumnName="district_name" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="contract_code" ColumnName="contract_code" />
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="load_date" ColumnName="load_date" />
+          <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rep_Rescheduled_Loans_Data">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Rep_Rescheduled_Loans_Data">
+        <MappingFragment StoreEntitySet="Rep_Rescheduled_Loans_Data">
+          <ScalarProperty Name="olb" ColumnName="olb" />
+          <ScalarProperty Name="reschedule_date" ColumnName="reschedule_date" />
+          <ScalarProperty Name="maturity" ColumnName="maturity" />
+          <ScalarProperty Name="amount_rescheduled" ColumnName="amount_rescheduled" />
+          <ScalarProperty Name="loan_amount" ColumnName="loan_amount" />
+          <ScalarProperty Name="package_name" ColumnName="package_name" />
+          <ScalarProperty Name="contract_code" ColumnName="contract_code" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="loan_officer" ColumnName="loan_officer" />
+          <ScalarProperty Name="load_date" ColumnName="load_date" />
+          <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RepaymentEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.RepaymentEvent">
+        <MappingFragment StoreEntitySet="RepaymentEvents">
+          <ScalarProperty Name="unpaid_penalties" ColumnName="unpaid_penalties" />
+          <ScalarProperty Name="written_off_penalties" ColumnName="written_off_penalties" />
+          <ScalarProperty Name="calculated_penalties" ColumnName="calculated_penalties" />
+          <ScalarProperty Name="penalties" ColumnName="penalties" />
+          <ScalarProperty Name="commissions" ColumnName="commissions" />
+          <ScalarProperty Name="installment_number" ColumnName="installment_number" />
+          <ScalarProperty Name="interests" ColumnName="interests" />
+          <ScalarProperty Name="principal" ColumnName="principal" />
+          <ScalarProperty Name="past_due_days" ColumnName="past_due_days" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReschedulingOfALoanEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.ReschedulingOfALoanEvent">
+        <MappingFragment StoreEntitySet="ReschedulingOfALoanEvents">
+          <ScalarProperty Name="charge_interest_during_grace_period" ColumnName="charge_interest_during_grace_period" />
+          <ScalarProperty Name="charge_interest_during_shift" ColumnName="charge_interest_during_shift" />
+          <ScalarProperty Name="grace_period" ColumnName="grace_period" />
+          <ScalarProperty Name="date_offset" ColumnName="date_offset" />
+          <ScalarProperty Name="nb_of_maturity" ColumnName="nb_of_maturity" />
+          <ScalarProperty Name="interest" ColumnName="interest" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="role_of_teller" ColumnName="role_of_teller" />
+          <ScalarProperty Name="role_of_saving" ColumnName="role_of_saving" />
+          <ScalarProperty Name="role_of_loan" ColumnName="role_of_loan" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingBookContracts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.SavingBookContract">
+        <MappingFragment StoreEntitySet="SavingBookContracts">
+          <ScalarProperty Name="next_maturity" ColumnName="next_maturity" />
+          <ScalarProperty Name="rollover" ColumnName="rollover" />
+          <ScalarProperty Name="transfer_account" ColumnName="transfer_account" />
+          <ScalarProperty Name="term_deposit_period_max" ColumnName="term_deposit_period_max" />
+          <ScalarProperty Name="term_deposit_period_min" ColumnName="term_deposit_period_min" />
+          <ScalarProperty Name="term_deposit_period" ColumnName="term_deposit_period" />
+          <ScalarProperty Name="use_term_deposit" ColumnName="use_term_deposit" />
+          <ScalarProperty Name="rate_ibt_fee" ColumnName="rate_ibt_fee" />
+          <ScalarProperty Name="flat_ibt_fee" ColumnName="flat_ibt_fee" />
+          <ScalarProperty Name="flat_reopen_fees" ColumnName="flat_reopen_fees" />
+          <ScalarProperty Name="cheque_deposit_fees" ColumnName="cheque_deposit_fees" />
+          <ScalarProperty Name="rate_agio_fees" ColumnName="rate_agio_fees" />
+          <ScalarProperty Name="in_overdraft" ColumnName="in_overdraft" />
+          <ScalarProperty Name="flat_overdraft_fees" ColumnName="flat_overdraft_fees" />
+          <ScalarProperty Name="flat_management_fees" ColumnName="flat_management_fees" />
+          <ScalarProperty Name="flat_close_fees" ColumnName="flat_close_fees" />
+          <ScalarProperty Name="flat_deposit_fees" ColumnName="flat_deposit_fees" />
+          <ScalarProperty Name="rate_transfer_fees" ColumnName="rate_transfer_fees" />
+          <ScalarProperty Name="flat_transfer_fees" ColumnName="flat_transfer_fees" />
+          <ScalarProperty Name="rate_withdraw_fees" ColumnName="rate_withdraw_fees" />
+          <ScalarProperty Name="flat_withdraw_fees" ColumnName="flat_withdraw_fees" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingBookProducts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.SavingBookProduct">
+        <MappingFragment StoreEntitySet="SavingBookProducts">
+          <ScalarProperty Name="posting_frequency" ColumnName="posting_frequency" />
+          <ScalarProperty Name="term_deposit_period_max" ColumnName="term_deposit_period_max" />
+          <ScalarProperty Name="term_deposit_period_min" ColumnName="term_deposit_period_min" />
+          <ScalarProperty Name="use_term_deposit" ColumnName="use_term_deposit" />
+          <ScalarProperty Name="ibt_fee" ColumnName="ibt_fee" />
+          <ScalarProperty Name="ibt_fee_max" ColumnName="ibt_fee_max" />
+          <ScalarProperty Name="ibt_fee_min" ColumnName="ibt_fee_min" />
+          <ScalarProperty Name="is_ibt_fee_flat" ColumnName="is_ibt_fee_flat" />
+          <ScalarProperty Name="reopen_fees_max" ColumnName="reopen_fees_max" />
+          <ScalarProperty Name="reopen_fees_min" ColumnName="reopen_fees_min" />
+          <ScalarProperty Name="reopen_fees" ColumnName="reopen_fees" />
+          <ScalarProperty Name="cheque_deposit_fees_max" ColumnName="cheque_deposit_fees_max" />
+          <ScalarProperty Name="cheque_deposit_fees_min" ColumnName="cheque_deposit_fees_min" />
+          <ScalarProperty Name="cheque_deposit_fees" ColumnName="cheque_deposit_fees" />
+          <ScalarProperty Name="cheque_deposit_max" ColumnName="cheque_deposit_max" />
+          <ScalarProperty Name="cheque_deposit_min" ColumnName="cheque_deposit_min" />
+          <ScalarProperty Name="agio_fees_freq" ColumnName="agio_fees_freq" />
+          <ScalarProperty Name="agio_fees_min" ColumnName="agio_fees_min" />
+          <ScalarProperty Name="agio_fees_max" ColumnName="agio_fees_max" />
+          <ScalarProperty Name="agio_fees" ColumnName="agio_fees" />
+          <ScalarProperty Name="overdraft_fees_min" ColumnName="overdraft_fees_min" />
+          <ScalarProperty Name="overdraft_fees_max" ColumnName="overdraft_fees_max" />
+          <ScalarProperty Name="overdraft_fees" ColumnName="overdraft_fees" />
+          <ScalarProperty Name="management_fees_freq" ColumnName="management_fees_freq" />
+          <ScalarProperty Name="management_fees_min" ColumnName="management_fees_min" />
+          <ScalarProperty Name="management_fees_max" ColumnName="management_fees_max" />
+          <ScalarProperty Name="management_fees" ColumnName="management_fees" />
+          <ScalarProperty Name="close_fees_min" ColumnName="close_fees_min" />
+          <ScalarProperty Name="close_fees_max" ColumnName="close_fees_max" />
+          <ScalarProperty Name="close_fees" ColumnName="close_fees" />
+          <ScalarProperty Name="deposit_fees_min" ColumnName="deposit_fees_min" />
+          <ScalarProperty Name="deposit_fees_max" ColumnName="deposit_fees_max" />
+          <ScalarProperty Name="deposit_fees" ColumnName="deposit_fees" />
+          <ScalarProperty Name="rate_transfer_fees" ColumnName="rate_transfer_fees" />
+          <ScalarProperty Name="rate_transfer_fees_max" ColumnName="rate_transfer_fees_max" />
+          <ScalarProperty Name="rate_transfer_fees_min" ColumnName="rate_transfer_fees_min" />
+          <ScalarProperty Name="flat_transfer_fees" ColumnName="flat_transfer_fees" />
+          <ScalarProperty Name="flat_transfer_fees_max" ColumnName="flat_transfer_fees_max" />
+          <ScalarProperty Name="flat_transfer_fees_min" ColumnName="flat_transfer_fees_min" />
+          <ScalarProperty Name="transfer_fees_type" ColumnName="transfer_fees_type" />
+          <ScalarProperty Name="rate_withdraw_fees" ColumnName="rate_withdraw_fees" />
+          <ScalarProperty Name="rate_withdraw_fees_max" ColumnName="rate_withdraw_fees_max" />
+          <ScalarProperty Name="rate_withdraw_fees_min" ColumnName="rate_withdraw_fees_min" />
+          <ScalarProperty Name="flat_withdraw_fees" ColumnName="flat_withdraw_fees" />
+          <ScalarProperty Name="flat_withdraw_fees_max" ColumnName="flat_withdraw_fees_max" />
+          <ScalarProperty Name="flat_withdraw_fees_min" ColumnName="flat_withdraw_fees_min" />
+          <ScalarProperty Name="withdraw_fees_type" ColumnName="withdraw_fees_type" />
+          <ScalarProperty Name="calcul_amount_base" ColumnName="calcul_amount_base" />
+          <ScalarProperty Name="interest_frequency" ColumnName="interest_frequency" />
+          <ScalarProperty Name="interest_base" ColumnName="interest_base" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingContracts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.SavingContract">
+        <MappingFragment StoreEntitySet="SavingContracts">
+          <ScalarProperty Name="nsg_id" ColumnName="nsg_id" />
+          <ScalarProperty Name="entry_fees" ColumnName="entry_fees" />
+          <ScalarProperty Name="initial_amount" ColumnName="initial_amount" />
+          <ScalarProperty Name="savings_officer_id" ColumnName="savings_officer_id" />
+          <ScalarProperty Name="closed_date" ColumnName="closed_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="interest_rate" ColumnName="interest_rate" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="tiers_id" ColumnName="tiers_id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingDepositContracts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.SavingDepositContract">
+        <MappingFragment StoreEntitySet="SavingDepositContracts">
+          <ScalarProperty Name="next_maturity" ColumnName="next_maturity" />
+          <ScalarProperty Name="withdrawal_fees" ColumnName="withdrawal_fees" />
+          <ScalarProperty Name="transfer_account" ColumnName="transfer_account" />
+          <ScalarProperty Name="rollover" ColumnName="rollover" />
+          <ScalarProperty Name="number_periods" ColumnName="number_periods" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.SavingEvent">
+        <MappingFragment StoreEntitySet="SavingEvents">
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+          <ScalarProperty Name="loan_event_id" ColumnName="loan_event_id" />
+          <ScalarProperty Name="teller_id" ColumnName="teller_id" />
+          <ScalarProperty Name="pending_event_id" ColumnName="pending_event_id" />
+          <ScalarProperty Name="pending" ColumnName="pending" />
+          <ScalarProperty Name="savings_method" ColumnName="savings_method" />
+          <ScalarProperty Name="is_exported" ColumnName="is_exported" />
+          <ScalarProperty Name="fees" ColumnName="fees" />
+          <ScalarProperty Name="related_contract_code" ColumnName="related_contract_code" />
+          <ScalarProperty Name="is_fired" ColumnName="is_fired" />
+          <ScalarProperty Name="cancelable" ColumnName="cancelable" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingProducts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.SavingProduct">
+        <MappingFragment StoreEntitySet="SavingProducts">
+          <ScalarProperty Name="transfer_max" ColumnName="transfer_max" />
+          <ScalarProperty Name="transfer_min" ColumnName="transfer_min" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="product_type" ColumnName="product_type" />
+          <ScalarProperty Name="entry_fees" ColumnName="entry_fees" />
+          <ScalarProperty Name="entry_fees_max" ColumnName="entry_fees_max" />
+          <ScalarProperty Name="entry_fees_min" ColumnName="entry_fees_min" />
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="interest_rate_max" ColumnName="interest_rate_max" />
+          <ScalarProperty Name="interest_rate_min" ColumnName="interest_rate_min" />
+          <ScalarProperty Name="interest_rate" ColumnName="interest_rate" />
+          <ScalarProperty Name="deposit_max" ColumnName="deposit_max" />
+          <ScalarProperty Name="deposit_min" ColumnName="deposit_min" />
+          <ScalarProperty Name="withdraw_max" ColumnName="withdraw_max" />
+          <ScalarProperty Name="withdraw_min" ColumnName="withdraw_min" />
+          <ScalarProperty Name="balance_max" ColumnName="balance_max" />
+          <ScalarProperty Name="balance_min" ColumnName="balance_min" />
+          <ScalarProperty Name="initial_amount_max" ColumnName="initial_amount_max" />
+          <ScalarProperty Name="initial_amount_min" ColumnName="initial_amount_min" />
+          <ScalarProperty Name="client_type" ColumnName="client_type" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingProductsClientTypes">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.SavingProductsClientType">
+        <MappingFragment StoreEntitySet="SavingProductsClientTypes">
+          <ScalarProperty Name="client_type_id" ColumnName="client_type_id" />
+          <ScalarProperty Name="saving_product_id" ColumnName="saving_product_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingsAccountingMovements">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.SavingsAccountingMovement">
+        <MappingFragment StoreEntitySet="SavingsAccountingMovements">
+          <ScalarProperty Name="fiscal_year_id" ColumnName="fiscal_year_id" />
+          <ScalarProperty Name="closure_id" ColumnName="closure_id" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="rule_id" ColumnName="rule_id" />
+          <ScalarProperty Name="exchange_rate" ColumnName="exchange_rate" />
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="is_exported" ColumnName="is_exported" />
+          <ScalarProperty Name="export_date" ColumnName="export_date" />
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+          <ScalarProperty Name="event_id" ColumnName="event_id" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="credit_account_number_id" ColumnName="credit_account_number_id" />
+          <ScalarProperty Name="debit_account_number_id" ColumnName="debit_account_number_id" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Setting">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="SSSystem" ColumnName="SSSystem" />
+          <ScalarProperty Name="SGroup" ColumnName="SGroup" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SSValueType" ColumnName="SSValueType" />
+          <ScalarProperty Name="SSValue" ColumnName="SSValue" />
+          <ScalarProperty Name="SSKey" ColumnName="SSKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SettingsGroups">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.SettingsGroup">
+        <MappingFragment StoreEntitySet="SettingsGroup">
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SmsMessageStores">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.SmsMessageStore">
+        <MappingFragment StoreEntitySet="SmsMessageStore">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Processed" ColumnName="Processed" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="MessageBody" ColumnName="MessageBody" />
+          <ScalarProperty Name="MessageIndex" ColumnName="MessageIndex" />
+          <ScalarProperty Name="MessageType" ColumnName="MessageType" />
+          <ScalarProperty Name="OriginatingAddressType" ColumnName="OriginatingAddressType" />
+          <ScalarProperty Name="SmscAddress" ColumnName="SmscAddress" />
+          <ScalarProperty Name="SmscAddressType" ColumnName="SmscAddressType" />
+          <ScalarProperty Name="Storage" ColumnName="Storage" />
+          <ScalarProperty Name="MessageStatus" ColumnName="MessageStatus" />
+          <ScalarProperty Name="SCTimestamp" ColumnName="SCTimestamp" />
+          <ScalarProperty Name="OriginatingAddress" ColumnName="OriginatingAddress" />
+          <ScalarProperty Name="UserDataText" ColumnName="UserDataText" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spAllowedReportsRolesMenus">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.spAllowedReportsRolesMenu">
+        <MappingFragment StoreEntitySet="spAllowedReportsRolesMenus">
+          <ScalarProperty Name="Allowed" ColumnName="Allowed" />
+          <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spAllowedRoleMenus">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.spAllowedRoleMenu">
+        <MappingFragment StoreEntitySet="spAllowedRoleMenus">
+          <ScalarProperty Name="Allowed" ColumnName="Allowed" />
+          <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spAllowedRoleMenuswebs">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.spAllowedRoleMenusweb">
+        <MappingFragment StoreEntitySet="spAllowedRoleMenusweb">
+          <ScalarProperty Name="Allowed" ColumnName="Allowed" />
+          <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spMenuItems">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.spMenuItem">
+        <MappingFragment StoreEntitySet="spMenuItems">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="mnuName" ColumnName="mnuName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spMenus">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.spMenu">
+        <MappingFragment StoreEntitySet="spMenus">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="mnuName" ColumnName="mnuName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spReportsMenuItems">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.spReportsMenuItem">
+        <MappingFragment StoreEntitySet="spReportsMenuItems">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="mnuName" ColumnName="mnuName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spRoles">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.spRole">
+        <MappingFragment StoreEntitySet="spRoles">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spUsers">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.spUser">
+        <MappingFragment StoreEntitySet="spUsers">
+          <ScalarProperty Name="password_salt" ColumnName="password_salt" />
+          <ScalarProperty Name="password_hash" ColumnName="password_hash" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="InformBy" ColumnName="InformBy" />
+          <ScalarProperty Name="DateJoined" ColumnName="DateJoined" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+          <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Locked" ColumnName="Locked" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="spUsersInRoles">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.spUsersInRole">
+        <MappingFragment StoreEntitySet="spUsersInRoles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StandardBookings">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.StandardBooking">
+        <MappingFragment StoreEntitySet="StandardBookings">
+          <ScalarProperty Name="credit_account_id" ColumnName="credit_account_id" />
+          <ScalarProperty Name="debit_account_id" ColumnName="debit_account_id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statuses">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Status">
+        <MappingFragment StoreEntitySet="Statuses">
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_LAS">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.tbl_LAS">
+        <MappingFragment StoreEntitySet="tbl_LAS">
+          <ScalarProperty Name="days_for_expiry" ColumnName="days_for_expiry" />
+          <ScalarProperty Name="next_expiry_date" ColumnName="next_expiry_date" />
+          <ScalarProperty Name="date_activated" ColumnName="date_activated" />
+          <ScalarProperty Name="activation_key" ColumnName="activation_key" />
+          <ScalarProperty Name="computer_name" ColumnName="computer_name" />
+          <ScalarProperty Name="mac_address" ColumnName="mac_address" />
+          <ScalarProperty Name="las_id" ColumnName="las_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TechnicalParameters">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.TechnicalParameter">
+        <MappingFragment StoreEntitySet="TechnicalParameters">
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TechParams">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.TechParam">
+        <MappingFragment StoreEntitySet="TechParams">
+          <ScalarProperty Name="edc" ColumnName="edc" />
+          <ScalarProperty Name="strtdt" ColumnName="strtdt" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TellerEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.TellerEvent">
+        <MappingFragment StoreEntitySet="TellerEvents">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="is_exported" ColumnName="is_exported" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="event_code" ColumnName="event_code" />
+          <ScalarProperty Name="teller_id" ColumnName="teller_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tellers">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Teller">
+        <MappingFragment StoreEntitySet="Tellers">
+          <ScalarProperty Name="balance_max" ColumnName="balance_max" />
+          <ScalarProperty Name="balance_min" ColumnName="balance_min" />
+          <ScalarProperty Name="cash_out_max" ColumnName="cash_out_max" />
+          <ScalarProperty Name="cash_out_min" ColumnName="cash_out_min" />
+          <ScalarProperty Name="cash_in_max" ColumnName="cash_in_max" />
+          <ScalarProperty Name="cash_in_min" ColumnName="cash_in_min" />
+          <ScalarProperty Name="withdrawal_amount_max" ColumnName="withdrawal_amount_max" />
+          <ScalarProperty Name="withdrawal_amount_min" ColumnName="withdrawal_amount_min" />
+          <ScalarProperty Name="deposit_amount_max" ColumnName="deposit_amount_max" />
+          <ScalarProperty Name="deposit_amount_min" ColumnName="deposit_amount_min" />
+          <ScalarProperty Name="amount_max" ColumnName="amount_max" />
+          <ScalarProperty Name="amount_min" ColumnName="amount_min" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="account_id" ColumnName="account_id" />
+          <ScalarProperty Name="desc" ColumnName="desc" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TermDepositProducts">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.TermDepositProduct">
+        <MappingFragment StoreEntitySet="TermDepositProducts">
+          <ScalarProperty Name="withdrawal_fees" ColumnName="withdrawal_fees" />
+          <ScalarProperty Name="withdrawal_fees_max" ColumnName="withdrawal_fees_max" />
+          <ScalarProperty Name="withdrawal_fees_min" ColumnName="withdrawal_fees_min" />
+          <ScalarProperty Name="withdrawal_fees_type" ColumnName="withdrawal_fees_type" />
+          <ScalarProperty Name="interest_frequency" ColumnName="interest_frequency" />
+          <ScalarProperty Name="number_period_max" ColumnName="number_period_max" />
+          <ScalarProperty Name="number_period_min" ColumnName="number_period_min" />
+          <ScalarProperty Name="number_period" ColumnName="number_period" />
+          <ScalarProperty Name="installment_types_id" ColumnName="installment_types_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tiers">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Tier">
+        <MappingFragment StoreEntitySet="Tiers">
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="secondary_zipCode" ColumnName="secondary_zipCode" />
+          <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+          <ScalarProperty Name="secondary_homeType" ColumnName="secondary_homeType" />
+          <ScalarProperty Name="home_type" ColumnName="home_type" />
+          <ScalarProperty Name="follow_up_comment" ColumnName="follow_up_comment" />
+          <ScalarProperty Name="sponsor2_comment" ColumnName="sponsor2_comment" />
+          <ScalarProperty Name="sponsor2" ColumnName="sponsor2" />
+          <ScalarProperty Name="sponsor1_comment" ColumnName="sponsor1_comment" />
+          <ScalarProperty Name="sponsor1" ColumnName="sponsor1" />
+          <ScalarProperty Name="other_org_comment" ColumnName="other_org_comment" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="secondary_e_mail" ColumnName="secondary_e_mail" />
+          <ScalarProperty Name="e_mail" ColumnName="e_mail" />
+          <ScalarProperty Name="secondary_personal_phone" ColumnName="secondary_personal_phone" />
+          <ScalarProperty Name="secondary_home_phone" ColumnName="secondary_home_phone" />
+          <ScalarProperty Name="personal_phone" ColumnName="personal_phone" />
+          <ScalarProperty Name="home_phone" ColumnName="home_phone" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="cash_output_voucher_number" ColumnName="cash_output_voucher_number" />
+          <ScalarProperty Name="cash_input_voucher_number" ColumnName="cash_input_voucher_number" />
+          <ScalarProperty Name="secondary_address" ColumnName="secondary_address" />
+          <ScalarProperty Name="secondary_city" ColumnName="secondary_city" />
+          <ScalarProperty Name="secondary_district_id" ColumnName="secondary_district_id" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="district_id" ColumnName="district_id" />
+          <ScalarProperty Name="other_org_debts" ColumnName="other_org_debts" />
+          <ScalarProperty Name="other_org_amount" ColumnName="other_org_amount" />
+          <ScalarProperty Name="other_org_name" ColumnName="other_org_name" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="loan_cycle" ColumnName="loan_cycle" />
+          <ScalarProperty Name="scoring" ColumnName="scoring" />
+          <ScalarProperty Name="client_type_code" ColumnName="client_type_code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TraceUserLogs">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.TraceUserLog">
+        <MappingFragment StoreEntitySet="TraceUserLogs">
+          <ScalarProperty Name="event_description" ColumnName="event_description" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="event_date" ColumnName="event_date" />
+          <ScalarProperty Name="event_code" ColumnName="event_code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrancheEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.TrancheEvent">
+        <MappingFragment StoreEntitySet="TrancheEvents">
+          <ScalarProperty Name="applied_new_interest" ColumnName="applied_new_interest" />
+          <ScalarProperty Name="started_from_installment" ColumnName="started_from_installment" />
+          <ScalarProperty Name="interest_rate" ColumnName="interest_rate" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="maturity" ColumnName="maturity" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfiles">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="date_role_set" ColumnName="date_role_set" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="role_code" ColumnName="role_code" />
+          <ScalarProperty Name="user_pass" ColumnName="user_pass" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersBranches">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.UsersBranch">
+        <MappingFragment StoreEntitySet="UsersBranches">
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersSubordinates">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.UsersSubordinate">
+        <MappingFragment StoreEntitySet="UsersSubordinates">
+          <ScalarProperty Name="subordinate_id" ColumnName="subordinate_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Villages">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Village">
+        <MappingFragment StoreEntitySet="Villages">
+          <ScalarProperty Name="meeting_day" ColumnName="meeting_day" />
+          <ScalarProperty Name="loan_officer" ColumnName="loan_officer" />
+          <ScalarProperty Name="establishment_date" ColumnName="establishment_date" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VillagesAttendances">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.VillagesAttendance">
+        <MappingFragment StoreEntitySet="VillagesAttendance">
+          <ScalarProperty Name="loan_id" ColumnName="loan_id" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="attended" ColumnName="attended" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="village_id" ColumnName="village_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VillagesPersons">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.VillagesPerson">
+        <MappingFragment StoreEntitySet="VillagesPersons">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="currently_in" ColumnName="currently_in" />
+          <ScalarProperty Name="is_leader" ColumnName="is_leader" />
+          <ScalarProperty Name="left_date" ColumnName="left_date" />
+          <ScalarProperty Name="joined_date" ColumnName="joined_date" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="village_id" ColumnName="village_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_Membership">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.webpages_Membership">
+        <MappingFragment StoreEntitySet="webpages_Membership">
+          <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+          <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+          <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+          <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+          <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_OAuthMembership">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.webpages_OAuthMembership">
+        <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+          <ScalarProperty Name="Provider" ColumnName="Provider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_Roles">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.webpages_Roles">
+        <MappingFragment StoreEntitySet="webpages_Roles">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WriteOffEvents">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.WriteOffEvent">
+        <MappingFragment StoreEntitySet="WriteOffEvents">
+          <ScalarProperty Name="overdue_principal" ColumnName="overdue_principal" />
+          <ScalarProperty Name="past_due_days" ColumnName="past_due_days" />
+          <ScalarProperty Name="accrued_penalties" ColumnName="accrued_penalties" />
+          <ScalarProperty Name="accrued_interests" ColumnName="accrued_interests" />
+          <ScalarProperty Name="olb" ColumnName="olb" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.Client">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_1">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.View_1">
+        <MappingFragment StoreEntitySet="View_1">
+          <ScalarProperty Name="transaction_date" ColumnName="transaction_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vwExportTransactions">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.vwExportTransaction">
+        <MappingFragment StoreEntitySet="vwExportTransactions">
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="client_name" ColumnName="client_name" />
+          <ScalarProperty Name="funding_line" ColumnName="funding_line" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="contract_code" ColumnName="contract_code" />
+          <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+          <ScalarProperty Name="elementary_id" ColumnName="elementary_id" />
+          <ScalarProperty Name="txn_date" ColumnName="txn_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="SBSaccoDBModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+      <EndProperty Name="UserProfile">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="webpages_Roles">
+        <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

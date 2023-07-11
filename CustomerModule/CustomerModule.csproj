@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{19779FB4-E095-4206-BA5D-287566F7E9A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CustomerModule</RootNamespace>
+    <AssemblyName>CustomerModule</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddCollateralForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddCollateralForm.Designer.cs">
+      <DependentUpon>AddCollateralForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddDocumentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddDocumentForm.Designer.cs">
+      <DependentUpon>AddDocumentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddLoanGuarantor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddLoanGuarantor.Designer.cs">
+      <DependentUpon>AddLoanGuarantor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddCorporateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddCorporateForm.Designer.cs">
+      <DependentUpon>AddCorporateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddNonSolidarityGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddNonSolidarityGroupForm.Designer.cs">
+      <DependentUpon>AddNonSolidarityGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddPersonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddPersonForm.Designer.cs">
+      <DependentUpon>AddPersonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddSolidarityGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddSolidarityGroupForm.Designer.cs">
+      <DependentUpon>AddSolidarityGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddNonSolidarityGroupLoanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddNonSolidarityGroupLoanForm.Designer.cs">
+      <DependentUpon>AddNonSolidarityGroupLoanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CloseSavingsAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CloseSavingsAccountForm.Designer.cs">
+      <DependentUpon>CloseSavingsAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SavingsSpecialOperationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SavingsSpecialOperationsForm.Designer.cs">
+      <DependentUpon>SavingsSpecialOperationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SavingsTransferOperationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SavingsTransferOperationsForm.Designer.cs">
+      <DependentUpon>SavingsTransferOperationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SavingsWithdrawOperationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SavingsWithdrawOperationsForm.Designer.cs">
+      <DependentUpon>SavingsWithdrawOperationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SavingsDepositOperationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SavingsDepositOperationsForm.Designer.cs">
+      <DependentUpon>SavingsDepositOperationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SavingsFirstDepositForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SavingsFirstDepositForm.Designer.cs">
+      <DependentUpon>SavingsFirstDepositForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CorporatesListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CorporatesListForm.Designer.cs">
+      <DependentUpon>CorporatesListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditCorporateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditCorporateForm.Designer.cs">
+      <DependentUpon>EditCorporateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditNonSolidarityGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditNonSolidarityGroupForm.Designer.cs">
+      <DependentUpon>EditNonSolidarityGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditPersonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditPersonForm.Designer.cs">
+      <DependentUpon>EditPersonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditSolidarityGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\EditSolidarityGroupForm.Designer.cs">
+      <DependentUpon>EditSolidarityGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NonSolidarityGroupsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\NonSolidarityGroupsListForm.Designer.cs">
+      <DependentUpon>NonSolidarityGroupsListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersonsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PersonsListForm.Designer.cs">
+      <DependentUpon>PersonsListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\QuestionaireForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\QuestionaireForm.Designer.cs">
+      <DependentUpon>QuestionaireForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SolidarityGroupsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SolidarityGroupsListForm.Designer.cs">
+      <DependentUpon>SolidarityGroupsListForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{92903B4E-D94B-4975-B325-EF8EC47D2B69}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{C707ED80-AB24-4D9C-8DBF-3D7A072F4DF5}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{B533E770-3E4F-4F98-88E0-313859AEEE01}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReportsModule\ReportsModule.csproj">
+      <Project>{FD47AF4C-EE3B-4BF0-8A28-367CB5C4A9A4}</Project>
+      <Name>ReportsModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SearchModule\SearchModule.csproj">
+      <Project>{2D34D6DB-2B29-4BF3-92DA-8831ECEDF4D5}</Project>
+      <Name>SearchModule</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddCollateralForm.resx">
+      <DependentUpon>AddCollateralForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddDocumentForm.resx">
+      <DependentUpon>AddDocumentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddLoanGuarantor.resx">
+      <DependentUpon>AddLoanGuarantor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddCorporateForm.resx">
+      <DependentUpon>AddCorporateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddNonSolidarityGroupForm.resx">
+      <DependentUpon>AddNonSolidarityGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddPersonForm.resx">
+      <DependentUpon>AddPersonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddSolidarityGroupForm.resx">
+      <DependentUpon>AddSolidarityGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddNonSolidarityGroupLoanForm.resx">
+      <DependentUpon>AddNonSolidarityGroupLoanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CloseSavingsAccountForm.resx">
+      <DependentUpon>CloseSavingsAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SavingsSpecialOperationsForm.resx">
+      <DependentUpon>SavingsSpecialOperationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SavingsTransferOperationsForm.resx">
+      <DependentUpon>SavingsTransferOperationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SavingsWithdrawOperationsForm.resx">
+      <DependentUpon>SavingsWithdrawOperationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SavingsDepositOperationsForm.resx">
+      <DependentUpon>SavingsDepositOperationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SavingsFirstDepositForm.resx">
+      <DependentUpon>SavingsFirstDepositForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CorporatesListForm.resx">
+      <DependentUpon>CorporatesListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditCorporateForm.resx">
+      <DependentUpon>EditCorporateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditNonSolidarityGroupForm.resx">
+      <DependentUpon>EditNonSolidarityGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditPersonForm.resx">
+      <DependentUpon>EditPersonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\EditSolidarityGroupForm.resx">
+      <DependentUpon>EditSolidarityGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\NonSolidarityGroupsListForm.resx">
+      <DependentUpon>NonSolidarityGroupsListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PersonsListForm.resx">
+      <DependentUpon>PersonsListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\QuestionaireForm.resx">
+      <DependentUpon>QuestionaireForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SolidarityGroupsListForm.resx">
+      <DependentUpon>SolidarityGroupsListForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Add.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\colormage.jpg" />
+    <None Include="Resources\colormager.jpg" />
+    <Content Include="Resources\edit.ICO">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\softwareproviderslogo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\defaultphoto.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\add.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
