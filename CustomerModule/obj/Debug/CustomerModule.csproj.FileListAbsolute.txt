@@ -596,3 +596,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\add.ico
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\CustomerModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\CustomerModule.pdb
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\CustomerModule\obj\Debug\CustomerModule.dll
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\CustomerModule\obj\Debug\CustomerModule.Views.search_clients_form.resources

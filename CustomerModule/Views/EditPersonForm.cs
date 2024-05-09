@@ -177,13 +177,13 @@ namespace CustomerModule.Views
                     }
                     if (!string.IsNullOrEmpty(txtHAEmail.Text))
                     {
-                        _clientModel.e_mail = txtHAEmail.Text;
+                        _clientModel.email = txtHAEmail.Text;
                     }
 
                     rep.UpdatePerson(_clientModel);
 
                     PersonsListForm f = (PersonsListForm)this.Owner;
-                    f.RefreshGrid();
+                    f.RefreshGrid(1);
                     this.Close();
 
                 }
@@ -207,6 +207,23 @@ namespace CustomerModule.Views
                 // Set filter for file extension 
                 //ofd.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png";
                 ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+                for (int i = 0; i < codecs.Count(); i++)
+                {
+                    var temp1 = codecs[0];
+                    var temp2 = codecs[1];
+                    var temp3 = codecs[2];
+                    var temp4 = codecs[3];
+                    var temp5 = codecs[4];
+
+                    codecs[0] = temp5;
+                    codecs[1] = temp2;
+                    codecs[2] = temp1;
+                    codecs[3] = temp3;
+                    codecs[4] = temp4;
+                }
+
+                //codecs = codecs.OrderByDescending(r => r.CodecName).ToArray();
                 string sep = string.Empty;
                 foreach (var c in codecs)
                 {
@@ -2064,9 +2081,9 @@ namespace CustomerModule.Views
                 {
                     txtHACellPhone.Text = _clientModel.personal_phone.Trim();
                 }
-                if (_clientModel.e_mail != null)
+                if (_clientModel.email != null)
                 {
-                    txtHAEmail.Text = _clientModel.e_mail.Trim();
+                    txtHAEmail.Text = _clientModel.email.Trim();
                 }
                 #endregion "Home Address"
 

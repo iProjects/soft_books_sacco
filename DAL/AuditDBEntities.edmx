@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AuditDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AuditDBModelStoreContainer">
+          <EntitySet Name="tbl_audit" EntityType="AuditDBModel.Store.tbl_audit" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="tbl_audit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="system" Type="nvarchar" MaxLength="200" />
+          <Property Name="logged_in_user" Type="nvarchar" MaxLength="200" />
+          <Property Name="role" Type="nvarchar" MaxLength="200" />
+          <Property Name="event_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="description" Type="text" />
+          <Property Name="entity" Type="nvarchar" MaxLength="200" />
+          <Property Name="created_date" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AuditDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AuditDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_audit" EntityType="AuditDBModel.tbl_audit" />
+        </EntityContainer>
+        <EntityType Name="tbl_audit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="system" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="logged_in_user" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="role" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="event_name" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="entity" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="created_date" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AuditDBModelStoreContainer" CdmEntityContainer="AuditDBEntities">
+          <EntitySetMapping Name="tbl_audit">
+            <EntityTypeMapping TypeName="AuditDBModel.tbl_audit">
+              <MappingFragment StoreEntitySet="tbl_audit">
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="entity" ColumnName="entity" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="event_name" ColumnName="event_name" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="logged_in_user" ColumnName="logged_in_user" />
+                <ScalarProperty Name="system" ColumnName="system" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SBSaccoAuditDBEntities">
+        <EntityTypeShape EntityType="AuditDBModel.tbl_audit" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5571907552083326" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

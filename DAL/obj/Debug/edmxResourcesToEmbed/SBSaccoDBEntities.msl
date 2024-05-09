@@ -52,6 +52,10 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCoporatesPageWise" FunctionName="SBSaccoDBModel.Store.GetCoporatesPageWise" />
+    <FunctionImportMapping FunctionImportName="GetPersonsPageWise" FunctionName="SBSaccoDBModel.Store.GetPersonsPageWise" />
+    <FunctionImportMapping FunctionImportName="GetSolidarityGroupPageWise" FunctionName="SBSaccoDBModel.Store.GetSolidarityGroupPageWise" />
+    <FunctionImportMapping FunctionImportName="GetNonSolidarityGroupPageWise" FunctionName="SBSaccoDBModel.Store.GetNonSolidarityGroupPageWise" />
     <EntitySetMapping Name="AccountingClosures">
       <EntityTypeMapping TypeName="SBSaccoDBModel.AccountingClosure">
         <MappingFragment StoreEntitySet="AccountingClosure">
@@ -220,10 +224,10 @@
     <EntitySetMapping Name="Cities">
       <EntityTypeMapping TypeName="SBSaccoDBModel.City">
         <MappingFragment StoreEntitySet="City">
-          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="deleted" ColumnName="deleted" />
           <ScalarProperty Name="district_id" ColumnName="district_id" />
           <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -400,21 +404,24 @@
     <EntitySetMapping Name="Corporates">
       <EntityTypeMapping TypeName="SBSaccoDBModel.Corporate">
         <MappingFragment StoreEntitySet="Corporates">
-          <ScalarProperty Name="loan_officer_id" ColumnName="loan_officer_id" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
           <ScalarProperty Name="insertionType" ColumnName="insertionType" />
           <ScalarProperty Name="legalForm" ColumnName="legalForm" />
           <ScalarProperty Name="registre" ColumnName="registre" />
           <ScalarProperty Name="fiscal_status" ColumnName="fiscal_status" />
-          <ScalarProperty Name="date_create" ColumnName="date_create" />
-          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
           <ScalarProperty Name="siret" ColumnName="siret" />
+          <ScalarProperty Name="sigle" ColumnName="sigle" />
           <ScalarProperty Name="employee_count" ColumnName="employee_count" />
-          <ScalarProperty Name="agrement_solidarity" ColumnName="agrement_solidarity" />
+          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+          <ScalarProperty Name="loan_officer_id" ColumnName="loan_officer_id" />
+          <ScalarProperty Name="establishment_date" ColumnName="establishment_date" />
           <ScalarProperty Name="agrement_date" ColumnName="agrement_date" />
+          <ScalarProperty Name="agrement_solidarity" ColumnName="agrement_solidarity" />
           <ScalarProperty Name="volunteer_count" ColumnName="volunteer_count" />
           <ScalarProperty Name="small_name" ColumnName="small_name" />
-          <ScalarProperty Name="sigle" ColumnName="sigle" />
-          <ScalarProperty Name="deleted" ColumnName="deleted" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
@@ -1039,34 +1046,29 @@
     <EntitySetMapping Name="Persons">
       <EntityTypeMapping TypeName="SBSaccoDBModel.Person">
         <MappingFragment StoreEntitySet="Persons">
-          <ScalarProperty Name="loan_officer_id" ColumnName="loan_officer_id" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="first_appointment" ColumnName="first_appointment" />
           <ScalarProperty Name="unemployment_months" ColumnName="unemployment_months" />
           <ScalarProperty Name="povertylevel_healthsituation" ColumnName="povertylevel_healthsituation" />
           <ScalarProperty Name="povertylevel_socialparticipation" ColumnName="povertylevel_socialparticipation" />
           <ScalarProperty Name="povertylevel_economiceducation" ColumnName="povertylevel_economiceducation" />
           <ScalarProperty Name="povertylevel_childreneducation" ColumnName="povertylevel_childreneducation" />
-          <ScalarProperty Name="mother_name" ColumnName="mother_name" />
-          <ScalarProperty Name="family_situation" ColumnName="family_situation" />
-          <ScalarProperty Name="first_contact" ColumnName="first_contact" />
-          <ScalarProperty Name="professional_situation" ColumnName="professional_situation" />
-          <ScalarProperty Name="professional_experience" ColumnName="professional_experience" />
-          <ScalarProperty Name="handicapped" ColumnName="handicapped" />
-          <ScalarProperty Name="bank_situation" ColumnName="bank_situation" />
-          <ScalarProperty Name="housing_situation" ColumnName="housing_situation" />
           <ScalarProperty Name="CAF" ColumnName="CAF" />
           <ScalarProperty Name="SS" ColumnName="SS" />
-          <ScalarProperty Name="study_level" ColumnName="study_level" />
-          <ScalarProperty Name="nationality" ColumnName="nationality" />
-          <ScalarProperty Name="birth_place" ColumnName="birth_place" />
-          <ScalarProperty Name="father_name" ColumnName="father_name" />
-          <ScalarProperty Name="image_path" ColumnName="image_path" />
           <ScalarProperty Name="comments" ColumnName="comments" />
           <ScalarProperty Name="monthly_expenditure" ColumnName="monthly_expenditure" />
           <ScalarProperty Name="monthly_income" ColumnName="monthly_income" />
+          <ScalarProperty Name="study_level" ColumnName="study_level" />
+          <ScalarProperty Name="family_situation" ColumnName="family_situation" />
+          <ScalarProperty Name="bank_situation" ColumnName="bank_situation" />
+          <ScalarProperty Name="first_contact" ColumnName="first_contact" />
+          <ScalarProperty Name="housing_situation" ColumnName="housing_situation" />
           <ScalarProperty Name="nb_of_people" ColumnName="nb_of_people" />
           <ScalarProperty Name="experience" ColumnName="experience" />
-          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+          <ScalarProperty Name="professional_experience" ColumnName="professional_experience" />
+          <ScalarProperty Name="professional_situation" ColumnName="professional_situation" />
           <ScalarProperty Name="capital_other_equipments" ColumnName="capital_other_equipments" />
           <ScalarProperty Name="home_time_living_in" ColumnName="home_time_living_in" />
           <ScalarProperty Name="home_size" ColumnName="home_size" />
@@ -1076,11 +1078,19 @@
           <ScalarProperty Name="children_basic_education" ColumnName="children_basic_education" />
           <ScalarProperty Name="nb_of_children" ColumnName="nb_of_children" />
           <ScalarProperty Name="nb_of_dependents" ColumnName="nb_of_dependents" />
-          <ScalarProperty Name="household_head" ColumnName="household_head" />
+          <ScalarProperty Name="image_path" ColumnName="image_path" />
+          <ScalarProperty Name="loan_officer_id" ColumnName="loan_officer_id" />
+          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+          <ScalarProperty Name="mother_name" ColumnName="mother_name" />
+          <ScalarProperty Name="father_name" ColumnName="father_name" />
+          <ScalarProperty Name="birth_place" ColumnName="birth_place" />
           <ScalarProperty Name="birth_date" ColumnName="birth_date" />
-          <ScalarProperty Name="last_name" ColumnName="last_name" />
-          <ScalarProperty Name="identification_data" ColumnName="identification_data" />
+          <ScalarProperty Name="nationality" ColumnName="nationality" />
+          <ScalarProperty Name="handicapped" ColumnName="handicapped" />
           <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="identification_data" ColumnName="identification_data" />
+          <ScalarProperty Name="household_head" ColumnName="household_head" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
           <ScalarProperty Name="first_name" ColumnName="first_name" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
@@ -1731,17 +1741,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="SBSaccoDBModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="definition" ColumnName="definition" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbl_LAS">
       <EntityTypeMapping TypeName="SBSaccoDBModel.tbl_LAS">
         <MappingFragment StoreEntitySet="tbl_LAS">
@@ -1752,6 +1751,36 @@
           <ScalarProperty Name="computer_name" ColumnName="computer_name" />
           <ScalarProperty Name="mac_address" ColumnName="mac_address" />
           <ScalarProperty Name="las_id" ColumnName="las_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_non_solidarity_groups">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.tbl_non_solidarity_groups">
+        <MappingFragment StoreEntitySet="tbl_non_solidarity_groups">
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="meeting_day" ColumnName="meeting_day" />
+          <ScalarProperty Name="group_officer" ColumnName="group_officer" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="establishment_date" ColumnName="establishment_date" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_solidarity_groups">
+      <EntityTypeMapping TypeName="SBSaccoDBModel.tbl_solidarity_groups">
+        <MappingFragment StoreEntitySet="tbl_solidarity_groups">
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="meeting_day" ColumnName="meeting_day" />
+          <ScalarProperty Name="group_officer" ColumnName="group_officer" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="establishment_date" ColumnName="establishment_date" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1831,7 +1860,7 @@
     <EntitySetMapping Name="Tiers">
       <EntityTypeMapping TypeName="SBSaccoDBModel.Tier">
         <MappingFragment StoreEntitySet="Tiers">
-          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
           <ScalarProperty Name="secondary_zipCode" ColumnName="secondary_zipCode" />
           <ScalarProperty Name="zipCode" ColumnName="zipCode" />
           <ScalarProperty Name="secondary_homeType" ColumnName="secondary_homeType" />
@@ -1842,12 +1871,9 @@
           <ScalarProperty Name="sponsor1_comment" ColumnName="sponsor1_comment" />
           <ScalarProperty Name="sponsor1" ColumnName="sponsor1" />
           <ScalarProperty Name="other_org_comment" ColumnName="other_org_comment" />
-          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="secondary_e_mail" ColumnName="secondary_e_mail" />
-          <ScalarProperty Name="e_mail" ColumnName="e_mail" />
           <ScalarProperty Name="secondary_personal_phone" ColumnName="secondary_personal_phone" />
           <ScalarProperty Name="secondary_home_phone" ColumnName="secondary_home_phone" />
-          <ScalarProperty Name="personal_phone" ColumnName="personal_phone" />
           <ScalarProperty Name="home_phone" ColumnName="home_phone" />
           <ScalarProperty Name="creation_date" ColumnName="creation_date" />
           <ScalarProperty Name="cash_output_voucher_number" ColumnName="cash_output_voucher_number" />
@@ -1855,15 +1881,19 @@
           <ScalarProperty Name="secondary_address" ColumnName="secondary_address" />
           <ScalarProperty Name="secondary_city" ColumnName="secondary_city" />
           <ScalarProperty Name="secondary_district_id" ColumnName="secondary_district_id" />
-          <ScalarProperty Name="address" ColumnName="address" />
-          <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="district_id" ColumnName="district_id" />
           <ScalarProperty Name="other_org_debts" ColumnName="other_org_debts" />
           <ScalarProperty Name="other_org_amount" ColumnName="other_org_amount" />
           <ScalarProperty Name="other_org_name" ColumnName="other_org_name" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="scoring" ColumnName="scoring" />
+          <ScalarProperty Name="district_id" ColumnName="district_id" />
+          <ScalarProperty Name="personal_phone" ColumnName="personal_phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="branch_id" ColumnName="branch_id" />
           <ScalarProperty Name="active" ColumnName="active" />
           <ScalarProperty Name="loan_cycle" ColumnName="loan_cycle" />
-          <ScalarProperty Name="scoring" ColumnName="scoring" />
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="client_type_code" ColumnName="client_type_code" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>

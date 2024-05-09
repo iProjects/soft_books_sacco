@@ -23,12 +23,12 @@ namespace CustomerModule.Views
         Repository rep;
         SBSaccoDBEntities db;
         string connection;
-        int user;
-        //gl_Corporate corporate;
+        string user;
+        Corporate corporate;
         #endregion "Private Fields"
 
         #region "Constructor"
-        public EditCorporateForm( int _user, string Conn)
+        public EditCorporateForm(string _user, string Conn, Corporate _corporate)
         {
             InitializeComponent();
             if (string.IsNullOrEmpty(Conn))
@@ -39,7 +39,7 @@ namespace CustomerModule.Views
             db = new SBSaccoDBEntities(connection);
 
             user = _user;
-            //corporate = _corporate;
+           corporate = _corporate;
         }
         #endregion "Constructor"
 
@@ -315,6 +315,23 @@ namespace CustomerModule.Views
                 // Set filter for file extension 
                 //ofd.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png";
                 ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+                for (int i = 0; i < codecs.Count(); i++)
+                {
+                    var temp1 = codecs[0];
+                    var temp2 = codecs[1];
+                    var temp3 = codecs[2];
+                    var temp4 = codecs[3];
+                    var temp5 = codecs[4];
+
+                    codecs[0] = temp5;
+                    codecs[1] = temp2;
+                    codecs[2] = temp1;
+                    codecs[3] = temp3;
+                    codecs[4] = temp4;
+                }
+
+                //codecs = codecs.OrderByDescending(r => r.CodecName).ToArray();
                 string sep = string.Empty;
                 foreach (var c in codecs)
                 {

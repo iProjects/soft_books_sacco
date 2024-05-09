@@ -142,7 +142,7 @@ namespace DAL
             set;
 
         }
-        public string e_mail
+        public string email
         {
             get;
             set;
@@ -440,6 +440,11 @@ namespace DAL
             get;
             set;
         }
+        public string created_date
+        {
+            get;
+            set;
+        } 
         #endregion "Persons"
 
     }

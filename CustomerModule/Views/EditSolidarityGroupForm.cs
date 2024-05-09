@@ -22,12 +22,12 @@ namespace CustomerModule.Views
         Repository rep;
         SBSaccoDBEntities db;
         string connection;
-        //gl_SolidarityGroup solidarityGroup;
-        int user;
+        tbl_solidarity_groups solidarityGroup;
+        string user;
         #endregion "Private Fields"
 
         #region "Constructor"
-        public EditSolidarityGroupForm( int _user, string Conn)
+        public EditSolidarityGroupForm(tbl_solidarity_groups _solidaritygroup, string _user, string Conn)
         {
             InitializeComponent();
             if (string.IsNullOrEmpty(Conn))
@@ -36,7 +36,7 @@ namespace CustomerModule.Views
 
             rep = new Repository(connection);
             db = new SBSaccoDBEntities(connection);
-            //solidarityGroup = _solidaritygroup;
+            solidarityGroup = _solidaritygroup;
             user = _user;
         }
         #endregion "Constructor"
@@ -57,6 +57,23 @@ namespace CustomerModule.Views
                 // Set filter for file extension 
                 //ofd.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png";
                 ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+                for (int i = 0; i < codecs.Count(); i++)
+                {
+                    var temp1 = codecs[0];
+                    var temp2 = codecs[1];
+                    var temp3 = codecs[2];
+                    var temp4 = codecs[3];
+                    var temp5 = codecs[4];
+
+                    codecs[0] = temp5;
+                    codecs[1] = temp2;
+                    codecs[2] = temp1;
+                    codecs[3] = temp3;
+                    codecs[4] = temp4;
+                }
+
+                //codecs = codecs.OrderByDescending(r => r.CodecName).ToArray();
                 string sep = string.Empty;
                 foreach (var c in codecs)
                 {
@@ -87,7 +104,6 @@ namespace CustomerModule.Views
             {
                 Utils.ShowError(ex);
             }
-
         }
 
         private void EditSolidarityGroupForm_Load(object sender, EventArgs e)

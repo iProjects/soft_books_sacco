@@ -136,7 +136,7 @@ namespace WinSBSacco
             try
             {
                 groupBoxServerLogin.Visible = false;
-
+                var dll_ver = System.Reflection.Assembly.GetAssembly(typeof(Repository)).GetName().Version.ToString();
                 string AssemblyProduct = app_assembly_info.AssemblyProduct;
                 string AssemblyVersion = app_assembly_info.AssemblyVersion;
                 string AssemblyCopyright = app_assembly_info.AssemblyCopyright;
@@ -162,6 +162,7 @@ namespace WinSBSacco
                 //txtpassword.Text = "sys";
 
                 groupBox1.Text = "build version - " + AssemblyVersion;
+                this.groupBox1.Text = "Version:     " + AssemblyVersion + "     Base:     " + dll_ver;
 
                 populate_auto_complete_values();
             }
@@ -313,6 +314,7 @@ namespace WinSBSacco
                             this.Hide();
                             SaveAutoCompleteUsers();
                             save_auto_complete_login();
+                            create_audit_log(usermodel);
                         }
                         else
                         {
@@ -686,9 +688,9 @@ namespace WinSBSacco
                 Invoke(new MethodInvoker(
                    delegate()
                    {
-                       chkIntegratedSecurity.Checked = bool.Parse(last_record.IntegratedSecurity); 
+                       chkIntegratedSecurity.Checked = bool.Parse(last_record.IntegratedSecurity);
                    }));
-                 
+
                 chkremember.Checked = bool.Parse(last_record.remember);
 
             }
@@ -697,7 +699,28 @@ namespace WinSBSacco
                 Log.WriteToErrorLogFile_and_EventViewer(ex);
             }
         }
+        public void create_audit_log(UserModel usermodel)
+        {
+            try
+            {
+                Repository rep = new Repository();
+                bool connected = rep.Connect(this.ConnectionString);
+                if (connected)
+                {
+                    var UserName = usermodel.UserName;
+                    var RoleId = usermodel.RoleId;
+                    var Locked = usermodel.Locked;
+                    var UserId = usermodel.UserId;
 
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile_and_EventViewer(ex);
+            }
+        }
 
 
     }

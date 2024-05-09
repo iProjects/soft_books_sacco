@@ -27,6 +27,26 @@
       <Parameter Name="person_id" Mode="In" Type="Int32" />
       <Parameter Name="branch_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="GetCoporatesPageWise">
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="RecordCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetPersonsPageWise">
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="RecordCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetSolidarityGroupPageWise">
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="RecordCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetNonSolidarityGroupPageWise">
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="RecordCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
     <EntitySet Name="AccountingClosures" EntityType="SBSaccoDBModel.AccountingClosure" />
     <EntitySet Name="AccountingRules" EntityType="SBSaccoDBModel.AccountingRule" />
     <EntitySet Name="AccountsCategories" EntityType="SBSaccoDBModel.AccountsCategory" />
@@ -142,8 +162,9 @@
     <EntitySet Name="spUsersInRoles" EntityType="SBSaccoDBModel.spUsersInRole" />
     <EntitySet Name="StandardBookings" EntityType="SBSaccoDBModel.StandardBooking" />
     <EntitySet Name="Statuses" EntityType="SBSaccoDBModel.Status" />
-    <EntitySet Name="sysdiagrams" EntityType="SBSaccoDBModel.sysdiagram" />
     <EntitySet Name="tbl_LAS" EntityType="SBSaccoDBModel.tbl_LAS" />
+    <EntitySet Name="tbl_non_solidarity_groups" EntityType="SBSaccoDBModel.tbl_non_solidarity_groups" />
+    <EntitySet Name="tbl_solidarity_groups" EntityType="SBSaccoDBModel.tbl_solidarity_groups" />
     <EntitySet Name="TechnicalParameters" EntityType="SBSaccoDBModel.TechnicalParameter" />
     <EntitySet Name="TechParams" EntityType="SBSaccoDBModel.TechParam" />
     <EntitySet Name="TellerEvents" EntityType="SBSaccoDBModel.TellerEvent" />
@@ -936,10 +957,10 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="district_id" Nullable="false" />
     <Property Type="Boolean" Name="deleted" Nullable="false" />
-    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="District" Relationship="SBSaccoDBModel.FK_City_Districts" FromRole="City" ToRole="District" />
   </EntityType>
   <EntityType Name="ClientBranchHistory">
@@ -1157,23 +1178,26 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Type="Boolean" Name="deleted" Nullable="false" />
-    <Property Type="String" Name="sigle" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="small_name" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="volunteer_count" />
-    <Property Type="DateTime" Name="agrement_date" />
     <Property Type="Boolean" Name="agrement_solidarity" />
-    <Property Type="Int32" Name="employee_count" />
-    <Property Type="String" Name="siret" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="agrement_date" />
+    <Property Type="String" Name="establishment_date" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="loan_officer_id" />
     <Property Type="Int32" Name="activity_id" />
-    <Property Type="DateTime" Name="date_create" />
+    <Property Type="Int32" Name="employee_count" />
+    <Property Type="String" Name="sigle" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="siret" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="fiscal_status" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="registre" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="legalForm" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="insertionType" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="Int32" Name="loan_officer_id" />
+    <Property Type="String" Name="photo" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="status" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="created_date" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="deleted" Nullable="false" />
     <NavigationProperty Name="CorporatePersonBelongings" Relationship="SBSaccoDBModel.FK_CorporatePersonBelonging_Corporates" FromRole="Corporate" ToRole="CorporatePersonBelonging" />
     <NavigationProperty Name="EconomicActivity" Relationship="SBSaccoDBModel.FK_Corporates_DomainOfApplications" FromRole="Corporate" ToRole="EconomicActivity" />
   </EntityType>
@@ -1866,12 +1890,20 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="first_name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="sex" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Type="String" Name="identification_data" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="last_name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="birth_date" />
+    <Property Type="String" Name="first_name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="last_name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Type="Boolean" Name="household_head" Nullable="false" />
+    <Property Type="String" Name="identification_data" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="sex" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Type="Boolean" Name="handicapped" Nullable="false" />
+    <Property Type="String" Name="nationality" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="birth_date" />
+    <Property Type="String" Name="birth_place" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="father_name" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="mother_name" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="activity_id" />
+    <Property Type="Int32" Name="loan_officer_id" />
+    <Property Type="String" Name="image_path" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="nb_of_dependents" />
     <Property Type="Int32" Name="nb_of_children" />
     <Property Type="Int32" Name="children_basic_education" />
@@ -1881,34 +1913,29 @@
     <Property Type="Double" Name="home_size" />
     <Property Type="Int32" Name="home_time_living_in" />
     <Property Type="String" Name="capital_other_equipments" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Type="Int32" Name="activity_id" />
+    <Property Type="String" Name="professional_situation" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="professional_experience" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="experience" />
     <Property Type="Int32" Name="nb_of_people" />
+    <Property Type="String" Name="housing_situation" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="first_contact" />
+    <Property Type="String" Name="bank_situation" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="family_situation" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="study_level" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="Decimal" Name="monthly_income" Precision="19" Scale="4" />
     <Property Type="Decimal" Name="monthly_expenditure" Precision="19" Scale="4" />
     <Property Type="String" Name="comments" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="image_path" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="father_name" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="birth_place" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="nationality" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="study_level" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="SS" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="CAF" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="housing_situation" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="bank_situation" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="Boolean" Name="handicapped" Nullable="false" />
-    <Property Type="String" Name="professional_experience" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="professional_situation" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="DateTime" Name="first_contact" />
-    <Property Type="String" Name="family_situation" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="mother_name" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Type="Int32" Name="povertylevel_childreneducation" Nullable="false" />
-    <Property Type="Int32" Name="povertylevel_economiceducation" Nullable="false" />
-    <Property Type="Int32" Name="povertylevel_socialparticipation" Nullable="false" />
-    <Property Type="Int32" Name="povertylevel_healthsituation" Nullable="false" />
+    <Property Type="Int32" Name="povertylevel_childreneducation" />
+    <Property Type="Int32" Name="povertylevel_economiceducation" />
+    <Property Type="Int32" Name="povertylevel_socialparticipation" />
+    <Property Type="Int32" Name="povertylevel_healthsituation" />
     <Property Type="Int32" Name="unemployment_months" />
     <Property Type="DateTime" Name="first_appointment" />
-    <Property Type="Int32" Name="loan_officer_id" />
+    <Property Type="String" Name="status" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="created_date" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="deleted" />
     <NavigationProperty Name="CorporatePersonBelongings" Relationship="SBSaccoDBModel.FK_CorporatePersonBelonging_Persons" FromRole="Person" ToRole="CorporatePersonBelonging" />
     <NavigationProperty Name="EconomicActivity" Relationship="SBSaccoDBModel.FK_Persons_DomainOfApplications" FromRole="Person" ToRole="EconomicActivity" />
     <NavigationProperty Name="PersonGroupBelongings" Relationship="SBSaccoDBModel.FK_PersonGroupBelonging_Persons1" FromRole="Person" ToRole="PersonGroupBelonging" />
@@ -2573,16 +2600,6 @@
     <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="status_name" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Type="Int32" Name="principal_id" Nullable="false" />
-    <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int32" Name="version" />
-    <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
-  </EntityType>
   <EntityType Name="tbl_LAS">
     <Key>
       <PropertyRef Name="las_id" />
@@ -2594,6 +2611,34 @@
     <Property Type="String" Name="date_activated" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="next_expiry_date" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="days_for_expiry" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_non_solidarity_groups">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="establishment_date" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="branch_id" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="group_officer" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="meeting_day" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="photo" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="status" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="created_date" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_solidarity_groups">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="establishment_date" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="branch_id" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="group_officer" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="meeting_day" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="photo" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="status" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="created_date" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="TechnicalParameter">
     <Key>
@@ -2679,15 +2724,19 @@
     </Key>
     <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="client_type_code" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Type="Double" Name="scoring" />
+    <Property Type="Int16" Name="status" Nullable="false" />
     <Property Type="Int32" Name="loan_cycle" Nullable="false" />
     <Property Type="Boolean" Name="active" Nullable="false" />
+    <Property Type="Int32" Name="branch_id" Nullable="false" />
+    <Property Type="String" Name="email" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="personal_phone" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="district_id" />
+    <Property Type="Double" Name="scoring" />
+    <Property Type="String" Name="address" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="city" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="other_org_name" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Type="Decimal" Name="other_org_amount" Precision="19" Scale="4" />
     <Property Type="Decimal" Name="other_org_debts" Precision="19" Scale="4" />
-    <Property Type="Int32" Name="district_id" Nullable="false" />
-    <Property Type="String" Name="city" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="String" Name="address" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="secondary_district_id" />
     <Property Type="String" Name="secondary_city" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="secondary_address" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -2695,12 +2744,9 @@
     <Property Type="Int32" Name="cash_output_voucher_number" />
     <Property Type="DateTime" Name="creation_date" />
     <Property Type="String" Name="home_phone" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="personal_phone" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="secondary_home_phone" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="secondary_personal_phone" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="e_mail" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="secondary_e_mail" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="Int16" Name="status" Nullable="false" />
     <Property Type="String" Name="other_org_comment" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="sponsor1" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="sponsor1_comment" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -2711,7 +2757,7 @@
     <Property Type="String" Name="secondary_homeType" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="zipCode" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="secondary_zipCode" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Type="Int32" Name="branch_id" Nullable="false" />
+    <Property Type="String" Name="created_date" MaxLength="200" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ClientBranchHistories" Relationship="SBSaccoDBModel.FK_ClientBranchHistory_Tiers" FromRole="Tier" ToRole="ClientBranchHistory" />
     <NavigationProperty Name="Group" Relationship="SBSaccoDBModel.FK_Groups_Tiers" FromRole="Tier" ToRole="Group" />
     <NavigationProperty Name="LinkGuarantorCredits" Relationship="SBSaccoDBModel.FK_LinkGuarantorCredit_Tiers" FromRole="Tier" ToRole="LinkGuarantorCredit" />

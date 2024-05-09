@@ -411,6 +411,7 @@ namespace WinSBSacco
         {
             try
             {
+                var dll_ver = System.Reflection.Assembly.GetAssembly(typeof(Repository)).GetName().Version.ToString();
                 string AssemblyProduct = app_assembly_info.AssemblyProduct;
                 string AssemblyVersion = app_assembly_info.AssemblyVersion;
                 string AssemblyCopyright = app_assembly_info.AssemblyCopyright;
@@ -419,6 +420,7 @@ namespace WinSBSacco
                 this.lblselecteddatabase.Text = "Selected Database:     " + system.Database;
                 _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs("Selected Database [ " + system.Database + " ]", TAG));
                 this.lblversion.Text = "Version:     " + AssemblyVersion;
+                this.lblversion.Text = "Version:     " + AssemblyVersion + "     Base:     " + dll_ver;
                 this.lblrunningtime.Text = DateTime.Today.ToShortDateString();
                 this.toolStripStatusLabel3.Visible = false;
 
@@ -543,8 +545,8 @@ namespace WinSBSacco
                 {
                     try
                     {
-                        CollectAdminExtraInfo();
-                        CollectAdminAppInfo();
+                        //CollectAdminExtraInfo();
+                        //CollectAdminAppInfo();
                     }
                     catch (Exception ex)
                     {
@@ -871,8 +873,8 @@ namespace WinSBSacco
             }
             finally
             {
-                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(template, TAG));
-                Log.WriteToErrorLogFile_and_EventViewer(new Exception(template));
+                //_notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(template, TAG));
+                //Log.WriteToErrorLogFile_and_EventViewer(new Exception(template));
             }
         }
 
@@ -907,11 +909,11 @@ namespace WinSBSacco
         {
             try
             {
-                ExecuteIPConfigCommands();
+                //ExecuteIPConfigCommands();
 
-                FindComputersConectedToHost();
+                //FindComputersConectedToHost();
 
-                GetClientExtraInfo();
+                //GetClientExtraInfo();
 
                 //Get_Driver_Query_Client_Extra_Info();
 
@@ -985,6 +987,7 @@ namespace WinSBSacco
 
                     lbl_info.Visible = true;
                     lbl_info.Text = " R     " + difference_to.ToString() + "         E     " + str_difference_from.ToString() + "  ";
+                    lbl_info.ToolTipText = " Remaining     " + difference_to.ToString() + "         Elapsed     " + str_difference_from.ToString() + "  ";
 
                     //expired
                     if (difference_to <= 0)
@@ -1067,6 +1070,7 @@ namespace WinSBSacco
 
                                 lbl_info.Visible = true;
                                 lbl_info.Text = " R     " + difference_to.ToString() + "         E     " + str_difference_from.ToString() + "  ";
+                                lbl_info.ToolTipText = " Remaining     " + difference_to.ToString() + "         Elapsed     " + str_difference_from.ToString() + "  ";
 
                                 //expired
                                 if (difference_to <= 0)
@@ -1152,6 +1156,7 @@ namespace WinSBSacco
 
                             lbl_info.Visible = true;
                             lbl_info.Text = " R     " + difference_to.ToString() + "         E     " + str_difference_from.ToString() + "  ";
+                            lbl_info.ToolTipText = " Remaining     " + difference_to.ToString() + "         Elapsed     " + str_difference_from.ToString() + "  ";
 
                             //expired
                             if (difference_to <= 0)
@@ -2032,7 +2037,7 @@ namespace WinSBSacco
             try
             {
                 _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs("loading SolidarityGroupsListForm", TAG));
-                SolidarityGroupsListForm sgf = new SolidarityGroupsListForm(LoggedInUser.UserId, connection);
+                SolidarityGroupsListForm sgf = new SolidarityGroupsListForm(LoggedInUser.UserName, connection);
                 sgf.Show();
             }
             catch (Exception ex)
@@ -2046,7 +2051,7 @@ namespace WinSBSacco
             try
             {
                 _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs("loading NonSolidarityGroupsListForm", TAG));
-                NonSolidarityGroupsListForm nsgf = new NonSolidarityGroupsListForm(LoggedInUser.UserId, connection);
+                NonSolidarityGroupsListForm nsgf = new NonSolidarityGroupsListForm(LoggedInUser.UserName, connection);
                 nsgf.Show();
             }
             catch (Exception ex)
@@ -2060,7 +2065,7 @@ namespace WinSBSacco
             try
             {
                 _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs("loading CorporatesListForm", TAG));
-                CorporatesListForm cf = new CorporatesListForm(LoggedInUser.UserId, connection);
+                CorporatesListForm cf = new CorporatesListForm(LoggedInUser.UserName, connection);
                 cf.Show();
             }
             catch (Exception ex)
@@ -3000,6 +3005,22 @@ namespace WinSBSacco
             }
         }
         #endregion "Private Methods"
+
+        private void search_clientstoolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                search_clients_form scf = new search_clients_form();
+                scf.Show();
+            }
+            catch (Exception ex)
+            {
+                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.ToString(), TAG));
+                Utils.ShowError(ex);
+            }
+        }
+
+
 
 
 

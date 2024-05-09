@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AuditDBModelStoreContainer" CdmEntityContainer="AuditDBEntities">
+    <EntitySetMapping Name="tbl_audit">
+      <EntityTypeMapping TypeName="AuditDBModel.tbl_audit">
+        <MappingFragment StoreEntitySet="tbl_audit">
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="entity" ColumnName="entity" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="event_name" ColumnName="event_name" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="logged_in_user" ColumnName="logged_in_user" />
+          <ScalarProperty Name="system" ColumnName="system" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -3,126 +3,18 @@
 
   <System Name="On kmk\SQLEXPRESS"
           Application ="SBSacco"
-          Database ="SBSaccoDB_february_2023"
+          Database ="SBSaccoDB_april_2024"
           AttachDB=""
           Server =".\SQLEXPRESS"
           Metadata="SBSaccoDBEntities"
           Version ="1.0.0.0"
           Default="true"/>
-
-  <System Name="On sapserver"
-            Application ="SBSacco"
-            Database ="SBSaccoDB"
-            AttachDB=""
-            Server ="SAPSERVER"
-            Metadata="SBSaccoDBEntities"
-            Version ="1.0.0.0"
-            Default="false"/>
-
-  <System Name="db1"
-            Application ="SBSacco"
-            Database ="db1"
-            AttachDB=""
-            Server ="SAPSERVER"
-            Metadata="SBSaccoDBEntities"
-            Version ="1.0.0.0"
-            Default="false"/>
-
-  <System Name="octopus"
-           Application ="SBSacco"
-           Database ="octopus"
-           AttachDB=""
-           Server ="SAPSERVER"
-           Metadata="SBSaccoDBEntities"
-           Version ="1.0.0.0"
-           Default="false"/>
   
-  <System Name="On spserver\SQLEXPRESS"
-		      Application ="SBSacco"
-          Database ="SBSaccoDB"
-          AttachDB=""
-          Server ="SPSERVER\SQLEXPRESS"
-          Metadata="SBSaccoDBEntities"
-          Version ="1.0.0.0"
-          Default="false"/>
-
-  <System Name="meridian_140314"
-		      Application ="SBSacco"
-          Database ="meridian_140314"
-          AttachDB=""
-          Server ="SAPSERVER"
-          Metadata="SBSaccoDBEntities"
-          Version ="1.0.0.0"
-          Default="false"/>
-
-  <System Name="On SPSERVER\MSSQLSERVER_R2 myDbase_test"
-            Application ="SBSacco"
-            Database ="SBSaccoDB"
-            AttachDB=""
-            Server ="SPSERVER\MSSQLSERVER_R2"
-            Metadata="SBSaccoDBEntities"
-            Version ="1.0.0.0"
-            Default="false"/>
-
-  <System Name="On SPSERVER\MSSQLSERVER_R2 meridian_acceptance_ltd"
-          Application ="SBSacco"
-          Database ="meridian_acceptance_ltd"
-          AttachDB=""
-          Server ="SPSERVER\MSSQLSERVER_R2"
-          Metadata="SBSaccoDBEntities"
-          Version ="1.0.0.0"
-          Default="false"/>
-  
-  <System Name="On spserver"
-		      Application ="SBSacco"
-		      Database ="SBSaccoDB"
-		      AttachDB=""
-		      Server ="SPSERVER"
-		      Metadata="SBSaccoDBEntities"
-          Version ="1.0.0.0"
-          Default="false"/>
-
-  <System Name="On gracecomp\SQLEXPRESS"
-          Application ="SBSacco"
-          Database ="SBSaccoDB"
-          AttachDB=""
-          Server ="GRACECOMP\SQLEXPRESS"
-          Metadata="SBSaccoDBEntities"
-          Version ="1.0.0.0"
-          Default="false"/>
-
-  <System Name="On Soft Books Server"
+  <System Name="On wambugu"
         Application ="SBSacco"
         Database ="SBSaccoDB"
         AttachDB=""
-        Server ="softbooksserver\SQLEXPRESS"
-        Metadata="SBSaccoDBEntities"
-        Version ="1.0.0.0"
-        Default="false"/>
-  
-  <System Name="On Sugut"
-          Application ="SBSacco"
-          Database ="SBSaccoDB"
-          AttachDB=""
-          Server ="SUGUT-PC\SQLEXPRESS"
-          Metadata="SBSaccoDBEntities"
-          Version ="1.0.0.0"
-          Default="false"/>
-
-  <System Name="On Lucy"
-         Application ="SBSacco"
-         Database ="SBSaccoDB"
-         AttachDB=""
-         Server ="-ADMIN-PC\SQLEXPRESS"
-         Metadata="SBSaccoDBEntities"
-         Version ="1.0.0.0"
-         Default="false"/>
-
-  <System Name="On Mbuggus"
-        Application ="SBSacco"
-        Database ="SBSaccoDB"
-        AttachDB=""
-        Server ="ADMIN-PC\SQLEXPRESS"
+        Server ="wambugu"
         Metadata="SBSaccoDBEntities"
         Version ="1.0.0.0"
         Default="false"/>

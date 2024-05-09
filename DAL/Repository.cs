@@ -15,18 +15,28 @@ namespace DAL
 
         #region "Private Fields"
         SBSaccoDBEntities db;
+        AuditDBEntities audit_db;
+        string connection;
         #endregion "Private Fields"
+
         #region "Constructor"
         public Repository()
         {
 
             //Should be called by login service only
         }
-        public Repository(string connection)
+        public Repository(string _connection)
         {
-            db = new SBSaccoDBEntities(connection);
+            connection = _connection;
+            db = new SBSaccoDBEntities(_connection); 
+        }
+        public Repository(string _connection, string log_info)
+        {
+            connection = _connection; 
+            audit_db = new AuditDBEntities(_connection);
         }
         #endregion "Constructor"
+
         #region "public Methods"
         #region "Database and Connection"
         public bool Connect(
@@ -694,7 +704,7 @@ namespace DAL
             ///TODO continue checking all authentication conditions
 
             return true;
-        }                
+        }
         #endregion "Users"
         #region "Roles"
         public void AddRole(spRole role)
@@ -789,7 +799,7 @@ namespace DAL
                 Log.WriteToErrorLogFile(ex);
             }
         }
-        #endregion "Rights"        
+        #endregion "Rights"
         #region "Person"
         public void AddNewPerson(ClientModel cm)
         {
@@ -816,7 +826,7 @@ namespace DAL
                 _tier.personal_phone = cm.personal_phone;
                 _tier.secondary_home_phone = cm.secondary_home_phone;
                 _tier.secondary_personal_phone = cm.secondary_personal_phone;
-                _tier.e_mail = cm.e_mail;
+                _tier.email = cm.email;
                 _tier.secondary_e_mail = cm.secondary_e_mail;
                 _tier.status = cm.status;
                 _tier.other_org_comment = cm.other_org_comment;
@@ -834,18 +844,18 @@ namespace DAL
                 db.Tiers.AddObject(_tier);
                 db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
 
-                var tieridquery = (from tr in db.Tiers
-                                   where tr.client_type_code == cm.client_type_code
-                                   where tr.creation_date == cm.creation_date
-                                   where tr.district_id == cm.district_id
-                                   where tr.active == cm.active
-                                   where tr.branch_id == cm.branch_id
-                                   select tr).FirstOrDefault();
+                //var tieridquery = (from tr in db.Tiers
+                //where tr.client_type_code == cm.client_type_code
+                //where tr.creation_date == cm.creation_date
+                ////where tr.district_id == cm.district_id
+                //where tr.active == cm.active
+                //where tr.branch_id == cm.branch_id
+                //select tr).FirstOrDefault();
 
-                if (tieridquery != null)
+                if (_tier.id != null)
                 {
                     Person _person = new Person();
-                    _person.id = tieridquery.id;
+                    _person.id = _tier.id;
                     _person.first_name = cm.first_name;
                     _person.sex = cm.sex;
                     _person.identification_data = cm.identification_data;
@@ -891,7 +901,10 @@ namespace DAL
                     _person.loan_officer_id = cm.loan_officer_id;
 
                     db.Persons.AddObject(_person);
-                    db.SaveChanges();
+                    db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
+
+                    Console.WriteLine(_tier.id);
+                    Console.WriteLine(_person.id);
                 }
 
             }
@@ -942,7 +955,7 @@ namespace DAL
                 _tier.personal_phone = cm.personal_phone;
                 _tier.secondary_home_phone = cm.secondary_home_phone;
                 _tier.secondary_personal_phone = cm.secondary_personal_phone;
-                _tier.e_mail = cm.e_mail;
+                _tier.email = cm.email;
                 _tier.secondary_e_mail = cm.secondary_e_mail;
                 _tier.status = cm.status;
                 _tier.other_org_comment = cm.other_org_comment;
@@ -1067,11 +1080,11 @@ namespace DAL
                                   client_type_code = tr.client_type_code,
                                   comments = ps.comments,
                                   creation_date = tr.creation_date,
-                                  district_id = tr.district_id,
+                                  district_id = tr.district_id??0,
                                   district_name = ds.name,
                                   province_id = pr.id,
                                   secondary_province_id = pr2.id,
-                                  e_mail = tr.e_mail,
+                                  email = tr.email,
                                   experience = ps.experience,
                                   family_situation = ps.family_situation,
                                   father_name = ps.father_name,
@@ -1107,10 +1120,10 @@ namespace DAL
                                   personal_phone = tr.personal_phone,
                                   personid = ps.id,
                                   identification_data = ps.identification_data,
-                                  povertylevel_childreneducation = ps.povertylevel_childreneducation,
-                                  povertylevel_economiceducation = ps.povertylevel_economiceducation,
-                                  povertylevel_healthsituation = ps.povertylevel_healthsituation,
-                                  povertylevel_socialparticipation = ps.povertylevel_socialparticipation,
+                                  povertylevel_childreneducation = ps.povertylevel_childreneducation ?? 0,
+                                  povertylevel_economiceducation = ps.povertylevel_economiceducation ?? 0,
+                                  povertylevel_healthsituation = ps.povertylevel_healthsituation ?? 0,
+                                  povertylevel_socialparticipation = ps.povertylevel_socialparticipation ?? 0,
                                   professional_experience = ps.professional_experience,
                                   professional_situation = ps.professional_situation,
                                   scoring = tr.scoring,
@@ -1494,7 +1507,7 @@ namespace DAL
                 _savingproduct.product_type = savingmodel.product_type;
                 _savingproduct.code = savingmodel.code;
                 _savingproduct.transfer_min = savingmodel.transfer_min;
-                _savingproduct.transfer_max = savingmodel.transfer_max; 
+                _savingproduct.transfer_max = savingmodel.transfer_max;
 
                 db.SavingProducts.AddObject(_savingproduct);
                 db.SaveChanges();
@@ -1510,7 +1523,7 @@ namespace DAL
         public void AddNewSavingBookProduct(SavingProductModel savingmodel)
         {
             try
-            { 
+            {
                 SavingBookProduct _savingbookproduct = new SavingBookProduct();
                 _savingbookproduct.id = savingmodel.savingproductid;
                 _savingbookproduct.interest_base = savingmodel.interest_base;
@@ -1561,7 +1574,7 @@ namespace DAL
                 _savingbookproduct.use_term_deposit = savingmodel.use_term_deposit;
                 _savingbookproduct.term_deposit_period_min = savingmodel.term_deposit_period_min;
                 _savingbookproduct.term_deposit_period_max = savingmodel.term_deposit_period_max;
-                _savingbookproduct.posting_frequency = savingmodel.posting_frequency; 
+                _savingbookproduct.posting_frequency = savingmodel.posting_frequency;
 
                 db.SavingBookProducts.AddObject(_savingbookproduct);
                 db.SaveChanges();
@@ -1596,7 +1609,7 @@ namespace DAL
                 _savingproduct.product_type = savingmodel.product_type;
                 _savingproduct.code = savingmodel.code;
                 _savingproduct.transfer_min = savingmodel.transfer_min;
-                _savingproduct.transfer_max = savingmodel.transfer_max; 
+                _savingproduct.transfer_max = savingmodel.transfer_max;
 
                 SavingBookProduct _savingbookproduct = db.SavingBookProducts.First(r => r.id == savingmodel.saving_book_productid);
                 _savingbookproduct.interest_base = savingmodel.interest_base;
@@ -1647,7 +1660,7 @@ namespace DAL
                 _savingbookproduct.use_term_deposit = savingmodel.use_term_deposit;
                 _savingbookproduct.term_deposit_period_min = savingmodel.term_deposit_period_min;
                 _savingbookproduct.term_deposit_period_max = savingmodel.term_deposit_period_max;
-                _savingbookproduct.posting_frequency = savingmodel.posting_frequency; 
+                _savingbookproduct.posting_frequency = savingmodel.posting_frequency;
 
                 db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
             }
@@ -2215,7 +2228,7 @@ namespace DAL
         public List<StandardBookingsModel> GetAllStandardBookings()
         {
             try
-            { 
+            {
                 var _standardbookingsquery = from br in db.StandardBookings
                                              join cracc in db.ChartOfAccounts on br.credit_account_id equals cracc.id
                                              join dracc in db.ChartOfAccounts on br.debit_account_id equals dracc.id
@@ -5459,12 +5472,12 @@ namespace DAL
         }
         #endregion "InstallmentTypes"
         #region "Installments"
-        public void AddNewInstallment(InstallmentsModel installment )
+        public void AddNewInstallment(InstallmentsModel installment)
         {
             try
             {
                 Installment _installment = new Installment();
-                _installment.expected_date = installment.expected_date ;
+                _installment.expected_date = installment.expected_date;
                 _installment.interest_repayment = installment.interest_repayment;
                 _installment.capital_repayment = installment.capital_repayment;
                 _installment.contract_id = installment.contract_id;
@@ -5477,8 +5490,8 @@ namespace DAL
                 _installment.comment = installment.comment;
                 _installment.pending = installment.pending;
                 _installment.start_date = installment.start_date;
-                _installment.olb = installment.olb; 
-                
+                _installment.olb = installment.olb;
+
                 db.Installments.AddObject(_installment);
                 db.SaveChanges();
 
@@ -5505,8 +5518,8 @@ namespace DAL
                 _installment.paid_fees = installment.paid_fees;
                 _installment.comment = installment.comment;
                 _installment.pending = installment.pending;
-                _installment.start_date = installment.start_date ;
-                _installment.olb = installment.olb ;
+                _installment.start_date = installment.start_date;
+                _installment.olb = installment.olb;
 
                 db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
             }
@@ -5535,7 +5548,7 @@ namespace DAL
             {
                 List<InstallmentsModel> _installments = new List<InstallmentsModel>();
                 var _installmentsquery = from br in db.Installments
-                                             select br;
+                                         select br;
                 List<Installment> _nstllmnts = _installmentsquery.ToList();
                 foreach (var installment in _nstllmnts)
                 {
@@ -5572,7 +5585,7 @@ namespace DAL
             {
                 List<InstallmentsModel> _installments = new List<InstallmentsModel>();
                 var _installmentsquery = from br in db.Installments
-                                         where br.contract_id==_contact_id
+                                         where br.contract_id == _contact_id
                                          select br;
                 List<Installment> _nstllmnts = _installmentsquery.ToList();
                 foreach (var installment in _nstllmnts)
@@ -5850,7 +5863,7 @@ namespace DAL
                 return null;
             }
         }
-        public IEnumerable<ClientPersonalInformationModel> GetClientPersonalInformation(int personid,int branchid)
+        public IEnumerable<ClientPersonalInformationModel> GetClientPersonalInformation(int personid, int branchid)
         {
             try
             {
@@ -5899,7 +5912,7 @@ namespace DAL
                                            olb = ci.olb,
                                            start_date = ci.start_date,
                                            status = ci.status,
-                                           total_late_days = ci.total_late_days 
+                                           total_late_days = ci.total_late_days
                                        };
 
                 return _clientinfoquery;
@@ -6109,7 +6122,7 @@ namespace DAL
             try
             {
                 Contract _contract = db.Contracts.First(b => b.id == loanmodel.contractid);
-                _contract.status = loanmodel.status; 
+                _contract.status = loanmodel.status;
 
                 db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
             }
@@ -6181,7 +6194,7 @@ namespace DAL
                 var _loanmodelsquery = from co in db.Contracts
                                        join cr in db.Credits on co.id equals cr.id
                                        join pr in db.Projects on co.project_id equals pr.id
-                                       join pk in db.Packages on cr.package_id equals pk.id 
+                                       join pk in db.Packages on cr.package_id equals pk.id
                                        join tr in db.Tiers on pr.tiers_id equals tr.id
                                        join fl in db.FundingLines on cr.fundingLine_id equals fl.id
                                        where tr.id == clientid
@@ -6427,7 +6440,7 @@ namespace DAL
             {
                 Log.WriteToErrorLogFile(ex);
             }
-        } 
+        }
         public void UpdateClientSavingContract(ClientSavingContractModel savingmodel)
         {
             try
@@ -6624,15 +6637,15 @@ namespace DAL
             try
             {
                 var _savingscontractscountquery = (from sc in db.SavingContracts
-                                                  join sbc in db.SavingBookContracts on sc.id equals sbc.id
-                                                  join sp in db.SavingProducts on sc.product_id equals sp.id
-                                                  join sbp in db.SavingBookProducts on sp.id equals sbp.id
-                                                  join tr in db.Tiers on sc.tiers_id equals tr.id
-                                                  where tr.id == clientid
-                                                  where sp.deleted == false
-                                                  orderby sc.id descending  
-                                                  select sc.id).FirstOrDefault();
-                 
+                                                   join sbc in db.SavingBookContracts on sc.id equals sbc.id
+                                                   join sp in db.SavingProducts on sc.product_id equals sp.id
+                                                   join sbp in db.SavingBookProducts on sp.id equals sbp.id
+                                                   join tr in db.Tiers on sc.tiers_id equals tr.id
+                                                   where tr.id == clientid
+                                                   where sp.deleted == false
+                                                   orderby sc.id descending
+                                                   select sc.id).FirstOrDefault();
+
                 return _savingscontractscountquery + 1;
             }
             catch (Exception ex)
@@ -8184,7 +8197,7 @@ namespace DAL
             {
                 List<CyclesModel> _cycles = new List<CyclesModel>();
                 var _cyclesquery = from br in db.Cycles
-                                       select br;
+                                   select br;
                 List<Cycle> _cycls = _cyclesquery.ToList();
                 foreach (var cycle in _cycls)
                 {
@@ -8360,16 +8373,16 @@ namespace DAL
             try
             {
                 var _cycleparametersquery = (from cp in db.CycleParameters
-                                          where cp.id == id
-                                          select new CycleParametersModel
-                                          {
-                                              cycleparameterid = cp.id,
-                                              cycle_id = cp.cycle_id,
-                                              cycle_object_id = cp.cycle_object_id,
-                                              loan_cycle = cp.loan_cycle,
-                                              max = cp.max,
-                                              min = cp.min
-                                          }).FirstOrDefault();
+                                             where cp.id == id
+                                             select new CycleParametersModel
+                                             {
+                                                 cycleparameterid = cp.id,
+                                                 cycle_id = cp.cycle_id,
+                                                 cycle_object_id = cp.cycle_object_id,
+                                                 loan_cycle = cp.loan_cycle,
+                                                 max = cp.max,
+                                                 min = cp.min
+                                             }).FirstOrDefault();
                 CycleParametersModel _cycleparam = _cycleparametersquery;
                 return _cycleparam;
             }
@@ -8384,17 +8397,17 @@ namespace DAL
             try
             {
                 var _cycleparametersquery = from cp in db.CycleParameters
-                                             where cp.cycle_id == cycle_id
-                                             where cp.cycle_object_id == cycle_object_id
-                                             select new CycleParametersModel
-                                             {
-                                                 cycleparameterid = cp.id,
-                                                 cycle_id = cp.cycle_id,
-                                                 cycle_object_id = cp.cycle_object_id,
-                                                 loan_cycle = cp.loan_cycle,
-                                                 max = cp.max,
-                                                 min = cp.min
-                                             };
+                                            where cp.cycle_id == cycle_id
+                                            where cp.cycle_object_id == cycle_object_id
+                                            select new CycleParametersModel
+                                            {
+                                                cycleparameterid = cp.id,
+                                                cycle_id = cp.cycle_id,
+                                                cycle_object_id = cp.cycle_object_id,
+                                                loan_cycle = cp.loan_cycle,
+                                                max = cp.max,
+                                                min = cp.min
+                                            };
                 List<CycleParametersModel> _cycleparams = _cycleparametersquery.ToList();
                 return _cycleparams;
             }
@@ -8554,6 +8567,168 @@ namespace DAL
             }
         }
         #endregion "ExoticInstallments"
+        #region "Corporate"
+        public void AddNewCorporate(Corporate _corporate)
+        {
+            try
+            {
+                Corporate corporate = new Corporate();
+                corporate.id = _corporate.id;
+                corporate.name = _corporate.name;
+                corporate.deleted = _corporate.deleted;
+                corporate.sigle = _corporate.sigle;
+                corporate.small_name = _corporate.small_name;
+                corporate.volunteer_count = _corporate.volunteer_count;
+                corporate.agrement_date = _corporate.agrement_date;
+                corporate.agrement_solidarity = _corporate.agrement_solidarity;
+                corporate.employee_count = _corporate.employee_count;
+                corporate.siret = _corporate.siret;
+                corporate.activity_id = _corporate.activity_id;
+                corporate.establishment_date = _corporate.establishment_date;
+                corporate.fiscal_status = _corporate.fiscal_status;
+                corporate.registre = _corporate.registre;
+                corporate.legalForm = _corporate.legalForm;
+                corporate.insertionType = _corporate.insertionType;
+                corporate.loan_officer_id = _corporate.loan_officer_id;
+                corporate.photo = _corporate.photo;
+
+                db.Corporates.AddObject(corporate);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+            }
+        }
+        public void UpdateCorporate(Corporate _corporate)
+        {
+            try
+            {
+                Corporate corporate = db.Corporates.First(r => r.id == _corporate.id);
+                corporate.name = _corporate.name;
+                corporate.deleted = _corporate.deleted;
+                corporate.sigle = _corporate.sigle;
+                corporate.small_name = _corporate.small_name;
+                corporate.volunteer_count = _corporate.volunteer_count;
+                corporate.agrement_date = _corporate.agrement_date;
+                corporate.agrement_solidarity = _corporate.agrement_solidarity;
+                corporate.employee_count = _corporate.employee_count;
+                corporate.siret = _corporate.siret;
+                corporate.activity_id = _corporate.activity_id;
+                corporate.establishment_date = _corporate.establishment_date;
+                corporate.fiscal_status = _corporate.fiscal_status;
+                corporate.registre = _corporate.registre;
+                corporate.legalForm = _corporate.legalForm;
+                corporate.insertionType = _corporate.insertionType;
+                corporate.loan_officer_id = _corporate.loan_officer_id;
+                corporate.photo = _corporate.photo;
+
+                db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+            }
+        }
+        public void DeleteCorporate(Corporate _Corporate)
+        {
+            try
+            {
+                Corporate corporate = db.Corporates.Where(r => r.id == _Corporate.id).Single();
+
+                db.Corporates.DeleteObject(corporate);
+                db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+            }
+
+        }
+        public List<Corporate> GetCorporatesList()
+        {
+            try
+            {
+                List<Corporate> _Corporates = new List<Corporate>();
+                var _Corporatequery = from co in db.Corporates
+                                      select co;
+                List<Corporate> _lst_corporates = _Corporatequery.ToList();
+                foreach (var _corporate in _lst_corporates)
+                {
+                    Corporate corporate = new Corporate();
+                    corporate.id = _corporate.id;
+                    corporate.name = _corporate.name;
+                    corporate.deleted = _corporate.deleted;
+                    corporate.sigle = _corporate.sigle;
+                    corporate.small_name = _corporate.small_name;
+                    corporate.volunteer_count = _corporate.volunteer_count;
+                    corporate.agrement_date = _corporate.agrement_date;
+                    corporate.agrement_solidarity = _corporate.agrement_solidarity;
+                    corporate.employee_count = _corporate.employee_count;
+                    corporate.siret = _corporate.siret;
+                    corporate.activity_id = _corporate.activity_id;
+                    corporate.establishment_date = _corporate.establishment_date;
+                    corporate.fiscal_status = _corporate.fiscal_status;
+                    corporate.registre = _corporate.registre;
+                    corporate.legalForm = _corporate.legalForm;
+                    corporate.insertionType = _corporate.insertionType;
+                    corporate.loan_officer_id = _corporate.loan_officer_id;
+                    corporate.photo = _corporate.photo;
+
+                    _Corporates.Add(corporate);
+                }
+
+                return _Corporates;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+                return null;
+            }
+        }
+ 
+        #endregion "Corporates"
+        #region "audit"
+        public void AddNewAuditLog(tbl_audit _audit_log)
+        {
+            try
+            {
+                tbl_audit audit_log = new tbl_audit();
+                audit_log.id = _audit_log.id;
+                audit_log.system = Utils.APP_NAME;
+                audit_log.logged_in_user = _audit_log.logged_in_user;
+                audit_log.role = _audit_log.role;
+                audit_log.event_name = _audit_log.event_name;
+                audit_log.description = _audit_log.description;
+                audit_log.entity = _audit_log.entity;
+                audit_log.created_date = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt");
+
+                audit_db.tbl_audit.AddObject(audit_log);
+                audit_db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+            }
+        }
+        #endregion "audit"
+        public int get_no_of_records_per_page()
+        {
+            try
+            {
+                var setting = db.Settings.FirstOrDefault(s => s.SSKey == "RECORDS_PER_PAGE");
+                if (setting != null)
+                    return int.Parse(setting.SSValue);
+                else
+                    return 10;
+             
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+                return 10;
+            }
+        }
         #endregion "public Methods"
 
 

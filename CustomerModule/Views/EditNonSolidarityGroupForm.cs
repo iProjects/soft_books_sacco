@@ -21,12 +21,12 @@ namespace CustomerModule.Views
         Repository rep;
         SBSaccoDBEntities db;
         string connection;
-        //gl_NonSolidarityGroup nonsolidaritygroup; 
-        int user;
+        tbl_non_solidarity_groups nonsolidaritygroup;
+        string user;
         #endregion "Private Fields"
 
         #region "Constructor"
-        public EditNonSolidarityGroupForm( int _user, string Conn)
+        public EditNonSolidarityGroupForm(tbl_non_solidarity_groups _nonsolidaritygroup, string _user, string Conn)
         {
             InitializeComponent();
             if (string.IsNullOrEmpty(Conn))
@@ -37,7 +37,7 @@ namespace CustomerModule.Views
             db = new SBSaccoDBEntities(connection);
 
             user = _user;
-            //nonsolidaritygroup = _nonsolidaritygroup;
+            nonsolidaritygroup = _nonsolidaritygroup;
         }
         #endregion "Constructor"
 
@@ -251,6 +251,23 @@ namespace CustomerModule.Views
                 // Set filter for file extension 
                 //ofd.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png";
                 ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+                for (int i = 0; i < codecs.Count(); i++)
+                {
+                    var temp1 = codecs[0];
+                    var temp2 = codecs[1];
+                    var temp3 = codecs[2];
+                    var temp4 = codecs[3];
+                    var temp5 = codecs[4];
+
+                    codecs[0] = temp5;
+                    codecs[1] = temp2;
+                    codecs[2] = temp1;
+                    codecs[3] = temp3;
+                    codecs[4] = temp4;
+                }
+
+                //codecs = codecs.OrderByDescending(r => r.CodecName).ToArray();
                 string sep = string.Empty;
                 foreach (var c in codecs)
                 {
@@ -271,10 +288,9 @@ namespace CustomerModule.Views
                     System.IO.FileInfo fileinfo = new System.IO.FileInfo(ofd.FileName);
                     if (!string.IsNullOrEmpty(filename) && !string.IsNullOrWhiteSpace(filename))
                     {
-                        pbPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
                         string imagepath = fileinfo.FullName;
                         pbPhoto.ImageLocation = imagepath;
-
+                        pbPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
                     }
                 }
             }
@@ -337,7 +353,7 @@ namespace CustomerModule.Views
                     //rep.UpdateNonSolidarityGroup(nonsolidaritygroup);
 
                     NonSolidarityGroupsListForm f = (NonSolidarityGroupsListForm)this.Owner;
-                    f.RefreshGrid();
+                    f.RefreshGrid(1);
                     this.Close();
 
                 }

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using CommonLib;
 using DAL;
 using SearchModule.Views;
+using System.IO;
 
 namespace CustomerModule.Views
 {
@@ -32,67 +33,7 @@ namespace CustomerModule.Views
         #endregion "Constructor"
 
         #region "Private Methods"
-        private void btnSearchExistingPersons_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                SearchPersonClientForm spcf = new SearchPersonClientForm(connection) { Owner = this };
-                spcf.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowError(ex);
-            }
-        }
 
-        private void btnAddNewSolidarityGroupMember_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                AddPersonForm anpf = new AddPersonForm(connection) { Owner = this };
-                anpf.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowError(ex);
-            }
-        }
-
-        private void btnRemoveSolidarityGroupMember_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowError(ex);
-            }
-        }
-
-        private void btnViewSolidarityGroupMemberDetails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowError(ex);
-            }
-        }
-
-        private void btnSetMemberasGroupLeader_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowError(ex);
-            }
-        }
         private void btnClose_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
@@ -107,6 +48,22 @@ namespace CustomerModule.Views
                 // Set filter for file extension 
                 //ofd.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png";
                 ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+                for (int i = 0; i < codecs.Count(); i++)
+                {
+                    var temp1 = codecs[0];
+                    var temp2 = codecs[1];
+                    var temp3 = codecs[2];
+                    var temp4 = codecs[3];
+                    var temp5 = codecs[4];
+
+                    codecs[0] = temp5;
+                    codecs[1] = temp2;
+                    codecs[2] = temp1;
+                    codecs[3] = temp3;
+                    codecs[4] = temp4;
+                }
+
                 string sep = string.Empty;
                 foreach (var c in codecs)
                 {
@@ -144,29 +101,45 @@ namespace CustomerModule.Views
             {
                 pbPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
 
-                //var _branchesquery = from af in db.gl_Branches
-                //                     where af.Isdeleted == false
-                //                     select af;
-                //List<gl_Branches> _Branches = _branchesquery.ToList();
-                //cboBranch.DataSource = _Branches;
-                //cboBranch.ValueMember = "Id";
-                //cboBranch.DisplayMember = "BranchName";
+                var _branchesquery = from af in db.Branches
+                                     where af.deleted == false
+                                     select af;
+                List<Branch> _Branches = _branchesquery.ToList();
+                cboBranch.DataSource = _Branches;
+                cboBranch.ValueMember = "id";
+                cboBranch.DisplayMember = "name";
                 //cboBranch.SelectedIndex = -1;
 
-                //var _UsersQuery = from us in db.sec_Users
-                //                  select us;
-                //List<sec_Users> _Users = _UsersQuery.ToList();
+                var _UsersQuery = from us in db.spUsers
+                                  select us;
+                List<spUser> _Users = _UsersQuery.ToList();
 
-                //cboGroupOfficer.DataSource = _Users;
-                //cboGroupOfficer.DisplayMember = "FullNames";
-                //cboGroupOfficer.ValueMember = "UserName";               
+                cboGroupOfficer.DataSource = _Users;
+                cboGroupOfficer.ValueMember = "Id";
+                cboGroupOfficer.DisplayMember = "UserName";
                 //cboGroupOfficer.SelectedIndex = -1;
 
                 cboMeetingDate.DataSource = GetDayNames();
-                cboMeetingDate.SelectedIndex = -1;
+                //cboMeetingDate.SelectedIndex = -1;
 
                 chkSetMeetingDate.Checked = false;
                 cboMeetingDate.Enabled = false;
+
+                string default_image = "defaultphoto.jpg";
+
+                string base_directory = AppDomain.CurrentDomain.BaseDirectory;
+                string image_path = Path.Combine(base_directory, "Resources");
+                string image_file_path = Path.Combine(image_path, default_image);
+
+                FileInfo image_file = new FileInfo(image_file_path);
+
+                if (image_file.Exists)
+                {
+                    string imagepath = image_file.FullName;
+                    pbPhoto.ImageLocation = imagepath;
+                    pbPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
             }
             catch (Exception ex)
             {
@@ -181,44 +154,49 @@ namespace CustomerModule.Views
 
         private void btnAdd_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            errorProvider.Clear();
             if (IsSolidarityGroupValid())
             {
                 try
                 {
-                    //gl_SolidarityGroup solidarityGroup = new gl_SolidarityGroup();
+                    tbl_solidarity_groups solidarityGroup = new tbl_solidarity_groups();
 
-                    //if (!string.IsNullOrEmpty(txtGroupName.Text))
-                    //{
-                    //    solidarityGroup.Description = Utils.ConvertFirstLetterToUpper(txtGroupName.Text.Trim());
-                    //}
-                    //solidarityGroup.sDateofEstablishment = dtpEstablishmentDate.Value;                   
-                    //if (cboGroupOfficer.SelectedIndex != -1)
-                    //{
-                    //    solidarityGroup.sGroupOfficer = cboGroupOfficer.SelectedValue.ToString();
-                    //}
-                    //solidarityGroup.sSetMeetingDate = chkSetMeetingDate.Checked;
-                    //if (cboMeetingDate.SelectedIndex != -1)
-                    //{
-                    //    solidarityGroup.sMeetingDate = cboMeetingDate.Text;
-                    //}
-                    //if (cboBranch.SelectedIndex != -1)
-                    //{
-                    //    solidarityGroup.BranchId = int.Parse(cboBranch.SelectedValue.ToString());
-                    //}
-                    //if (pbPhoto.ImageLocation != null)
-                    //{
-                    //    solidarityGroup.sPhoto = pbPhoto.ImageLocation.ToString().Trim();
-                    //} 
+                    if (!string.IsNullOrEmpty(txtName.Text))
+                    {
+                        solidarityGroup.name = Utils.ConvertFirstLetterToUpper(txtName.Text.Trim());
+                    }
+                    solidarityGroup.establishment_date = dtpEstablishmentDate.Value.ToString("dd-MM-yyyy HH:mm:ss tt");
+                    if (cboGroupOfficer.SelectedIndex != -1)
+                    {
+                        solidarityGroup.group_officer = cboGroupOfficer.SelectedValue.ToString();
+                    }
+                    if (chkSetMeetingDate.Checked)
+                    {
+                        if (cboMeetingDate.SelectedIndex != -1)
+                        {
+                            solidarityGroup.meeting_day = cboMeetingDate.Text;
+                        }
+                    }
+                    if (cboBranch.SelectedIndex != -1)
+                    {
+                        solidarityGroup.branch_id = cboBranch.SelectedValue.ToString();
+                    }
+                    if (pbPhoto.ImageLocation != null)
+                    {
+                        solidarityGroup.photo = pbPhoto.ImageLocation.ToString().Trim();
+                    }
+                    solidarityGroup.status = "active";
+                    solidarityGroup.created_date = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt");
 
-                    //if (!db.gl_SolidarityGroup.Any(i => i.Description == solidarityGroup.Description))
-                    //{
-                    //    db.gl_SolidarityGroup.AddObject(solidarityGroup);
-                    //    db.SaveChanges();
-                    //}
+                    if (!db.tbl_solidarity_groups.Any(i => i.name == solidarityGroup.name))
+                    {
+                        db.tbl_solidarity_groups.AddObject(solidarityGroup);
+                        db.SaveChanges();
+                    }
 
-                    //SolidarityGroupsListForm f = (SolidarityGroupsListForm)this.Owner;
-                    //f.RefreshGrid();
-                    //this.Close();
+                    SolidarityGroupsListForm f = (SolidarityGroupsListForm)this.Owner;
+                    f.RefreshGrid(1);
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -227,22 +205,30 @@ namespace CustomerModule.Views
             }
         }
 
-
         #region "Validation"
         private bool IsSolidarityGroupValid()
         {
             bool noerror = true;
-            if (string.IsNullOrEmpty(txtGroupName.Text))
+
+            if (string.IsNullOrEmpty(txtName.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtGroupName, "Name cannot be null!");
-                return false;
+                errorProvider.SetError(txtName, "Name cannot be null!");
+                noerror = false;
+            }
+            if (cboGroupOfficer.SelectedIndex == -1)
+            {
+                errorProvider.SetError(cboGroupOfficer, "Select Group Officer!");
+                noerror = false;
+            }
+            if (cboBranch.SelectedIndex == -1)
+            {
+                errorProvider.SetError(cboBranch, "Select Branch!");
+                noerror = false;
             }
             if (chkSetMeetingDate.Checked && cboMeetingDate.SelectedIndex == -1)
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(cboMeetingDate, "Select Meeting Day!");
-                return false;
+                errorProvider.SetError(cboMeetingDate, "Select Meeting Day!");
+                noerror = false;
             }
             return noerror;
         }
@@ -263,7 +249,7 @@ namespace CustomerModule.Views
 
         #endregion "Private Methods"
 
-      
+
 
     }
 }

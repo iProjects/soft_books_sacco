@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AuditDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="AuditDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_audit" EntityType="AuditDBModel.tbl_audit" />
+  </EntityContainer>
+  <EntityType Name="tbl_audit">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="system" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="logged_in_user" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="role" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="event_name" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="entity" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="created_date" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
