@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pnlPager = new System.Windows.Forms.Panel();
+            this.panelPager = new System.Windows.Forms.Panel();
             this.btnEdit = new System.Windows.Forms.LinkLabel();
             this.btnDelete = new System.Windows.Forms.LinkLabel();
             this.btnViewDetails = new System.Windows.Forms.LinkLabel();
@@ -71,7 +71,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.pnlPager);
+            this.groupBox2.Controls.Add(this.panelPager);
             this.groupBox2.Controls.Add(this.btnEdit);
             this.groupBox2.Controls.Add(this.btnDelete);
             this.groupBox2.Controls.Add(this.btnViewDetails);
@@ -84,14 +84,14 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
-            // pnlPager
+            // panelPager
             // 
-            this.pnlPager.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.pnlPager.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlPager.Location = new System.Drawing.Point(3, 16);
-            this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(840, 42);
-            this.pnlPager.TabIndex = 8;
+            this.panelPager.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.panelPager.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelPager.Location = new System.Drawing.Point(3, 16);
+            this.panelPager.Name = "panelPager";
+            this.panelPager.Size = new System.Drawing.Size(840, 42);
+            this.panelPager.TabIndex = 8;
             // 
             // btnEdit
             // 
@@ -432,7 +432,7 @@
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridViewPersons;
-        private System.Windows.Forms.Panel pnlPager;
+        private System.Windows.Forms.Panel panelPager;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPersonID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnfirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Columnlastname;

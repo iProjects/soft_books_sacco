@@ -149,9 +149,9 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.allReportsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator38 = new System.Windows.Forms.ToolStripSeparator();
             this.search_clientstoolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.exitToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.lblLoggedInUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -980,55 +980,55 @@
             // 
             this.userGuideToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("userGuideToolStripMenuItem.Image")));
             this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
-            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.userGuideToolStripMenuItem.Text = "Help";
             this.userGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
             // 
             // toolStripSeparator33
             // 
             this.toolStripSeparator33.Name = "toolStripSeparator33";
-            this.toolStripSeparator33.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator33.Size = new System.Drawing.Size(145, 6);
             // 
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.AboutToolStripMenuItem.Text = "About Sacco";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.aboutSaccoToolStripMenuItem_Click);
             // 
             // toolStripSeparator32
             // 
             this.toolStripSeparator32.Name = "toolStripSeparator32";
-            this.toolStripSeparator32.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator32.Size = new System.Drawing.Size(145, 6);
             // 
             // ForumToolStripMenuItem
             // 
             this.ForumToolStripMenuItem.Name = "ForumToolStripMenuItem";
-            this.ForumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ForumToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.ForumToolStripMenuItem.Text = "Sacco Forums";
             this.ForumToolStripMenuItem.Click += new System.EventHandler(this.saccoForumsToolStripMenuItem_Click);
             // 
             // toolStripSeparator31
             // 
             this.toolStripSeparator31.Name = "toolStripSeparator31";
-            this.toolStripSeparator31.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator31.Size = new System.Drawing.Size(145, 6);
             // 
             // questionnaireToolStripMenuItem
             // 
             this.questionnaireToolStripMenuItem.Name = "questionnaireToolStripMenuItem";
-            this.questionnaireToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.questionnaireToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.questionnaireToolStripMenuItem.Text = "Questionnaire";
             this.questionnaireToolStripMenuItem.Click += new System.EventHandler(this.questionnaireToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
             // 
             // homeToolStripMenuItem
             // 
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.homeToolStripMenuItem.Text = "Home";
             this.homeToolStripMenuItem.Click += new System.EventHandler(this.homeToolStripMenuItem_Click);
             // 
@@ -1061,15 +1061,6 @@
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
             // 
-            // exitToolStripButton
-            // 
-            this.exitToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("exitToolStripButton.Image")));
-            this.exitToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.exitToolStripButton.Name = "exitToolStripButton";
-            this.exitToolStripButton.Size = new System.Drawing.Size(46, 22);
-            this.exitToolStripButton.Text = "Exit";
-            this.exitToolStripButton.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // toolStripSeparator38
             // 
             this.toolStripSeparator38.Name = "toolStripSeparator38";
@@ -1083,6 +1074,15 @@
             this.search_clientstoolStripButton.Size = new System.Drawing.Size(101, 22);
             this.search_clientstoolStripButton.Text = "Search Clients";
             this.search_clientstoolStripButton.Click += new System.EventHandler(this.search_clientstoolStripButton_Click);
+            // 
+            // exitToolStripButton
+            // 
+            this.exitToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("exitToolStripButton.Image")));
+            this.exitToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.exitToolStripButton.Name = "exitToolStripButton";
+            this.exitToolStripButton.Size = new System.Drawing.Size(46, 22);
+            this.exitToolStripButton.Text = "Exit";
+            this.exitToolStripButton.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // statusStripMain
             // 
@@ -1229,6 +1229,7 @@
             this.txtlog.BackColor = System.Drawing.Color.Black;
             this.txtlog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtlog.Dock = System.Windows.Forms.DockStyle.Right;
+            this.txtlog.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
             this.txtlog.ForeColor = System.Drawing.Color.Lime;
             this.txtlog.Location = new System.Drawing.Point(808, 49);
             this.txtlog.Name = "txtlog";
@@ -1236,7 +1237,6 @@
             this.txtlog.Size = new System.Drawing.Size(441, 665);
             this.txtlog.TabIndex = 0;
             this.txtlog.Text = "";
-            this.txtlog.Visible = false;
             // 
             // webBrowser
             // 

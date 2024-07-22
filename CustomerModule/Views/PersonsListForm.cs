@@ -249,7 +249,7 @@ namespace CustomerModule.Views
             }
 
             //Clear existing Pager Buttons.
-            pnlPager.Controls.Clear();
+            panelPager.Controls.Clear();
 
             //Loop and add Buttons for Pager.
             int count = 0;
@@ -264,7 +264,7 @@ namespace CustomerModule.Views
                 btnPage.BackColor = Color.LimeGreen;
                 btnPage.ForeColor = Color.Black;
                 btnPage.Click += new System.EventHandler(this.Page_Click);
-                pnlPager.Controls.Add(btnPage);
+                panelPager.Controls.Add(btnPage);
                 count++;
 
                 if (page.Selected)
@@ -441,12 +441,12 @@ namespace CustomerModule.Views
         private void dataGridViewPersons_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             try
-            { 
-                Console.WriteLine(e.Exception);
+            {
+                e.ThrowException = false;
             }
             catch (Exception ex)
             {
-                Utils.LogEventViewer(ex);
+                Log.Write_To_Log_File_temp_dir(ex);
             }
         }
 
@@ -475,12 +475,12 @@ namespace CustomerModule.Views
 
         private void txtFirstName_TextChanged(object sender, EventArgs e)
         {
-
+            ApplyFilter();
         }
 
         private void txtLastName_TextChanged(object sender, EventArgs e)
         {
-
+            ApplyFilter();
         }
 
     }

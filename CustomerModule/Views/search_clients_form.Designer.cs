@@ -30,8 +30,8 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +54,13 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(245, 46);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(709, 20);
+            this.textBox1.TabIndex = 0;
+            // 
             // groupBox3
             // 
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -62,13 +69,6 @@
             this.groupBox3.Size = new System.Drawing.Size(1024, 401);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(245, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(709, 20);
-            this.textBox1.TabIndex = 0;
             // 
             // search_clients_form
             // 
@@ -80,6 +80,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "search_clients_form";
             this.Text = "search_clients_form";
+            this.Load += new System.EventHandler(this.search_clients_form_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);

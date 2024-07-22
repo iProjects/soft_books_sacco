@@ -362,6 +362,8 @@ namespace WinSBSacco
                 _lstnotificationdto.Add(_notificationdto);
                 Console.WriteLine(args.message);
 
+                Log.Write_To_Log_File_temp_dir(new Exception(_logtext));
+
                 var _lstmsgdto = from msgdto in _lstnotificationdto
                                  orderby msgdto._created_datetime descending
                                  select msgdto._notification_message;
@@ -545,8 +547,8 @@ namespace WinSBSacco
                 {
                     try
                     {
-                        //CollectAdminExtraInfo();
-                        //CollectAdminAppInfo();
+                        CollectAdminExtraInfo();
+                        CollectAdminAppInfo();
                     }
                     catch (Exception ex)
                     {
@@ -909,6 +911,14 @@ namespace WinSBSacco
         {
             try
             {
+                ExecuteIPConfigCommands();
+
+                FindComputersConectedToHost();
+
+                GetClientExtraInfo();
+
+                GetHostNameandMac();
+
                 //ExecuteIPConfigCommands();
 
                 //FindComputersConectedToHost();
@@ -1612,7 +1622,7 @@ namespace WinSBSacco
                 _template += res;
 
                 Debug.Write(res);
-                Log.WriteToErrorLogFile_and_EventViewer(new Exception(res));
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1647,7 +1657,7 @@ namespace WinSBSacco
                 _template += res;
 
                 Debug.Write(res);
-                Log.WriteToErrorLogFile_and_EventViewer(new Exception(res));
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1686,7 +1696,7 @@ namespace WinSBSacco
                 _template += res;
 
                 Debug.Write(res);
-                Log.WriteToErrorLogFile(new Exception(res));
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1729,11 +1739,11 @@ namespace WinSBSacco
                 p.BeginErrorReadLine();
                 // well, we should check the return value here...
                 //  capturing the output into a string variable...
-                //string res = p.StandardOutput.ReadToEnd();
-                //_template += res;
+                string res = p.StandardOutput.ReadToEnd();
+                _template += res;
 
-                //Debug.Write(res);
-                //Log.WriteToErrorLogFile(new Exception(res));
+                Debug.Write(res);
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1775,11 +1785,11 @@ namespace WinSBSacco
                 p.BeginErrorReadLine();
                 // well, we should check the return value here...
                 //  capturing the output into a string variable...
-                //string res = p.StandardOutput.ReadToEnd();
-                //_template += res;
+                string res = p.StandardOutput.ReadToEnd();
+                _template += res;
 
-                //Debug.Write(res);
-                //Log.WriteToErrorLogFile(new Exception(res));
+                Debug.Write(res);
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1821,11 +1831,11 @@ namespace WinSBSacco
                 p.BeginErrorReadLine();
                 // well, we should check the return value here...
                 //  capturing the output into a string variable...
-                //string res = p.StandardOutput.ReadToEnd();
-                //_template += res;
+                string res = p.StandardOutput.ReadToEnd();
+                _template += res;
 
-                //Debug.Write(res);
-                //Log.WriteToErrorLogFile(new Exception(res));
+                Debug.Write(res);
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1867,11 +1877,11 @@ namespace WinSBSacco
                 p.BeginErrorReadLine();
                 // well, we should check the return value here...
                 //  capturing the output into a string variable...
-                //string res = p.StandardOutput.ReadToEnd();
-                //_template += res;
+                string res = p.StandardOutput.ReadToEnd();
+                _template += res;
 
-                //Debug.Write(res);
-                //Log.WriteToErrorLogFile(new Exception(res));
+                Debug.Write(res);
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1913,11 +1923,11 @@ namespace WinSBSacco
                 p.BeginErrorReadLine();
                 // well, we should check the return value here...
                 //  capturing the output into a string variable...
-                //string res = p.StandardOutput.ReadToEnd();
-                //_template += res;
+                string res = p.StandardOutput.ReadToEnd();
+                _template += res;
 
-                //Debug.Write(res);
-                //Log.WriteToErrorLogFile(new Exception(res));
+                Debug.Write(res);
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -3010,7 +3020,7 @@ namespace WinSBSacco
         {
             try
             {
-                search_clients_form scf = new search_clients_form();
+                search_clients_form scf = new search_clients_form(_notificationmessageEventname);
                 scf.Show();
             }
             catch (Exception ex)
