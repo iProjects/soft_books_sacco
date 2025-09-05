@@ -2,7 +2,7 @@
 
 ## 💰 The Low-Cost, Dynamic SACCO Management Solution
 
-The **Soft Books SACCO Management System** is a comprehensive, multi-user, client/server solution designed to provide small, mid-sized, and large organizations with a powerful, yet low-cost, tool for managing their operations. The system is built to be dynamic and fully compliant with ever-changing financial regulations in Kenya, ensuring organizations stay ahead of policy changes while promoting **accountability**, **transparency**, and **efficiency**.
+The **Soft Books SACCO Management System** is a comprehensive, multi-user, client/server solution for small to large organizations. Built to be dynamic and compliant with Kenyan financial regulations, it promotes **accountability**, **transparency**, and **efficiency** in SACCO operations.
 
 -----
 
@@ -12,10 +12,21 @@ This system integrates all aspects of SACCO functions, offering unparalleled fle
 
   - **Unlimited Capacity**: Supports an unlimited number of members and users.
   - **Client/Server Architecture**: A desktop application built with **C\# Windows Forms** connects to a central **Microsoft SQL Server database** for secure, multi-user access.
-  - **Member & Loan Management**: Streamlines the processes of member registration, savings, and loan management. The system automatically calculates interest, tracks repayments, and manages outstanding balances.
-  - **Automated Reporting**: Instantly generates all transactional reports and financial statements, eliminating the need for manual work. Reports are produced in **PDF format** for easy portability and sharing.
-  - **Flexible Accounting**: The system provides a **flexible chart of accounts**, allowing users to define their own general ledger codes and accounts.
-  - **Versatile Use**: Ideal for in-house use, hosted environments, or for accountants representing multiple client organizations. It is tailored to meet the needs of various groups, including SACCOs, welfare groups, and chamas.
+  - **Modular Design**: The system comprises various integrated modules that function interdependently as a collective resource planning tool. These include:
+      - **Authentication**: Manages user logins and permissions.
+      - **Administrator**: Provides a control panel for system managers to handle user accounts, roles, and settings.
+      - **Customer**: A central hub for member management, including registration and profile tracking.
+      - **Data Access Layer**: Separates application logic from the database, handling all data communication.
+      - **Database Administration**: Administrative tools for database backup, restore, and user management.
+      - **Loans**: Automates the entire loan life cycle, including applications, interest calculations, and repayment tracking.
+      - **Reports**: Generates a comprehensive suite of financial and operational reports in **PDF** and **Excel** formats.
+      - **Savings**: Manages member savings, share contributions, and dividend disbursements.
+      - **Search**: Provides powerful search functionality to quickly locate members, loans, or transactions.
+      - **Tellers**: Manages daily cash transactions, including member deposits and withdrawals.
+  - **Member & Loan Management**: Streamlines the processes of member registration, savings, and loan management.
+  - **Automated Reporting**: Instantly generates all transactional reports and financial statements, eliminating manual work.
+  - **Flexible Accounting**: The system provides a flexible chart of accounts, allowing users to define their own general ledger codes.
+  - **Versatile Use**: Ideal for in-house use, hosted environments, or for accountants representing multiple client organizations.
 
 -----
 
@@ -41,19 +52,20 @@ There are two methods to set up the client application on a user's workstation:
 
 ## 🚀 Usage
 
-The Soft Books SACCO system offers a user-friendly interface for managing all SACCO-related tasks, categorized into several key modules:
+The Soft Books SACCO system offers a user-friendly interface for managing all SACCO-related tasks.
 
-  - **Administration & Configuration**: Manage users, roles, and permissions; perform database backups and restores; and configure general system settings.
-  - **Member Management**: Add, edit, and manage member profiles, including savings, shares, and contributions.
-  - **Loan Management**: Process loan applications, manage approvals, and track repayment schedules.
+### Core Modules Explained
 
-### Reporting
-
-The system provides a comprehensive suite of reports, which can be viewed and exported to **PDF** and **Excel**:
-
-  - **Member Reports**: Member lists, statements, and contribution schedules.
-  - **Loan Reports**: Loan repayment schedules, outstanding loan balances, and payment history.
-  - **Financial Reports**: Balance sheets and income statements.
+  - **Authentication**: This module is the system's security gatekeeper, managing user logins and password verification.
+  - **Administrator**: Provides a control panel for system managers to create user accounts, assign roles, and configure settings.
+  - **Customer**: The central hub for member management, from new registrations to profile updates.
+  - **Data Access Layer (DAL)**: A foundational component that handles all communication between the application and the SQL Server database.
+  - **Database Administration**: A tool for managing the database through backups, restores, and user management.
+  - **Loans**: Automates the entire loan life cycle, including applications, interest calculation, and repayment tracking.
+  - **Reports**: Generates comprehensive financial and operational reports in PDF and Excel formats.
+  - **Savings**: Manages member savings, share contributions, and dividend disbursements.
+  - **Search**: A powerful tool to quickly locate specific members, accounts, or transactions.
+  - **Tellers**: Manages daily cash transactions, including member deposits and withdrawals.
 
 -----
 

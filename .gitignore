@@ -1,5 +1,7 @@
 
 
+SBSaccoSetup\Debug
+SBSaccoSetup\Release
 AdminstratorModule\bin
 AdminstratorModule\obj
 AuthenticationModule\bin
@@ -21,8 +23,6 @@ ReportsModule\bin
 ReportsModule\obj
 SavingsModule\bin
 SavingsModule\obj
-SBSaccoSetup\debug
-SBSaccoSetup\release
 SearchModule\bin
 SearchModule\obj
 SMOScripting\bin
