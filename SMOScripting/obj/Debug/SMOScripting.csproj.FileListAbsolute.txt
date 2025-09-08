@@ -46,3 +46,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\SMOScripting\obj\Debug\SMOScripting.P
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\SMOScripting\obj\Debug\SMOScripting.csproj.GenerateResource.Cache
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\SMOScripting\obj\Debug\SMOScripting.exe
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\SMOScripting\obj\Debug\SMOScripting.pdb
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\SMOScripting\obj\Debug\SMOScripting.csprojResolveAssemblyReference.cache

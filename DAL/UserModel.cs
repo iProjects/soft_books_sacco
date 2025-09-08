@@ -21,6 +21,8 @@ namespace DAL
 
         public bool? Locked { get; set; }
 
+        public string Email { get; set; }
+
         public UserModel()
         {
 
@@ -47,6 +49,15 @@ namespace DAL
             this.Locked = locked;
         }
 
+        public UserModel(int userid, string username, string fullname, string pwd, int role, bool locked, string email)
+        {
+            this.UserId = userid;
+            this.UserName = username;
+            this.Password = pwd;
+            this.RoleId = role;
+            this.Locked = locked;
+            this.Email = email;
+        }
     }
 
 

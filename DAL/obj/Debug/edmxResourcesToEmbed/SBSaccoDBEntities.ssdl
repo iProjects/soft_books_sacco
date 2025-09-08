@@ -442,8 +442,9 @@
       [Statuses].[status_name] AS [status_name]
       FROM [dbo].[Statuses] AS [Statuses]</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="sysdiagrams" EntityType="SBSaccoDBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="tbl_LAS" EntityType="SBSaccoDBModel.Store.tbl_LAS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tbl_non_solidarity_groups" EntityType="SBSaccoDBModel.Store.tbl_non_solidarity_groups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tbl_solidarity_groups" EntityType="SBSaccoDBModel.Store.tbl_solidarity_groups" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TechnicalParameters" EntityType="SBSaccoDBModel.Store.TechnicalParameters" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TechParams" EntityType="SBSaccoDBModel.Store.TechParams" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TellerEvents" EntityType="SBSaccoDBModel.Store.TellerEvents" store:Type="Tables" Schema="dbo" />
@@ -1082,7 +1083,7 @@
     <Property Name="value" Type="nvarchar" MaxLength="300" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.AlertSettings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.AlertSettings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="AlertSettings">
     <Key>
@@ -1150,13 +1151,13 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="district_id" Type="int" Nullable="false" />
     <Property Name="deleted" Type="bit" Nullable="false" />
-    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.ClientBranchHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.ClientBranchHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="ClientBranchHistory">
     <Key>
@@ -1174,7 +1175,7 @@
     <Property Name="user_id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.ClientTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.ClientTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="ClientTypes">
     <Key>
@@ -1235,7 +1236,7 @@
     <Property Name="contract_id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.ConsolidatedData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.ConsolidatedData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="ConsolidatedData">
     <Key>
@@ -1268,7 +1269,7 @@
     <Property Name="currency_id" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.ContractAssignHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.ContractAssignHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="ContractAssignHistory">
     <Key>
@@ -1338,23 +1339,26 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="deleted" Type="bit" Nullable="false" />
-    <Property Name="sigle" Type="nvarchar" MaxLength="50" />
     <Property Name="small_name" Type="nvarchar" MaxLength="50" />
-    <Property Name="volunteer_count" Type="int" />
-    <Property Name="agrement_date" Type="datetime" />
-    <Property Name="agrement_solidarity" Type="bit" />
-    <Property Name="employee_count" Type="int" />
-    <Property Name="siret" Type="nvarchar" MaxLength="50" />
+    <Property Name="establishment_date" Type="nvarchar" MaxLength="200" />
+    <Property Name="loan_officer_id" Type="int" />
     <Property Name="activity_id" Type="int" />
-    <Property Name="date_create" Type="datetime" />
+    <Property Name="employee_count" Type="int" />
+    <Property Name="volunteer_count" Type="int" />
+    <Property Name="agrement_solidarity" Type="bit" />
+    <Property Name="agrement_date" Type="datetime" />
+    <Property Name="sigle" Type="nvarchar" MaxLength="50" />
+    <Property Name="siret" Type="nvarchar" MaxLength="50" />
     <Property Name="fiscal_status" Type="nvarchar" MaxLength="50" />
     <Property Name="registre" Type="nvarchar" MaxLength="50" />
     <Property Name="legalForm" Type="nvarchar" MaxLength="50" />
     <Property Name="insertionType" Type="nvarchar" MaxLength="50" />
-    <Property Name="loan_officer_id" Type="int" />
+    <Property Name="photo" Type="nvarchar(max)" />
+    <Property Name="status" Type="nvarchar" MaxLength="200" />
+    <Property Name="created_date" Type="nvarchar" MaxLength="200" />
+    <Property Name="deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Credit">
     <Key>
@@ -1408,7 +1412,7 @@
     <Property Name="fee_value" Type="decimal" Nullable="false" Scale="4" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.CreditInsuranceEvents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.CreditInsuranceEvents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="CreditInsuranceEvents">
     <Key>
@@ -1475,7 +1479,7 @@
     <Property Name="deleted" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.EconomicActivityLoanHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.EconomicActivityLoanHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="EconomicActivityLoanHistory">
     <Key>
@@ -1547,7 +1551,7 @@
     <Property Name="accounting" Type="bit" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.ExchangeRates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.ExchangeRates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="ExchangeRates">
     <Key>
@@ -1638,7 +1642,7 @@
     <Property Name="loan_officer_id" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.InstallmentHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.InstallmentHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="InstallmentHistory">
     <Key>
@@ -1705,7 +1709,7 @@
     <Property Name="nb_of_months" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.LinkBranchesPaymentMethods' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.LinkBranchesPaymentMethods' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="LinkBranchesPaymentMethods">
     <Key>
@@ -1721,7 +1725,7 @@
     <Property Name="date" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.LinkGuarantorCredit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.LinkGuarantorCredit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="LinkGuarantorCredit">
     <Key>
@@ -1735,7 +1739,7 @@
     <Property Name="guarantee_desc" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.LinkPackagesExotics' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.LinkPackagesExotics' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="LinkPackagesExotics">
     <Key>
@@ -1769,7 +1773,7 @@
     <Property Name="booking_type" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.LoanDisbursmentEvents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.LoanDisbursmentEvents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="LoanDisbursmentEvents">
     <Key>
@@ -1784,7 +1788,7 @@
     <Property Name="interest" Type="money" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.LoanEntryFeeEvents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.LoanEntryFeeEvents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="LoanEntryFeeEvents">
     <Key>
@@ -1807,7 +1811,7 @@
     <Property Name="installment_number" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.LoanScale' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.LoanScale' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="LoanScale">
     <Key>
@@ -1818,7 +1822,7 @@
     <Property Name="ScaleMax" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.LoanShareAmounts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.LoanShareAmounts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="LoanShareAmounts">
     <Key>
@@ -1864,7 +1868,7 @@
     <Property Name="fiscal_year_id" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.MenuItems' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.MenuItems' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="MenuItems">
     <Key>
@@ -1877,7 +1881,7 @@
     <Property Name="type" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.Monitoring' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.Monitoring' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="Monitoring">
     <Key>
@@ -1974,9 +1978,10 @@
     <Property Name="insurance_max" Type="decimal" Nullable="false" Scale="2" />
     <Property Name="use_entry_fees_cycles" Type="bit" Nullable="false" />
     <Property Name="is_balloon" Type="bit" Nullable="false" />
+    <Property Name="created_date" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.PackagesClientTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.PackagesClientTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="PackagesClientTypes">
     <Key>
@@ -2019,12 +2024,21 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="first_name" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="sex" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="first_name" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="last_name" Type="nvarchar" Nullable="false" MaxLength="200" />
     <Property Name="identification_data" Type="nvarchar" Nullable="false" MaxLength="200" />
-    <Property Name="last_name" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="birth_date" Type="datetime" />
+    <Property Name="sex" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="handicapped" Type="bit" Nullable="false" />
     <Property Name="household_head" Type="bit" Nullable="false" />
+    <Property Name="nationality" Type="nvarchar" MaxLength="200" />
+    <Property Name="birth_date" Type="datetime" />
+    <Property Name="birth_place" Type="nvarchar" MaxLength="200" />
+    <Property Name="father_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="mother_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="activity_id" Type="int" />
+    <Property Name="loan_officer_id" Type="int" />
+    <Property Name="image_path" Type="nvarchar" MaxLength="500" />
+    <Property Name="marital_status" Type="nchar" MaxLength="1" />
     <Property Name="nb_of_dependents" Type="int" />
     <Property Name="nb_of_children" Type="int" />
     <Property Name="children_basic_education" Type="int" />
@@ -2034,37 +2048,32 @@
     <Property Name="home_size" Type="float" />
     <Property Name="home_time_living_in" Type="int" />
     <Property Name="capital_other_equipments" Type="nvarchar" MaxLength="500" />
-    <Property Name="activity_id" Type="int" />
+    <Property Name="professional_situation" Type="nvarchar" MaxLength="50" />
+    <Property Name="professional_experience" Type="nvarchar" MaxLength="50" />
     <Property Name="experience" Type="int" />
     <Property Name="nb_of_people" Type="int" />
+    <Property Name="housing_situation" Type="nvarchar" MaxLength="50" />
+    <Property Name="first_contact" Type="datetime" />
+    <Property Name="bank_situation" Type="nvarchar" MaxLength="50" />
+    <Property Name="family_situation" Type="nvarchar" MaxLength="50" />
+    <Property Name="study_level" Type="nvarchar" MaxLength="50" />
     <Property Name="monthly_income" Type="money" />
     <Property Name="monthly_expenditure" Type="money" />
     <Property Name="comments" Type="nvarchar" MaxLength="500" />
-    <Property Name="image_path" Type="nvarchar" MaxLength="500" />
-    <Property Name="father_name" Type="nvarchar" MaxLength="200" />
-    <Property Name="birth_place" Type="nvarchar" MaxLength="50" />
-    <Property Name="nationality" Type="nvarchar" MaxLength="50" />
-    <Property Name="study_level" Type="nvarchar" MaxLength="50" />
     <Property Name="SS" Type="nvarchar" MaxLength="50" />
     <Property Name="CAF" Type="nvarchar" MaxLength="50" />
-    <Property Name="housing_situation" Type="nvarchar" MaxLength="50" />
-    <Property Name="bank_situation" Type="nvarchar" MaxLength="50" />
-    <Property Name="handicapped" Type="bit" Nullable="false" />
-    <Property Name="professional_experience" Type="nvarchar" MaxLength="50" />
-    <Property Name="professional_situation" Type="nvarchar" MaxLength="50" />
-    <Property Name="first_contact" Type="datetime" />
-    <Property Name="family_situation" Type="nvarchar" MaxLength="50" />
-    <Property Name="mother_name" Type="nvarchar" MaxLength="200" />
-    <Property Name="povertylevel_childreneducation" Type="int" Nullable="false" />
-    <Property Name="povertylevel_economiceducation" Type="int" Nullable="false" />
-    <Property Name="povertylevel_socialparticipation" Type="int" Nullable="false" />
-    <Property Name="povertylevel_healthsituation" Type="int" Nullable="false" />
+    <Property Name="povertylevel_childreneducation" Type="int" />
+    <Property Name="povertylevel_economiceducation" Type="int" />
+    <Property Name="povertylevel_socialparticipation" Type="int" />
+    <Property Name="povertylevel_healthsituation" Type="int" />
     <Property Name="unemployment_months" Type="int" />
     <Property Name="first_appointment" Type="datetime" />
-    <Property Name="loan_officer_id" Type="int" />
+    <Property Name="status" Type="nvarchar" MaxLength="200" />
+    <Property Name="created_date" Type="nvarchar" MaxLength="200" />
+    <Property Name="deleted" Type="bit" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.PersonsPhotos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.PersonsPhotos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="PersonsPhotos">
     <Key>
@@ -2138,7 +2147,7 @@
     <Property Name="provisioning_value" Type="float" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.PublicHolidays' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.PublicHolidays' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="PublicHolidays">
     <Key>
@@ -2149,7 +2158,7 @@
     <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.Questionnaire' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.Questionnaire' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="Questionnaire">
     <Key>
@@ -2169,7 +2178,7 @@
     <Property Name="is_sent" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.Rep_Active_Loans_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.Rep_Active_Loans_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="Rep_Active_Loans_Data">
     <Key>
@@ -2191,7 +2200,7 @@
     <Property Name="break_down_id" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.Rep_Disbursements_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.Rep_Disbursements_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="Rep_Disbursements_Data">
     <Key>
@@ -2212,7 +2221,7 @@
     <Property Name="fees" Type="money" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.Rep_OLB_and_LLP_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.Rep_OLB_and_LLP_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="Rep_OLB_and_LLP_Data">
     <Key>
@@ -2238,7 +2247,7 @@
     <Property Name="rescheduled" Type="bit" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.Rep_Par_Analysis_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.Rep_Par_Analysis_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="Rep_Par_Analysis_Data">
     <Key>
@@ -2279,7 +2288,7 @@
     <Property Name="break_down_id" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.Rep_Repayments_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.Rep_Repayments_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="Rep_Repayments_Data">
     <Key>
@@ -2302,7 +2311,7 @@
     <Property Name="written_off" Type="bit" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.Rep_Rescheduled_Loans_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.Rep_Rescheduled_Loans_Data' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="Rep_Rescheduled_Loans_Data">
     <Key>
@@ -2322,7 +2331,7 @@
     <Property Name="olb" Type="money" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.RepaymentEvents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.RepaymentEvents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="RepaymentEvents">
     <Key>
@@ -2536,9 +2545,10 @@
     <Property Name="code" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="transfer_min" Type="money" Nullable="false" />
     <Property Name="transfer_max" Type="money" Nullable="false" />
+    <Property Name="created_date" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.SavingProductsClientTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.SavingProductsClientTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="SavingProductsClientTypes">
     <Key>
@@ -2712,7 +2722,7 @@
     <Property Name="credit_account_id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.Statuses' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.Statuses' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="Statuses">
     <Key>
@@ -2720,16 +2730,6 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="status_name" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="tbl_LAS">
     <Key>
@@ -2742,6 +2742,34 @@
     <Property Name="date_activated" Type="text" />
     <Property Name="next_expiry_date" Type="text" />
     <Property Name="days_for_expiry" Type="text" />
+  </EntityType>
+  <EntityType Name="tbl_non_solidarity_groups">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" />
+    <Property Name="establishment_date" Type="nvarchar" MaxLength="200" />
+    <Property Name="branch_id" Type="nvarchar" MaxLength="200" />
+    <Property Name="group_officer" Type="nvarchar" MaxLength="200" />
+    <Property Name="meeting_day" Type="nvarchar" MaxLength="200" />
+    <Property Name="photo" Type="nvarchar" MaxLength="200" />
+    <Property Name="status" Type="nvarchar" MaxLength="200" />
+    <Property Name="created_date" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tbl_solidarity_groups">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" />
+    <Property Name="establishment_date" Type="nvarchar" MaxLength="200" />
+    <Property Name="branch_id" Type="nvarchar" MaxLength="200" />
+    <Property Name="group_officer" Type="nvarchar" MaxLength="200" />
+    <Property Name="meeting_day" Type="nvarchar" MaxLength="200" />
+    <Property Name="photo" Type="nvarchar" MaxLength="200" />
+    <Property Name="status" Type="nvarchar" MaxLength="200" />
+    <Property Name="created_date" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="TechnicalParameters">
     <Key>
@@ -2817,15 +2845,19 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="client_type_code" Type="char" Nullable="false" MaxLength="1" />
-    <Property Name="scoring" Type="float" />
+    <Property Name="status" Type="smallint" Nullable="false" />
     <Property Name="loan_cycle" Type="int" Nullable="false" />
     <Property Name="active" Type="bit" Nullable="false" />
+    <Property Name="branch_id" Type="int" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="personal_phone" Type="varchar" MaxLength="50" />
+    <Property Name="district_id" Type="int" />
+    <Property Name="scoring" Type="float" />
+    <Property Name="address" Type="nvarchar" MaxLength="500" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" />
     <Property Name="other_org_name" Type="nvarchar" MaxLength="100" />
     <Property Name="other_org_amount" Type="money" />
     <Property Name="other_org_debts" Type="money" />
-    <Property Name="district_id" Type="int" Nullable="false" />
-    <Property Name="city" Type="nvarchar" MaxLength="50" />
-    <Property Name="address" Type="nvarchar" MaxLength="500" />
     <Property Name="secondary_district_id" Type="int" />
     <Property Name="secondary_city" Type="nvarchar" MaxLength="50" />
     <Property Name="secondary_address" Type="nvarchar" MaxLength="500" />
@@ -2833,12 +2865,9 @@
     <Property Name="cash_output_voucher_number" Type="int" />
     <Property Name="creation_date" Type="datetime" />
     <Property Name="home_phone" Type="varchar" MaxLength="50" />
-    <Property Name="personal_phone" Type="varchar" MaxLength="50" />
     <Property Name="secondary_home_phone" Type="varchar" MaxLength="50" />
     <Property Name="secondary_personal_phone" Type="varchar" MaxLength="50" />
-    <Property Name="e_mail" Type="nvarchar" MaxLength="50" />
     <Property Name="secondary_e_mail" Type="nvarchar" MaxLength="50" />
-    <Property Name="status" Type="smallint" Nullable="false" />
     <Property Name="other_org_comment" Type="nvarchar" MaxLength="500" />
     <Property Name="sponsor1" Type="nvarchar" MaxLength="50" />
     <Property Name="sponsor1_comment" Type="nvarchar" MaxLength="100" />
@@ -2849,10 +2878,10 @@
     <Property Name="secondary_homeType" Type="nvarchar" MaxLength="50" />
     <Property Name="zipCode" Type="nvarchar" MaxLength="50" />
     <Property Name="secondary_zipCode" Type="nvarchar" MaxLength="50" />
-    <Property Name="branch_id" Type="int" Nullable="false" />
+    <Property Name="created_date" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.TraceUserLogs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.TraceUserLogs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="TraceUserLogs">
     <Key>
@@ -2884,7 +2913,7 @@
     <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="56" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.UserRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.UserRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="UserRole">
     <Key>
@@ -2911,7 +2940,7 @@
     <Property Name="phone" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.UsersBranches' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.UsersBranches' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="UsersBranches">
     <Key>
@@ -2922,7 +2951,7 @@
     <Property Name="branch_id" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.UsersSubordinates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.UsersSubordinates' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="UsersSubordinates">
     <Key>
@@ -3019,7 +3048,7 @@
     <Property Name="overdue_principal" Type="money" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.Clients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.Clients' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="Clients">
     <Key>
@@ -3032,7 +3061,7 @@
     <Property Name="name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.View_1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="View_1">
     <Key>
@@ -3041,7 +3070,7 @@
     <Property Name="transaction_date" Type="datetime" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'SBSaccoDB_january_2023.dbo.vwExportTransactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'SBSaccoDB_april_2024.dbo.vwExportTransactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="vwExportTransactions">
     <Key>
@@ -3055,7 +3084,7 @@
     <Property Name="contract_code" Type="nvarchar" MaxLength="255" />
     <Property Name="amount" Type="varchar" MaxLength="20" />
     <Property Name="funding_line" Type="nvarchar" MaxLength="50" />
-    <Property Name="client_name" Type="nvarchar" MaxLength="202" />
+    <Property Name="client_name" Type="nvarchar" MaxLength="402" />
     <Property Name="account" Type="nvarchar" Nullable="false" MaxLength="200" />
   </EntityType>
   <Association Name="FK_AccountingRules_ChartOfAccounts">
@@ -4504,7 +4533,6 @@
   <Function Name="ExportAccounting_Transactions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="ExportAccounting_Transactions_Det" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="ExportAccounting_Transactions_Q" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetAccountBalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="account_number_id" Type="int" Mode="In" />
     <Parameter Name="currency_id" Type="int" Mode="In" />
@@ -4542,6 +4570,11 @@
   <Function Name="GetClosingTellerBalance" ReturnType="money" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="tellerId" Type="int" Mode="In" />
   </Function>
+  <Function Name="GetCoporatesPageWise" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="RecordCount" Type="int" Mode="InOut" />
+  </Function>
   <Function Name="GetDisbursementDate" ReturnType="datetime" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="contract_id" Type="int" Mode="In" />
   </Function>
@@ -4557,9 +4590,19 @@
     <Parameter Name="contractId" Type="int" Mode="In" />
     <Parameter Name="installmentId" Type="int" Mode="In" />
   </Function>
+  <Function Name="GetLoanPackagesPageWise" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="RecordCount" Type="int" Mode="InOut" />
+  </Function>
   <Function Name="GetNbMembers" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="groupId" Type="int" Mode="In" />
     <Parameter Name="beginDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="GetNonSolidarityGroupPageWise" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="RecordCount" Type="int" Mode="InOut" />
   </Function>
   <Function Name="GetOLB" ReturnType="money" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="contractId" Type="int" Mode="In" />
@@ -4568,9 +4611,19 @@
   <Function Name="GetOpeningTellerBalance" ReturnType="money" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="tellerId" Type="int" Mode="In" />
   </Function>
+  <Function Name="GetPersonsPageWise" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="RecordCount" Type="int" Mode="InOut" />
+  </Function>
   <Function Name="getSavingBalance" ReturnType="money" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="savingId" Type="int" Mode="In" />
     <Parameter Name="date" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="GetSolidarityGroupPageWise" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="RecordCount" Type="int" Mode="InOut" />
   </Function>
   <Function Name="GetTellerBalance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="teller_id" Type="int" Mode="In" />
@@ -5000,34 +5053,4 @@
     <Parameter Name="subordinate_id" Type="int" Mode="In" />
     <Parameter Name="branch_id" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-  </Function>
-  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-  </Function>
-  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-  </Function>
-  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
 </Schema>

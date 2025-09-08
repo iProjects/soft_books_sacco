@@ -262,6 +262,7 @@
             this.chkUseCompulsorySavings = new System.Windows.Forms.CheckBox();
             this.tabPageCreditInsuarance = new System.Windows.Forms.TabPage();
             this.groupBox42 = new System.Windows.Forms.GroupBox();
+            this.btnPropertiesGrid = new System.Windows.Forms.LinkLabel();
             this.txtMinCreditInsurance = new System.Windows.Forms.NumericUpDown();
             this.txtMaxCreditInsurance = new System.Windows.Forms.NumericUpDown();
             this.label71 = new System.Windows.Forms.Label();
@@ -271,7 +272,7 @@
             this.bindingSourceCycleObjectParameters = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceExoticInstallments = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceCycles = new System.Windows.Forms.BindingSource(this.components);
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.bindingSourceEntryFees = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceCycleObjects = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -281,7 +282,6 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnPropertiesGrid = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -395,7 +395,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCycleObjectParameters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceExoticInstallments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCycles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEntryFees)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCycleObjects)).BeginInit();
             this.SuspendLayout();
@@ -1164,7 +1164,7 @@
             this.groupBox19.TabIndex = 2;
             this.groupBox19.TabStop = false;
             this.groupBox19.Text = "Anticipated Total  Repayment (ATR)  and  Anticipated Partial Repayment (APR) Fees" +
-                "";
+    "";
             // 
             // groupBoxBaseforAPRFees
             // 
@@ -2393,7 +2393,7 @@
             this.btnSaveCycleParameters.Text = "Save Cycle Parameters";
             this.btnSaveCycleParameters.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnSaveCycleParameters_LinkClicked);
             // 
-            // dataGridViewCycleParameters
+            // dataGridViewCycleObjectParameters
             // 
             this.dataGridViewCycleObjectParameters.AllowUserToAddRows = false;
             this.dataGridViewCycleObjectParameters.AllowUserToDeleteRows = false;
@@ -3078,6 +3078,19 @@
             this.groupBox42.TabStop = false;
             this.groupBox42.Text = "Credit Insurance";
             // 
+            // btnPropertiesGrid
+            // 
+            this.btnPropertiesGrid.AutoSize = true;
+            this.btnPropertiesGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
+            this.btnPropertiesGrid.LinkColor = System.Drawing.Color.Yellow;
+            this.btnPropertiesGrid.Location = new System.Drawing.Point(285, 318);
+            this.btnPropertiesGrid.Name = "btnPropertiesGrid";
+            this.btnPropertiesGrid.Size = new System.Drawing.Size(91, 13);
+            this.btnPropertiesGrid.TabIndex = 8;
+            this.btnPropertiesGrid.TabStop = true;
+            this.btnPropertiesGrid.Text = "Properties Grid";
+            this.btnPropertiesGrid.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnPropertiesGrid_LinkClicked);
+            // 
             // txtMinCreditInsurance
             // 
             this.txtMinCreditInsurance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -3142,9 +3155,9 @@
             this.label75.TabIndex = 0;
             this.label75.Text = "Min";
             // 
-            // errorProvider1
+            // errorProvider
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.errorProvider.ContainerControl = this;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -3193,19 +3206,6 @@
             this.dataGridViewTextBoxColumn7.HeaderText = "Max";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // btnPropertiesGrid
-            // 
-            this.btnPropertiesGrid.AutoSize = true;
-            this.btnPropertiesGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold);
-            this.btnPropertiesGrid.LinkColor = System.Drawing.Color.Yellow;
-            this.btnPropertiesGrid.Location = new System.Drawing.Point(285, 318);
-            this.btnPropertiesGrid.Name = "btnPropertiesGrid";
-            this.btnPropertiesGrid.Size = new System.Drawing.Size(91, 13);
-            this.btnPropertiesGrid.TabIndex = 8;
-            this.btnPropertiesGrid.TabStop = true;
-            this.btnPropertiesGrid.Text = "Properties Grid";
-            this.btnPropertiesGrid.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnPropertiesGrid_LinkClicked);
             // 
             // AddLoanProductForm
             // 
@@ -3371,7 +3371,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCycleObjectParameters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceExoticInstallments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCycles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEntryFees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCycleObjects)).EndInit();
             this.ResumeLayout(false);
@@ -3608,7 +3608,7 @@
         private System.Windows.Forms.BindingSource bindingSourceCycleObjectParameters;
         private System.Windows.Forms.BindingSource bindingSourceExoticInstallments;
         private System.Windows.Forms.BindingSource bindingSourceCycles;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.BindingSource bindingSourceEntryFees;
         private System.Windows.Forms.BindingSource bindingSourceCycleObjects;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;

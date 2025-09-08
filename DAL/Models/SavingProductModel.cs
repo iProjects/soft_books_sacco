@@ -8,12 +8,12 @@ namespace DAL
     public class SavingProductModel
     {
         #region "SavingProduct"
-        public int savingproductid
+        public int? savingproductid
         {
             get;
             set;
         }
-        public bool deleted
+        public bool? deleted
         {
             get;
             set;
@@ -89,7 +89,7 @@ namespace DAL
             get;
             set;
         }
-        public int currency_id
+        public int? currency_id
         {
             get;
             set;
@@ -114,31 +114,36 @@ namespace DAL
             get;
             set;
         }
-        public decimal transfer_min
+        public decimal? transfer_min
         {
             get;
             set;
         }
-        public decimal transfer_max
+        public decimal? transfer_max
         {
             get;
             set;
 
+        }
+        public string created_date
+        {
+            get;
+            set;
         }
         #endregion "SavingProduct"
 
         #region "SavingBookProducts"
-        public int saving_book_productid
+        public int? saving_book_productid
         {
             get;
             set;
         }
-        public short interest_base
+        public short? interest_base
         {
             get;
             set;
         }
-        public short interest_frequency
+        public short? interest_frequency
         {
             get;
             set;
@@ -184,7 +189,7 @@ namespace DAL
             set;
 
         }
-        public short transfer_fees_type
+        public short? transfer_fees_type
         {
             get;
             set;
@@ -265,7 +270,7 @@ namespace DAL
             get;
             set;
         }
-        public int management_fees_freq
+        public int? management_fees_freq
         {
             get;
             set;
@@ -300,7 +305,7 @@ namespace DAL
             get;
             set;
         }
-        public int agio_fees_freq
+        public int? agio_fees_freq
         {
             get;
             set;
@@ -346,7 +351,7 @@ namespace DAL
             get;
             set;
         }
-        public bool is_ibt_fee_flat
+        public bool? is_ibt_fee_flat
         {
             get;
             set;
@@ -367,7 +372,7 @@ namespace DAL
             get;
             set;
         }
-        public bool use_term_deposit
+        public bool? use_term_deposit
         {
             get;
             set;

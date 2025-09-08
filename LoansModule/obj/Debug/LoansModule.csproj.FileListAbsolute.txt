@@ -553,3 +553,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\LoansModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\LoansModule.pdb
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\LoansModule\obj\Debug\LoansModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\LoansModule\obj\Debug\LoansModule.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\LoansModule\obj\Debug\LoansModule.Views.search_contracts_form.resources

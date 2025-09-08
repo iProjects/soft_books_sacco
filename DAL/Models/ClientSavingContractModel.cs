@@ -14,7 +14,7 @@ namespace DAL
             get;
             set;
         }
-        public int product_id
+        public int? product_id
         {
             get;
             set;
@@ -275,7 +275,7 @@ namespace DAL
             get;
             set;
         }
-        public int interest_frequency
+        public short interest_frequency
         {
             get;
             set;
@@ -504,7 +504,7 @@ namespace DAL
             get;
             set;
         }
-        public bool use_term_deposit
+        public bool? use_term_deposit
         {
             get;
             set;

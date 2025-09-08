@@ -506,8 +506,58 @@ namespace ReportsModule.Viewer
                 Utils.ShowError(ex);
             }
         }
+        
+        private void toolStripButton_cashbook_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_general_accounting_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_general_ledger_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_trial_balance_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cashBookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButton_cashbook_Click(sender, e);
+        }
+
+        private void generalAccountingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButton_general_accounting_Click(sender, e);
+        }
+
+        private void generalLedgerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButton_general_ledger_Click(sender, e);
+        }
+
+        private void trialBalanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButton_trial_balance_Click(sender, e);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonExit_Click(sender, e);
+        }
+
+        private void toolStripButtonExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         #endregion "Private Methods"
-         
+
 
 
     }

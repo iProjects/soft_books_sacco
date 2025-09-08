@@ -440,8 +440,6 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Help\js\bootstrap-3.3.7.j
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Help\js\jquery-3.2.1.js
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Help\js\jquery-ui-1.12.1.js
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Help\js\utilz.js
-D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Logs\error.txt
-D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Logs\Log.txt
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Reports\db.sql
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\background.png
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\CreateDB.jpg
@@ -500,3 +498,9 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Help\images\payroll.jpg
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Help\help.html
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\WinSBSacco\obj\x86\Debug\WinSBSacco.load_log_file_form.resources
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\WinSBSacco\obj\x86\Debug\WinSBSacco.login_form.resources
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\contact_us.ico
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\exit.ico
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\help_icon.ico
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\reports.ico
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\settings.ico
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\new_splash_screen.jpg

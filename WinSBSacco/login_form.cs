@@ -11,6 +11,7 @@ using DAL;
 using System.Threading;
 using System.Security.Cryptography;
 using System.Data;
+using System.Text;
 
 namespace WinSBSacco
 {
@@ -136,7 +137,7 @@ namespace WinSBSacco
             try
             {
                 groupBoxServerLogin.Visible = false;
-
+                var dll_ver = System.Reflection.Assembly.GetAssembly(typeof(Repository)).GetName().Version.ToString();
                 string AssemblyProduct = app_assembly_info.AssemblyProduct;
                 string AssemblyVersion = app_assembly_info.AssemblyVersion;
                 string AssemblyCopyright = app_assembly_info.AssemblyCopyright;
@@ -162,6 +163,7 @@ namespace WinSBSacco
                 //txtpassword.Text = "sys";
 
                 groupBox1.Text = "build version - " + AssemblyVersion;
+                this.groupBox1.Text = "Version:     " + AssemblyVersion + "     Base:     " + dll_ver;
 
                 populate_auto_complete_values();
             }
@@ -297,7 +299,8 @@ namespace WinSBSacco
                                                  Password = user_that_exists.Password,
                                                  RoleId = user_that_exists.RoleId,
                                                  Locked = user_that_exists.Locked,
-                                                 UserId = user_that_exists.Id
+                                                 UserId = user_that_exists.Id,
+                                                 Email = user_that_exists.Email
                                              };
 
                             LoggedInUser = usermodel;
@@ -313,6 +316,8 @@ namespace WinSBSacco
                             this.Hide();
                             SaveAutoCompleteUsers();
                             save_auto_complete_login();
+                            create_audit_log(usermodel);
+                            notify_user_of_login_via_email(usermodel);
                         }
                         else
                         {
@@ -686,9 +691,9 @@ namespace WinSBSacco
                 Invoke(new MethodInvoker(
                    delegate()
                    {
-                       chkIntegratedSecurity.Checked = bool.Parse(last_record.IntegratedSecurity); 
+                       chkIntegratedSecurity.Checked = bool.Parse(last_record.IntegratedSecurity);
                    }));
-                 
+
                 chkremember.Checked = bool.Parse(last_record.remember);
 
             }
@@ -697,8 +702,104 @@ namespace WinSBSacco
                 Log.WriteToErrorLogFile_and_EventViewer(ex);
             }
         }
+        public void create_audit_log(UserModel usermodel)
+        {
+            try
+            {
+                Repository rep = new Repository();
+                bool connected = rep.Connect(this.ConnectionString);
+                if (connected)
+                {
+                    var UserName = usermodel.UserName;
+                    var RoleId = usermodel.RoleId;
+                    var Locked = usermodel.Locked;
+                    var UserId = usermodel.UserId;
 
 
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile_and_EventViewer(ex);
+            }
+        }
+        private void chkshowpassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkshowpassword.Checked)
+            {
+                txtpassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtpassword.PasswordChar = '*';
+            }
+        }
+
+        private void chkshowserverloginpassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkshowserverloginpassword.Checked)
+            {
+                txtServerLoginPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtServerLoginPassword.PasswordChar = '*';
+            }
+        }
+
+        private void btndatabasecontrolpanel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DatabaseControlPanelForm f = new DatabaseControlPanelForm();
+            f.Show();
+        }
+
+        private void chkremember_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void notify_user_of_login_via_email(UserModel usermodel)
+        {
+            try
+            {
+                string template = string.Empty;
+                StringBuilder sb = new StringBuilder();
+
+                string email = usermodel.Email;
+                DateTime nowDate = DateTime.Now;
+
+                string macaddrress = Utils.GetMACAddress();
+                string ipAddresses = Utils.GetFormattedIpAddresses();
+                DateTime _endTime = DateTime.Now;
+
+                sb.Append("User [ " + LoggedInUser.UserName + " ] ");
+                sb.Append("was logged in at [ " + nowDate.ToString("dd-MM-yyyy HH:mm:ss ttt") + " ] ");
+                sb.Append("machine name [ " + FQDN.GetFQDN() + " ] ");
+                sb.Append("MAC [ " + macaddrress + " ] ");
+                sb.Append("ip addresses [ " + ipAddresses + " ] ");
+
+                template = sb.ToString();
+
+                Console.WriteLine(template);
+
+                if (Utils.IsConnectedToInternet())
+                {
+                    bool is_email_sent = Utils.Send_Email_Given_Address(template, email);
+                    if (is_email_sent)
+                    {
+                        Console.WriteLine("Email successfully sent to [ " + email + " ]");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Email not successfully sent to [ " + email + " ]");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile_and_EventViewer(ex);
+            }
+        }
 
     }
 }

@@ -362,6 +362,8 @@ namespace WinSBSacco
                 _lstnotificationdto.Add(_notificationdto);
                 Console.WriteLine(args.message);
 
+                Log.Write_To_Log_File_temp_dir(new Exception(_logtext));
+
                 var _lstmsgdto = from msgdto in _lstnotificationdto
                                  orderby msgdto._created_datetime descending
                                  select msgdto._notification_message;
@@ -411,6 +413,7 @@ namespace WinSBSacco
         {
             try
             {
+                var dll_ver = System.Reflection.Assembly.GetAssembly(typeof(Repository)).GetName().Version.ToString();
                 string AssemblyProduct = app_assembly_info.AssemblyProduct;
                 string AssemblyVersion = app_assembly_info.AssemblyVersion;
                 string AssemblyCopyright = app_assembly_info.AssemblyCopyright;
@@ -419,6 +422,7 @@ namespace WinSBSacco
                 this.lblselecteddatabase.Text = "Selected Database:     " + system.Database;
                 _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs("Selected Database [ " + system.Database + " ]", TAG));
                 this.lblversion.Text = "Version:     " + AssemblyVersion;
+                this.lblversion.Text = "Version:     " + AssemblyVersion + "     Base:     " + dll_ver;
                 this.lblrunningtime.Text = DateTime.Today.ToShortDateString();
                 this.toolStripStatusLabel3.Visible = false;
 
@@ -786,7 +790,7 @@ namespace WinSBSacco
                     string base_directory = Utils.get_application_path();
                     string back_up_path = Utils.build_file_path(base_directory, "database_backup");
 
-                    bool back_up_successfull = control_panel.backup_database_automatically(system.Server, system.Database, back_up_path, formatted_file_name);
+                    bool back_up_successfull = control_panel.backup_database_automatically(system.Server, system.Database);
 
                     if (back_up_successfull)
                     {
@@ -871,8 +875,8 @@ namespace WinSBSacco
             }
             finally
             {
-                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(template, TAG));
-                Log.WriteToErrorLogFile_and_EventViewer(new Exception(template));
+                //_notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(template, TAG));
+                //Log.WriteToErrorLogFile_and_EventViewer(new Exception(template));
             }
         }
 
@@ -912,6 +916,14 @@ namespace WinSBSacco
                 FindComputersConectedToHost();
 
                 GetClientExtraInfo();
+
+                GetHostNameandMac();
+
+                //ExecuteIPConfigCommands();
+
+                //FindComputersConectedToHost();
+
+                //GetClientExtraInfo();
 
                 //Get_Driver_Query_Client_Extra_Info();
 
@@ -985,6 +997,7 @@ namespace WinSBSacco
 
                     lbl_info.Visible = true;
                     lbl_info.Text = " R     " + difference_to.ToString() + "         E     " + str_difference_from.ToString() + "  ";
+                    lbl_info.ToolTipText = " Remaining     " + difference_to.ToString() + "         Elapsed     " + str_difference_from.ToString() + "  ";
 
                     //expired
                     if (difference_to <= 0)
@@ -1067,6 +1080,7 @@ namespace WinSBSacco
 
                                 lbl_info.Visible = true;
                                 lbl_info.Text = " R     " + difference_to.ToString() + "         E     " + str_difference_from.ToString() + "  ";
+                                lbl_info.ToolTipText = " Remaining     " + difference_to.ToString() + "         Elapsed     " + str_difference_from.ToString() + "  ";
 
                                 //expired
                                 if (difference_to <= 0)
@@ -1152,6 +1166,7 @@ namespace WinSBSacco
 
                             lbl_info.Visible = true;
                             lbl_info.Text = " R     " + difference_to.ToString() + "         E     " + str_difference_from.ToString() + "  ";
+                            lbl_info.ToolTipText = " Remaining     " + difference_to.ToString() + "         Elapsed     " + str_difference_from.ToString() + "  ";
 
                             //expired
                             if (difference_to <= 0)
@@ -1607,7 +1622,7 @@ namespace WinSBSacco
                 _template += res;
 
                 Debug.Write(res);
-                Log.WriteToErrorLogFile_and_EventViewer(new Exception(res));
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1642,7 +1657,7 @@ namespace WinSBSacco
                 _template += res;
 
                 Debug.Write(res);
-                Log.WriteToErrorLogFile_and_EventViewer(new Exception(res));
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1681,7 +1696,7 @@ namespace WinSBSacco
                 _template += res;
 
                 Debug.Write(res);
-                Log.WriteToErrorLogFile(new Exception(res));
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1724,11 +1739,11 @@ namespace WinSBSacco
                 p.BeginErrorReadLine();
                 // well, we should check the return value here...
                 //  capturing the output into a string variable...
-                //string res = p.StandardOutput.ReadToEnd();
-                //_template += res;
+                string res = p.StandardOutput.ReadToEnd();
+                _template += res;
 
-                //Debug.Write(res);
-                //Log.WriteToErrorLogFile(new Exception(res));
+                Debug.Write(res);
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1770,11 +1785,11 @@ namespace WinSBSacco
                 p.BeginErrorReadLine();
                 // well, we should check the return value here...
                 //  capturing the output into a string variable...
-                //string res = p.StandardOutput.ReadToEnd();
-                //_template += res;
+                string res = p.StandardOutput.ReadToEnd();
+                _template += res;
 
-                //Debug.Write(res);
-                //Log.WriteToErrorLogFile(new Exception(res));
+                Debug.Write(res);
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1816,11 +1831,11 @@ namespace WinSBSacco
                 p.BeginErrorReadLine();
                 // well, we should check the return value here...
                 //  capturing the output into a string variable...
-                //string res = p.StandardOutput.ReadToEnd();
-                //_template += res;
+                string res = p.StandardOutput.ReadToEnd();
+                _template += res;
 
-                //Debug.Write(res);
-                //Log.WriteToErrorLogFile(new Exception(res));
+                Debug.Write(res);
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1862,11 +1877,11 @@ namespace WinSBSacco
                 p.BeginErrorReadLine();
                 // well, we should check the return value here...
                 //  capturing the output into a string variable...
-                //string res = p.StandardOutput.ReadToEnd();
-                //_template += res;
+                string res = p.StandardOutput.ReadToEnd();
+                _template += res;
 
-                //Debug.Write(res);
-                //Log.WriteToErrorLogFile(new Exception(res));
+                Debug.Write(res);
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1908,11 +1923,11 @@ namespace WinSBSacco
                 p.BeginErrorReadLine();
                 // well, we should check the return value here...
                 //  capturing the output into a string variable...
-                //string res = p.StandardOutput.ReadToEnd();
-                //_template += res;
+                string res = p.StandardOutput.ReadToEnd();
+                _template += res;
 
-                //Debug.Write(res);
-                //Log.WriteToErrorLogFile(new Exception(res));
+                Debug.Write(res);
+                Log.Write_To_Log_File_temp_dir(new Exception(res));
 
                 return true;
             }
@@ -1962,14 +1977,26 @@ namespace WinSBSacco
         {
             try
             {
-                appNotifyIcon.Text = Utils.APP_NAME;
-                appNotifyIcon.Icon = new Icon("Resources/Icons/Dollar.ico");
-                appNotifyIcon.BalloonTipIcon = ToolTipIcon.Info;
-                appNotifyIcon.ContextMenuStrip = contextMenuStripSystemNotification;
-                appNotifyIcon.BalloonTipTitle = _Title;
-                appNotifyIcon.BalloonTipText = _Text;
-                appNotifyIcon.Visible = true;
-                appNotifyIcon.ShowBalloonTip(900000);
+                using (NotifyIcon appNotifyIcon = new NotifyIcon())
+                {
+                    appNotifyIcon.Text = Utils.APP_NAME;
+                    appNotifyIcon.Icon = new Icon("Resources/Icons/Dollar.ico");
+                    ContextMenuStrip contextMenuStripSystemNotification = new ContextMenuStrip();
+                    appNotifyIcon.ContextMenuStrip = contextMenuStripSystemNotification;
+                    appNotifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+                    appNotifyIcon.BalloonTipTitle = _Title;
+                    appNotifyIcon.BalloonTipText = _Text;
+                    appNotifyIcon.Visible = true;
+                    appNotifyIcon.ShowBalloonTip(900000);
+                }
+                //appNotifyIcon.Text = Utils.APP_NAME;
+                //appNotifyIcon.Icon = new Icon("Resources/Icons/Dollar.ico");
+                //appNotifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+                //appNotifyIcon.ContextMenuStrip = contextMenuStripSystemNotification;
+                //appNotifyIcon.BalloonTipTitle = _Title;
+                //appNotifyIcon.BalloonTipText = _Text;
+                //appNotifyIcon.Visible = true;
+                //appNotifyIcon.ShowBalloonTip(900000);
 
                 return true;
             }
@@ -2032,7 +2059,7 @@ namespace WinSBSacco
             try
             {
                 _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs("loading SolidarityGroupsListForm", TAG));
-                SolidarityGroupsListForm sgf = new SolidarityGroupsListForm(LoggedInUser.UserId, connection);
+                SolidarityGroupsListForm sgf = new SolidarityGroupsListForm(LoggedInUser.UserName, connection);
                 sgf.Show();
             }
             catch (Exception ex)
@@ -2046,7 +2073,7 @@ namespace WinSBSacco
             try
             {
                 _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs("loading NonSolidarityGroupsListForm", TAG));
-                NonSolidarityGroupsListForm nsgf = new NonSolidarityGroupsListForm(LoggedInUser.UserId, connection);
+                NonSolidarityGroupsListForm nsgf = new NonSolidarityGroupsListForm(LoggedInUser.UserName, connection);
                 nsgf.Show();
             }
             catch (Exception ex)
@@ -2060,7 +2087,7 @@ namespace WinSBSacco
             try
             {
                 _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs("loading CorporatesListForm", TAG));
-                CorporatesListForm cf = new CorporatesListForm(LoggedInUser.UserId, connection);
+                CorporatesListForm cf = new CorporatesListForm(LoggedInUser.UserName, connection);
                 cf.Show();
             }
             catch (Exception ex)
@@ -3000,6 +3027,139 @@ namespace WinSBSacco
             }
         }
         #endregion "Private Methods"
+
+        private void search_clientstoolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                search_clients_form form = new search_clients_form(_notificationmessageEventname);
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.ToString(), TAG));
+                Utils.ShowError(ex);
+            }
+        }
+
+        private void txtlog_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_add_loan_product_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddLoanProductForm form = new AddLoanProductForm(connection) { Owner = this };
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.ToString(), TAG));
+                Utils.ShowError(ex);
+            }
+        }
+
+        private void btn_add_savings_product_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddSavingsProductForm form = new AddSavingsProductForm(connection) { Owner = this };
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.ToString(), TAG));
+                Utils.ShowError(ex);
+            }
+        }
+
+        private void btn_loan_products_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoanProductsListForm form = new LoanProductsListForm(connection) { Owner = this };
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.ToString(), TAG));
+                Utils.ShowError(ex);
+            }
+        }
+
+        private void btn_savings_products_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SavingsProductsListForm form = new SavingsProductsListForm(connection) { Owner = this };
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.ToString(), TAG));
+                Utils.ShowError(ex);
+            }
+        }
+
+        private void btn_Collateral_Products_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CollateralProductsListForm form = new CollateralProductsListForm(connection) { Owner = this };
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.ToString(), TAG));
+                Utils.ShowError(ex);
+            }
+        }
+
+        private void btn_add_collateral_products_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddCollateralProductForm form = new AddCollateralProductForm(connection) { Owner = this };
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.ToString(), TAG));
+                Utils.ShowError(ex);
+            }
+        }
+
+        private void btn_persons_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PersonsListForm form = new PersonsListForm(LoggedInUser.UserId, connection) { Owner = this };
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.ToString(), TAG));
+                Utils.ShowError(ex);
+            }
+        }
+
+        private void btn_add_person_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddPersonForm form = new AddPersonForm(connection) { Owner = this };
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                _notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.ToString(), TAG));
+                Utils.ShowError(ex);
+            }
+        }
+
+
 
 
 

@@ -8,6 +8,11 @@ namespace DAL
     public class ClientModel
     {
         #region "Tiers"
+        public int id
+        {
+            get;
+            set;
+        }
         public int tierid
         {
             get;
@@ -142,7 +147,7 @@ namespace DAL
             set;
 
         }
-        public string e_mail
+        public string email
         {
             get;
             set;
@@ -152,7 +157,7 @@ namespace DAL
             get;
             set;
         }
-        public short status
+        public short status_tier
         {
             get;
             set;
@@ -436,6 +441,16 @@ namespace DAL
 
         }
         public int? loan_officer_id
+        {
+            get;
+            set;
+        }
+        public string created_date
+        {
+            get;
+            set;
+        }
+        public string status_person
         {
             get;
             set;

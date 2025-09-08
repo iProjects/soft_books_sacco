@@ -66,7 +66,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblcopyright,
             this.lblLoggedInTime});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 311);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 341);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(402, 22);
             this.statusStrip1.TabIndex = 17;
@@ -239,7 +239,7 @@
             this.groupBox2.Controls.Add(this.btnOK);
             this.groupBox2.Controls.Add(this.btnClose);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 259);
+            this.groupBox2.Location = new System.Drawing.Point(0, 289);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(402, 52);
             this.groupBox2.TabIndex = 2;
@@ -254,7 +254,7 @@
             this.groupBoxServerLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxServerLogin.Location = new System.Drawing.Point(0, 161);
             this.groupBoxServerLogin.Name = "groupBoxServerLogin";
-            this.groupBoxServerLogin.Size = new System.Drawing.Size(402, 98);
+            this.groupBoxServerLogin.Size = new System.Drawing.Size(402, 128);
             this.groupBoxServerLogin.TabIndex = 1;
             this.groupBoxServerLogin.TabStop = false;
             this.groupBoxServerLogin.Text = "Server Login";
@@ -321,7 +321,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(402, 333);
+            this.ClientSize = new System.Drawing.Size(402, 363);
             this.Controls.Add(this.groupBoxServerLogin);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.statusStrip1);

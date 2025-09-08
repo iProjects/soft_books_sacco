@@ -15,18 +15,28 @@ namespace DAL
 
         #region "Private Fields"
         SBSaccoDBEntities db;
+        AuditDBEntities audit_db;
+        string connection;
         #endregion "Private Fields"
+
         #region "Constructor"
         public Repository()
         {
 
             //Should be called by login service only
         }
-        public Repository(string connection)
+        public Repository(string _connection)
         {
-            db = new SBSaccoDBEntities(connection);
+            connection = _connection;
+            db = new SBSaccoDBEntities(_connection);
+        }
+        public Repository(string _connection, string log_info)
+        {
+            connection = _connection;
+            audit_db = new AuditDBEntities(_connection);
         }
         #endregion "Constructor"
+
         #region "public Methods"
         #region "Database and Connection"
         public bool Connect(
@@ -694,7 +704,7 @@ namespace DAL
             ///TODO continue checking all authentication conditions
 
             return true;
-        }                
+        }
         #endregion "Users"
         #region "Roles"
         public void AddRole(spRole role)
@@ -789,7 +799,7 @@ namespace DAL
                 Log.WriteToErrorLogFile(ex);
             }
         }
-        #endregion "Rights"        
+        #endregion "Rights"
         #region "Person"
         public void AddNewPerson(ClientModel cm)
         {
@@ -816,9 +826,9 @@ namespace DAL
                 _tier.personal_phone = cm.personal_phone;
                 _tier.secondary_home_phone = cm.secondary_home_phone;
                 _tier.secondary_personal_phone = cm.secondary_personal_phone;
-                _tier.e_mail = cm.e_mail;
+                _tier.email = cm.email;
                 _tier.secondary_e_mail = cm.secondary_e_mail;
-                _tier.status = cm.status;
+                _tier.status = cm.status_tier;
                 _tier.other_org_comment = cm.other_org_comment;
                 _tier.sponsor1 = cm.sponsor1;
                 _tier.sponsor1_comment = cm.sponsor1_comment;
@@ -834,18 +844,18 @@ namespace DAL
                 db.Tiers.AddObject(_tier);
                 db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
 
-                var tieridquery = (from tr in db.Tiers
-                                   where tr.client_type_code == cm.client_type_code
-                                   where tr.creation_date == cm.creation_date
-                                   where tr.district_id == cm.district_id
-                                   where tr.active == cm.active
-                                   where tr.branch_id == cm.branch_id
-                                   select tr).FirstOrDefault();
+                //var tieridquery = (from tr in db.Tiers
+                //where tr.client_type_code == cm.client_type_code
+                //where tr.creation_date == cm.creation_date
+                ////where tr.district_id == cm.district_id
+                //where tr.active == cm.active
+                //where tr.branch_id == cm.branch_id
+                //select tr).FirstOrDefault();
 
-                if (tieridquery != null)
+                if (_tier.id != null)
                 {
                     Person _person = new Person();
-                    _person.id = tieridquery.id;
+                    _person.id = _tier.id;
                     _person.first_name = cm.first_name;
                     _person.sex = cm.sex;
                     _person.identification_data = cm.identification_data;
@@ -891,7 +901,10 @@ namespace DAL
                     _person.loan_officer_id = cm.loan_officer_id;
 
                     db.Persons.AddObject(_person);
-                    db.SaveChanges();
+                    db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
+
+                    Console.WriteLine(_tier.id);
+                    Console.WriteLine(_person.id);
                 }
 
             }
@@ -942,9 +955,9 @@ namespace DAL
                 _tier.personal_phone = cm.personal_phone;
                 _tier.secondary_home_phone = cm.secondary_home_phone;
                 _tier.secondary_personal_phone = cm.secondary_personal_phone;
-                _tier.e_mail = cm.e_mail;
+                _tier.email = cm.email;
                 _tier.secondary_e_mail = cm.secondary_e_mail;
-                _tier.status = cm.status;
+                _tier.status = cm.status_tier;
                 _tier.other_org_comment = cm.other_org_comment;
                 _tier.sponsor1 = cm.sponsor1;
                 _tier.sponsor1_comment = cm.sponsor1_comment;
@@ -1067,11 +1080,11 @@ namespace DAL
                                   client_type_code = tr.client_type_code,
                                   comments = ps.comments,
                                   creation_date = tr.creation_date,
-                                  district_id = tr.district_id,
+                                  district_id = tr.district_id ?? 0,
                                   district_name = ds.name,
                                   province_id = pr.id,
                                   secondary_province_id = pr2.id,
-                                  e_mail = tr.e_mail,
+                                  email = tr.email,
                                   experience = ps.experience,
                                   family_situation = ps.family_situation,
                                   father_name = ps.father_name,
@@ -1107,10 +1120,10 @@ namespace DAL
                                   personal_phone = tr.personal_phone,
                                   personid = ps.id,
                                   identification_data = ps.identification_data,
-                                  povertylevel_childreneducation = ps.povertylevel_childreneducation,
-                                  povertylevel_economiceducation = ps.povertylevel_economiceducation,
-                                  povertylevel_healthsituation = ps.povertylevel_healthsituation,
-                                  povertylevel_socialparticipation = ps.povertylevel_socialparticipation,
+                                  povertylevel_childreneducation = ps.povertylevel_childreneducation ?? 0,
+                                  povertylevel_economiceducation = ps.povertylevel_economiceducation ?? 0,
+                                  povertylevel_healthsituation = ps.povertylevel_healthsituation ?? 0,
+                                  povertylevel_socialparticipation = ps.povertylevel_socialparticipation ?? 0,
                                   professional_experience = ps.professional_experience,
                                   professional_situation = ps.professional_situation,
                                   scoring = tr.scoring,
@@ -1128,7 +1141,7 @@ namespace DAL
                                   sponsor2 = tr.sponsor2,
                                   sponsor2_comment = tr.sponsor2_comment,
                                   SS = ps.SS,
-                                  status = tr.status,
+                                  status_tier = tr.status,
                                   study_level = ps.study_level,
                                   tierid = tr.id,
                                   unemployment_months = ps.unemployment_months,
@@ -1334,12 +1347,81 @@ namespace DAL
         }
         #endregion "Branches"
         #region "Package"
-        public void AddNewLoanPackage(LoanPackageModel ln)
+        public void AddNewLoanPackage(LoanPackageModel model)
         {
             try
             {
                 Package pk = new Package();
 
+                pk.activated_loc = model.activated_loc ?? false;
+                pk.allow_flexible_schedule = model.allow_flexible_schedule ?? false;
+                pk.amount = model.amount ?? 0;
+                pk.amount_max = model.amount_max ?? 0;
+                pk.amount_min = model.amount_min ?? 0;
+                pk.amount_under_loc = model.amount_under_loc ?? 0;
+                pk.amount_under_loc_max = model.amount_under_loc_max ?? 0;
+                pk.amount_under_loc_min = model.amount_under_loc_min ?? 0;
+                pk.anticipated_partial_repayment_base = model.anticipated_partial_repayment_base ?? 0;
+                pk.anticipated_partial_repayment_penalties = model.anticipated_partial_repayment_penalties ?? 0;
+                pk.anticipated_partial_repayment_penalties_max = model.anticipated_partial_repayment_penalties_max ?? 0;
+                pk.anticipated_partial_repayment_penalties_min = model.anticipated_partial_repayment_penalties_min ?? 0;
+                pk.anticipated_total_repayment_base = model.anticipated_total_repayment_base ?? 0;
+                pk.anticipated_total_repayment_penalties = model.anticipated_total_repayment_penalties ?? 0;
+                pk.anticipated_total_repayment_penalties_max = model.anticipated_total_repayment_penalties_max ?? 0;
+                pk.anticipated_total_repayment_penalties_min = model.anticipated_total_repayment_penalties_min ?? 0;
+                pk.charge_interest_within_grace_period = model.charge_interest_within_grace_period ?? false;
+                pk.client_type = model.client_type;
+                pk.code = model.code;
+                pk.compulsory_amount = model.compulsory_amount ?? 0;
+                pk.compulsory_amount_max = model.compulsory_amount_max ?? 0;
+                pk.compulsory_amount_min = model.compulsory_amount_min ?? 0;
+                pk.currency_id = model.currency_id ?? 0;
+                pk.cycle_id = model.cycle_id ?? 0;
+                pk.deleted = model.deleted ?? false;
+                pk.fundingLine_id = model.fundingLine_id ?? 0;
+                pk.grace_period = model.grace_period ?? 0;
+                pk.grace_period_max = model.grace_period_max ?? 0;
+                pk.grace_period_min = model.grace_period_min ?? 0;
+                pk.grace_period_of_latefees = model.grace_period_of_latefees ?? 0;
+                pk.installment_type = model.installment_type ?? 0;
+                pk.insurance_max = model.insurance_max ?? 0;
+                pk.insurance_min = model.insurance_min ?? 0;
+                pk.interest_rate = model.interest_rate ?? 0;
+                pk.interest_rate_max = model.interest_rate_max ?? 0;
+                pk.interest_rate_min = model.interest_rate_min ?? 0;
+                pk.is_balloon = model.is_balloon ?? false;
+                pk.keep_expected_installment = model.keep_expected_installment ?? false;
+                pk.loan_type = model.loan_type ?? 0;
+                pk.maturity_loc = model.maturity_loc ?? 0;
+                pk.maturity_loc_max = model.maturity_loc_max ?? 0;
+                pk.maturity_loc_min = model.maturity_loc_min ?? 0;
+                pk.name = model.name;
+                pk.non_repayment_penalties_based_on_initial_amount = model.non_repayment_penalties_based_on_initial_amount ?? 0;
+                pk.non_repayment_penalties_based_on_initial_amount_max = model.non_repayment_penalties_based_on_initial_amount_max ?? 0;
+                pk.non_repayment_penalties_based_on_initial_amount_min = model.non_repayment_penalties_based_on_initial_amount_min ?? 0;
+                pk.non_repayment_penalties_based_on_olb = model.non_repayment_penalties_based_on_olb ?? 0;
+                pk.non_repayment_penalties_based_on_olb_max = model.non_repayment_penalties_based_on_olb_max ?? 0;
+                pk.non_repayment_penalties_based_on_olb_min = model.non_repayment_penalties_based_on_olb_min ?? 0;
+                pk.non_repayment_penalties_based_on_overdue_interest = model.non_repayment_penalties_based_on_overdue_interest ?? 0;
+                pk.non_repayment_penalties_based_on_overdue_interest_max = model.non_repayment_penalties_based_on_overdue_interest_max ?? 0;
+                pk.non_repayment_penalties_based_on_overdue_interest_min = model.non_repayment_penalties_based_on_overdue_interest_min ?? 0;
+                pk.non_repayment_penalties_based_on_overdue_principal = model.non_repayment_penalties_based_on_overdue_principal ?? 0;
+                pk.non_repayment_penalties_based_on_overdue_principal_max = model.non_repayment_penalties_based_on_overdue_principal_max ?? 0;
+                pk.non_repayment_penalties_based_on_overdue_principal_min = model.non_repayment_penalties_based_on_overdue_principal_min ?? 0;
+                pk.number_of_drawings_loc = model.number_of_drawings_loc ?? 0;
+                pk.number_of_installments = model.number_of_installments ?? 0;
+                pk.number_of_installments_max = model.number_of_installments_max ?? 0;
+                pk.number_of_installments_min = model.number_of_installments_min ?? 0;
+                //packageid = p.id;
+                pk.percentage_separate_collateral = model.percentage_separate_collateral ?? 0;
+                pk.percentage_separate_guarantor = model.percentage_separate_guarantor ?? 0;
+                pk.percentage_total_guarantor_collateral = model.percentage_total_guarantor_collateral ?? 0;
+                pk.rounding_type = model.rounding_type ?? 0;
+                pk.set_separate_guarantor_collateral = model.set_separate_guarantor_collateral ?? false;
+                pk.use_compulsory_savings = model.use_compulsory_savings ?? false;
+                pk.use_entry_fees_cycles = model.use_entry_fees_cycles ?? false;
+                pk.use_guarantor_collateral = model.use_guarantor_collateral ?? false;
+                pk.created_date = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt");
 
                 db.Packages.AddObject(pk);
                 db.SaveChanges();
@@ -1453,8 +1535,6 @@ namespace DAL
                                 use_compulsory_savings = p.use_compulsory_savings,
                                 use_entry_fees_cycles = p.use_entry_fees_cycles,
                                 use_guarantor_collateral = p.use_guarantor_collateral
-
-
                             };
 
                 return loans.ToList();
@@ -1476,25 +1556,26 @@ namespace DAL
                 SavingProduct _savingproduct = new SavingProduct();
                 _savingproduct.name = savingmodel.name;
                 _savingproduct.client_type = savingmodel.client_type;
-                _savingproduct.initial_amount_min = savingmodel.initial_amount_min;
-                _savingproduct.initial_amount_max = savingmodel.initial_amount_max;
-                _savingproduct.balance_min = savingmodel.balance_min;
-                _savingproduct.balance_max = savingmodel.balance_max;
-                _savingproduct.withdraw_min = savingmodel.withdraw_min;
-                _savingproduct.withdraw_max = savingmodel.withdraw_max;
-                _savingproduct.deposit_min = savingmodel.deposit_min;
-                _savingproduct.deposit_max = savingmodel.deposit_max;
-                _savingproduct.interest_rate = savingmodel.interest_rate;
-                _savingproduct.interest_rate_min = savingmodel.interest_rate_min;
-                _savingproduct.interest_rate_max = savingmodel.interest_rate_max;
-                _savingproduct.currency_id = savingmodel.currency_id;
-                _savingproduct.entry_fees_min = savingmodel.entry_fees_min;
-                _savingproduct.entry_fees_max = savingmodel.entry_fees_max;
-                _savingproduct.entry_fees = savingmodel.entry_fees;
+                _savingproduct.initial_amount_min = savingmodel.initial_amount_min ?? 0;
+                _savingproduct.initial_amount_max = savingmodel.initial_amount_max ?? 0;
+                _savingproduct.balance_min = savingmodel.balance_min ?? 0;
+                _savingproduct.balance_max = savingmodel.balance_max ?? 0;
+                _savingproduct.withdraw_min = savingmodel.withdraw_min ?? 0;
+                _savingproduct.withdraw_max = savingmodel.withdraw_max ?? 0;
+                _savingproduct.deposit_min = savingmodel.deposit_min ?? 0;
+                _savingproduct.deposit_max = savingmodel.deposit_max ?? 0;
+                _savingproduct.interest_rate = savingmodel.interest_rate ?? 0;
+                _savingproduct.interest_rate_min = savingmodel.interest_rate_min ?? 0;
+                _savingproduct.interest_rate_max = savingmodel.interest_rate_max ?? 0;
+                _savingproduct.currency_id = savingmodel.currency_id ?? 0;
+                _savingproduct.entry_fees_min = savingmodel.entry_fees_min ?? 0;
+                _savingproduct.entry_fees_max = savingmodel.entry_fees_max ?? 0;
+                _savingproduct.entry_fees = savingmodel.entry_fees ?? 0;
                 _savingproduct.product_type = savingmodel.product_type;
                 _savingproduct.code = savingmodel.code;
-                _savingproduct.transfer_min = savingmodel.transfer_min;
-                _savingproduct.transfer_max = savingmodel.transfer_max; 
+                _savingproduct.transfer_min = savingmodel.transfer_min ?? 0;
+                _savingproduct.transfer_max = savingmodel.transfer_max ?? 0;
+                _savingproduct.created_date = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt");
 
                 db.SavingProducts.AddObject(_savingproduct);
                 db.SaveChanges();
@@ -1510,58 +1591,58 @@ namespace DAL
         public void AddNewSavingBookProduct(SavingProductModel savingmodel)
         {
             try
-            { 
+            {
                 SavingBookProduct _savingbookproduct = new SavingBookProduct();
-                _savingbookproduct.id = savingmodel.savingproductid;
-                _savingbookproduct.interest_base = savingmodel.interest_base;
-                _savingbookproduct.interest_frequency = savingmodel.interest_frequency;
-                _savingbookproduct.calcul_amount_base = savingmodel.calcul_amount_base;
-                _savingbookproduct.flat_withdraw_fees_min = savingmodel.flat_withdraw_fees_min;
-                _savingbookproduct.flat_withdraw_fees_max = savingmodel.flat_withdraw_fees_max;
-                _savingbookproduct.flat_withdraw_fees = savingmodel.flat_withdraw_fees;
-                _savingbookproduct.rate_withdraw_fees_min = savingmodel.rate_withdraw_fees_min;
-                _savingbookproduct.rate_withdraw_fees_max = savingmodel.rate_withdraw_fees_max;
-                _savingbookproduct.rate_withdraw_fees = savingmodel.rate_withdraw_fees;
-                _savingbookproduct.transfer_fees_type = savingmodel.transfer_fees_type;
-                _savingbookproduct.flat_transfer_fees_min = savingmodel.flat_transfer_fees_min;
-                _savingbookproduct.flat_transfer_fees_max = savingmodel.flat_transfer_fees_max;
-                _savingbookproduct.flat_transfer_fees = savingmodel.flat_transfer_fees;
-                _savingbookproduct.rate_transfer_fees_min = savingmodel.rate_transfer_fees_min;
-                _savingbookproduct.rate_transfer_fees_max = savingmodel.rate_transfer_fees_max;
-                _savingbookproduct.rate_transfer_fees = savingmodel.rate_transfer_fees;
-                _savingbookproduct.deposit_fees = savingmodel.deposit_fees;
-                _savingbookproduct.deposit_fees_max = savingmodel.deposit_fees_max;
-                _savingbookproduct.deposit_fees_min = savingmodel.deposit_fees_min;
-                _savingbookproduct.close_fees = savingmodel.close_fees;
-                _savingbookproduct.close_fees_max = savingmodel.close_fees_max;
-                _savingbookproduct.close_fees_min = savingmodel.close_fees_min;
-                _savingbookproduct.management_fees = savingmodel.management_fees;
-                _savingbookproduct.management_fees_max = savingmodel.management_fees_max;
-                _savingbookproduct.management_fees_min = savingmodel.management_fees_min;
-                _savingbookproduct.management_fees_freq = savingmodel.management_fees_freq;
-                _savingbookproduct.overdraft_fees = savingmodel.overdraft_fees;
-                _savingbookproduct.overdraft_fees_max = savingmodel.overdraft_fees_max;
-                _savingbookproduct.overdraft_fees_min = savingmodel.overdraft_fees_min;
-                _savingbookproduct.agio_fees = savingmodel.agio_fees;
-                _savingbookproduct.agio_fees_max = savingmodel.agio_fees_max;
-                _savingbookproduct.agio_fees_min = savingmodel.agio_fees_min;
-                _savingbookproduct.agio_fees_freq = savingmodel.agio_fees_freq;
-                _savingbookproduct.cheque_deposit_min = savingmodel.cheque_deposit_min;
-                _savingbookproduct.cheque_deposit_max = savingmodel.cheque_deposit_max;
-                _savingbookproduct.cheque_deposit_fees = savingmodel.cheque_deposit_fees;
-                _savingbookproduct.cheque_deposit_fees_min = savingmodel.cheque_deposit_fees_min;
-                _savingbookproduct.cheque_deposit_fees_max = savingmodel.cheque_deposit_fees_max;
-                _savingbookproduct.reopen_fees = savingmodel.reopen_fees;
-                _savingbookproduct.reopen_fees_min = savingmodel.reopen_fees_min;
-                _savingbookproduct.reopen_fees_max = savingmodel.reopen_fees_max;
-                _savingbookproduct.is_ibt_fee_flat = savingmodel.is_ibt_fee_flat;
-                _savingbookproduct.ibt_fee_min = savingmodel.ibt_fee_min;
-                _savingbookproduct.ibt_fee_max = savingmodel.ibt_fee_max;
-                _savingbookproduct.ibt_fee = savingmodel.ibt_fee;
-                _savingbookproduct.use_term_deposit = savingmodel.use_term_deposit;
-                _savingbookproduct.term_deposit_period_min = savingmodel.term_deposit_period_min;
-                _savingbookproduct.term_deposit_period_max = savingmodel.term_deposit_period_max;
-                _savingbookproduct.posting_frequency = savingmodel.posting_frequency; 
+                _savingbookproduct.id = savingmodel.savingproductid ?? 0;
+                _savingbookproduct.interest_base = savingmodel.interest_base ?? 0;
+                _savingbookproduct.interest_frequency = savingmodel.interest_frequency ?? 0;
+                _savingbookproduct.calcul_amount_base = savingmodel.calcul_amount_base ?? 0;
+                _savingbookproduct.flat_withdraw_fees_min = savingmodel.flat_withdraw_fees_min ?? 0;
+                _savingbookproduct.flat_withdraw_fees_max = savingmodel.flat_withdraw_fees_max ?? 0;
+                _savingbookproduct.flat_withdraw_fees = savingmodel.flat_withdraw_fees ?? 0;
+                _savingbookproduct.rate_withdraw_fees_min = savingmodel.rate_withdraw_fees_min ?? 0;
+                _savingbookproduct.rate_withdraw_fees_max = savingmodel.rate_withdraw_fees_max ?? 0;
+                _savingbookproduct.rate_withdraw_fees = savingmodel.rate_withdraw_fees ?? 0;
+                _savingbookproduct.transfer_fees_type = savingmodel.transfer_fees_type ?? 0;
+                _savingbookproduct.flat_transfer_fees_min = savingmodel.flat_transfer_fees_min ?? 0;
+                _savingbookproduct.flat_transfer_fees_max = savingmodel.flat_transfer_fees_max ?? 0;
+                _savingbookproduct.flat_transfer_fees = savingmodel.flat_transfer_fees ?? 0;
+                _savingbookproduct.rate_transfer_fees_min = savingmodel.rate_transfer_fees_min ?? 0;
+                _savingbookproduct.rate_transfer_fees_max = savingmodel.rate_transfer_fees_max ?? 0;
+                _savingbookproduct.rate_transfer_fees = savingmodel.rate_transfer_fees ?? 0;
+                _savingbookproduct.deposit_fees = savingmodel.deposit_fees ?? 0;
+                _savingbookproduct.deposit_fees_max = savingmodel.deposit_fees_max ?? 0;
+                _savingbookproduct.deposit_fees_min = savingmodel.deposit_fees_min ?? 0;
+                _savingbookproduct.close_fees = savingmodel.close_fees ?? 0;
+                _savingbookproduct.close_fees_max = savingmodel.close_fees_max ?? 0;
+                _savingbookproduct.close_fees_min = savingmodel.close_fees_min ?? 0;
+                _savingbookproduct.management_fees = savingmodel.management_fees ?? 0;
+                _savingbookproduct.management_fees_max = savingmodel.management_fees_max ?? 0;
+                _savingbookproduct.management_fees_min = savingmodel.management_fees_min ?? 0;
+                _savingbookproduct.management_fees_freq = savingmodel.management_fees_freq ?? 0;
+                _savingbookproduct.overdraft_fees = savingmodel.overdraft_fees ?? 0;
+                _savingbookproduct.overdraft_fees_max = savingmodel.overdraft_fees_max ?? 0;
+                _savingbookproduct.overdraft_fees_min = savingmodel.overdraft_fees_min ?? 0;
+                _savingbookproduct.agio_fees = savingmodel.agio_fees ?? 0;
+                _savingbookproduct.agio_fees_max = savingmodel.agio_fees_max ?? 0;
+                _savingbookproduct.agio_fees_min = savingmodel.agio_fees_min ?? 0;
+                _savingbookproduct.agio_fees_freq = savingmodel.agio_fees_freq ?? 0;
+                _savingbookproduct.cheque_deposit_min = savingmodel.cheque_deposit_min ?? 0;
+                _savingbookproduct.cheque_deposit_max = savingmodel.cheque_deposit_max ?? 0;
+                _savingbookproduct.cheque_deposit_fees = savingmodel.cheque_deposit_fees ?? 0;
+                _savingbookproduct.cheque_deposit_fees_min = savingmodel.cheque_deposit_fees_min ?? 0;
+                _savingbookproduct.cheque_deposit_fees_max = savingmodel.cheque_deposit_fees_max ?? 0;
+                _savingbookproduct.reopen_fees = savingmodel.reopen_fees ?? 0;
+                _savingbookproduct.reopen_fees_min = savingmodel.reopen_fees_min ?? 0;
+                _savingbookproduct.reopen_fees_max = savingmodel.reopen_fees_max ?? 0;
+                _savingbookproduct.is_ibt_fee_flat = savingmodel.is_ibt_fee_flat ?? false;
+                _savingbookproduct.ibt_fee_min = savingmodel.ibt_fee_min ?? 0;
+                _savingbookproduct.ibt_fee_max = savingmodel.ibt_fee_max ?? 0;
+                _savingbookproduct.ibt_fee = savingmodel.ibt_fee ?? 0;
+                _savingbookproduct.use_term_deposit = savingmodel.use_term_deposit ?? false;
+                _savingbookproduct.term_deposit_period_min = savingmodel.term_deposit_period_min ?? 0;
+                _savingbookproduct.term_deposit_period_max = savingmodel.term_deposit_period_max ?? 0;
+                _savingbookproduct.posting_frequency = savingmodel.posting_frequency ?? 0;
 
                 db.SavingBookProducts.AddObject(_savingbookproduct);
                 db.SaveChanges();
@@ -1578,76 +1659,76 @@ namespace DAL
                 SavingProduct _savingproduct = db.SavingProducts.First(r => r.id == savingmodel.savingproductid);
                 _savingproduct.name = savingmodel.name;
                 _savingproduct.client_type = savingmodel.client_type;
-                _savingproduct.initial_amount_min = savingmodel.initial_amount_min;
-                _savingproduct.initial_amount_max = savingmodel.initial_amount_max;
-                _savingproduct.balance_min = savingmodel.balance_min;
-                _savingproduct.balance_max = savingmodel.balance_max;
-                _savingproduct.withdraw_min = savingmodel.withdraw_min;
-                _savingproduct.withdraw_max = savingmodel.withdraw_max;
-                _savingproduct.deposit_min = savingmodel.deposit_min;
-                _savingproduct.deposit_max = savingmodel.deposit_max;
-                _savingproduct.interest_rate = savingmodel.interest_rate;
-                _savingproduct.interest_rate_min = savingmodel.interest_rate_min;
-                _savingproduct.interest_rate_max = savingmodel.interest_rate_max;
-                _savingproduct.currency_id = savingmodel.currency_id;
-                _savingproduct.entry_fees_min = savingmodel.entry_fees_min;
-                _savingproduct.entry_fees_max = savingmodel.entry_fees_max;
-                _savingproduct.entry_fees = savingmodel.entry_fees;
+                _savingproduct.initial_amount_min = savingmodel.initial_amount_min ?? 0;
+                _savingproduct.initial_amount_max = savingmodel.initial_amount_max ?? 0;
+                _savingproduct.balance_min = savingmodel.balance_min ?? 0;
+                _savingproduct.balance_max = savingmodel.balance_max ?? 0;
+                _savingproduct.withdraw_min = savingmodel.withdraw_min ?? 0;
+                _savingproduct.withdraw_max = savingmodel.withdraw_max ?? 0;
+                _savingproduct.deposit_min = savingmodel.deposit_min ?? 0;
+                _savingproduct.deposit_max = savingmodel.deposit_max ?? 0;
+                _savingproduct.interest_rate = savingmodel.interest_rate ?? 0;
+                _savingproduct.interest_rate_min = savingmodel.interest_rate_min ?? 0;
+                _savingproduct.interest_rate_max = savingmodel.interest_rate_max ?? 0;
+                _savingproduct.currency_id = savingmodel.currency_id ?? 0;
+                _savingproduct.entry_fees_min = savingmodel.entry_fees_min ?? 0;
+                _savingproduct.entry_fees_max = savingmodel.entry_fees_max ?? 0;
+                _savingproduct.entry_fees = savingmodel.entry_fees ?? 0;
                 _savingproduct.product_type = savingmodel.product_type;
                 _savingproduct.code = savingmodel.code;
-                _savingproduct.transfer_min = savingmodel.transfer_min;
-                _savingproduct.transfer_max = savingmodel.transfer_max; 
+                _savingproduct.transfer_min = savingmodel.transfer_min ?? 0;
+                _savingproduct.transfer_max = savingmodel.transfer_max ?? 0;
 
                 SavingBookProduct _savingbookproduct = db.SavingBookProducts.First(r => r.id == savingmodel.saving_book_productid);
-                _savingbookproduct.interest_base = savingmodel.interest_base;
-                _savingbookproduct.interest_frequency = savingmodel.interest_frequency;
-                _savingbookproduct.calcul_amount_base = savingmodel.calcul_amount_base;
-                _savingbookproduct.flat_withdraw_fees_min = savingmodel.flat_withdraw_fees_min;
-                _savingbookproduct.flat_withdraw_fees_max = savingmodel.flat_withdraw_fees_max;
-                _savingbookproduct.flat_withdraw_fees = savingmodel.flat_withdraw_fees;
-                _savingbookproduct.rate_withdraw_fees_min = savingmodel.rate_withdraw_fees_min;
-                _savingbookproduct.rate_withdraw_fees_max = savingmodel.rate_withdraw_fees_max;
-                _savingbookproduct.rate_withdraw_fees = savingmodel.rate_withdraw_fees;
-                _savingbookproduct.transfer_fees_type = savingmodel.transfer_fees_type;
-                _savingbookproduct.flat_transfer_fees_min = savingmodel.flat_transfer_fees_min;
-                _savingbookproduct.flat_transfer_fees_max = savingmodel.flat_transfer_fees_max;
-                _savingbookproduct.flat_transfer_fees = savingmodel.flat_transfer_fees;
-                _savingbookproduct.rate_transfer_fees_min = savingmodel.rate_transfer_fees_min;
-                _savingbookproduct.rate_transfer_fees_max = savingmodel.rate_transfer_fees_max;
-                _savingbookproduct.rate_transfer_fees = savingmodel.rate_transfer_fees;
-                _savingbookproduct.deposit_fees = savingmodel.deposit_fees;
-                _savingbookproduct.deposit_fees_max = savingmodel.deposit_fees_max;
-                _savingbookproduct.deposit_fees_min = savingmodel.deposit_fees_min;
-                _savingbookproduct.close_fees = savingmodel.close_fees;
-                _savingbookproduct.close_fees_max = savingmodel.close_fees_max;
-                _savingbookproduct.close_fees_min = savingmodel.close_fees_min;
-                _savingbookproduct.management_fees = savingmodel.management_fees;
-                _savingbookproduct.management_fees_max = savingmodel.management_fees_max;
-                _savingbookproduct.management_fees_min = savingmodel.management_fees_min;
-                _savingbookproduct.management_fees_freq = savingmodel.management_fees_freq;
-                _savingbookproduct.overdraft_fees = savingmodel.overdraft_fees;
-                _savingbookproduct.overdraft_fees_max = savingmodel.overdraft_fees_max;
-                _savingbookproduct.overdraft_fees_min = savingmodel.overdraft_fees_min;
-                _savingbookproduct.agio_fees = savingmodel.agio_fees;
-                _savingbookproduct.agio_fees_max = savingmodel.agio_fees_max;
-                _savingbookproduct.agio_fees_min = savingmodel.agio_fees_min;
-                _savingbookproduct.agio_fees_freq = savingmodel.agio_fees_freq;
-                _savingbookproduct.cheque_deposit_min = savingmodel.cheque_deposit_min;
-                _savingbookproduct.cheque_deposit_max = savingmodel.cheque_deposit_max;
-                _savingbookproduct.cheque_deposit_fees = savingmodel.cheque_deposit_fees;
-                _savingbookproduct.cheque_deposit_fees_min = savingmodel.cheque_deposit_fees_min;
-                _savingbookproduct.cheque_deposit_fees_max = savingmodel.cheque_deposit_fees_max;
-                _savingbookproduct.reopen_fees = savingmodel.reopen_fees;
-                _savingbookproduct.reopen_fees_min = savingmodel.reopen_fees_min;
-                _savingbookproduct.reopen_fees_max = savingmodel.reopen_fees_max;
-                _savingbookproduct.is_ibt_fee_flat = savingmodel.is_ibt_fee_flat;
-                _savingbookproduct.ibt_fee_min = savingmodel.ibt_fee_min;
-                _savingbookproduct.ibt_fee_max = savingmodel.ibt_fee_max;
-                _savingbookproduct.ibt_fee = savingmodel.ibt_fee;
-                _savingbookproduct.use_term_deposit = savingmodel.use_term_deposit;
-                _savingbookproduct.term_deposit_period_min = savingmodel.term_deposit_period_min;
-                _savingbookproduct.term_deposit_period_max = savingmodel.term_deposit_period_max;
-                _savingbookproduct.posting_frequency = savingmodel.posting_frequency; 
+                _savingbookproduct.interest_base = savingmodel.interest_base ?? 0;
+                _savingbookproduct.interest_frequency = savingmodel.interest_frequency ?? 0;
+                _savingbookproduct.calcul_amount_base = savingmodel.calcul_amount_base ?? 0;
+                _savingbookproduct.flat_withdraw_fees_min = savingmodel.flat_withdraw_fees_min ?? 0;
+                _savingbookproduct.flat_withdraw_fees_max = savingmodel.flat_withdraw_fees_max ?? 0;
+                _savingbookproduct.flat_withdraw_fees = savingmodel.flat_withdraw_fees ?? 0;
+                _savingbookproduct.rate_withdraw_fees_min = savingmodel.rate_withdraw_fees_min ?? 0;
+                _savingbookproduct.rate_withdraw_fees_max = savingmodel.rate_withdraw_fees_max ?? 0;
+                _savingbookproduct.rate_withdraw_fees = savingmodel.rate_withdraw_fees ?? 0;
+                _savingbookproduct.transfer_fees_type = savingmodel.transfer_fees_type ?? 0;
+                _savingbookproduct.flat_transfer_fees_min = savingmodel.flat_transfer_fees_min ?? 0;
+                _savingbookproduct.flat_transfer_fees_max = savingmodel.flat_transfer_fees_max ?? 0;
+                _savingbookproduct.flat_transfer_fees = savingmodel.flat_transfer_fees ?? 0;
+                _savingbookproduct.rate_transfer_fees_min = savingmodel.rate_transfer_fees_min ?? 0;
+                _savingbookproduct.rate_transfer_fees_max = savingmodel.rate_transfer_fees_max ?? 0;
+                _savingbookproduct.rate_transfer_fees = savingmodel.rate_transfer_fees ?? 0;
+                _savingbookproduct.deposit_fees = savingmodel.deposit_fees ?? 0;
+                _savingbookproduct.deposit_fees_max = savingmodel.deposit_fees_max ?? 0;
+                _savingbookproduct.deposit_fees_min = savingmodel.deposit_fees_min ?? 0;
+                _savingbookproduct.close_fees = savingmodel.close_fees ?? 0;
+                _savingbookproduct.close_fees_max = savingmodel.close_fees_max ?? 0;
+                _savingbookproduct.close_fees_min = savingmodel.close_fees_min ?? 0;
+                _savingbookproduct.management_fees = savingmodel.management_fees ?? 0;
+                _savingbookproduct.management_fees_max = savingmodel.management_fees_max ?? 0;
+                _savingbookproduct.management_fees_min = savingmodel.management_fees_min ?? 0;
+                _savingbookproduct.management_fees_freq = savingmodel.management_fees_freq ?? 0;
+                _savingbookproduct.overdraft_fees = savingmodel.overdraft_fees ?? 0;
+                _savingbookproduct.overdraft_fees_max = savingmodel.overdraft_fees_max ?? 0;
+                _savingbookproduct.overdraft_fees_min = savingmodel.overdraft_fees_min ?? 0;
+                _savingbookproduct.agio_fees = savingmodel.agio_fees ?? 0;
+                _savingbookproduct.agio_fees_max = savingmodel.agio_fees_max ?? 0;
+                _savingbookproduct.agio_fees_min = savingmodel.agio_fees_min ?? 0;
+                _savingbookproduct.agio_fees_freq = savingmodel.agio_fees_freq ?? 0;
+                _savingbookproduct.cheque_deposit_min = savingmodel.cheque_deposit_min ?? 0;
+                _savingbookproduct.cheque_deposit_max = savingmodel.cheque_deposit_max ?? 0;
+                _savingbookproduct.cheque_deposit_fees = savingmodel.cheque_deposit_fees ?? 0;
+                _savingbookproduct.cheque_deposit_fees_min = savingmodel.cheque_deposit_fees_min ?? 0;
+                _savingbookproduct.cheque_deposit_fees_max = savingmodel.cheque_deposit_fees_max ?? 0;
+                _savingbookproduct.reopen_fees = savingmodel.reopen_fees ?? 0;
+                _savingbookproduct.reopen_fees_min = savingmodel.reopen_fees_min ?? 0;
+                _savingbookproduct.reopen_fees_max = savingmodel.reopen_fees_max ?? 0;
+                _savingbookproduct.is_ibt_fee_flat = savingmodel.is_ibt_fee_flat ?? false;
+                _savingbookproduct.ibt_fee_min = savingmodel.ibt_fee_min ?? 0;
+                _savingbookproduct.ibt_fee_max = savingmodel.ibt_fee_max ?? 0;
+                _savingbookproduct.ibt_fee = savingmodel.ibt_fee ?? 0;
+                _savingbookproduct.use_term_deposit = savingmodel.use_term_deposit ?? false;
+                _savingbookproduct.term_deposit_period_min = savingmodel.term_deposit_period_min ?? 0;
+                _savingbookproduct.term_deposit_period_max = savingmodel.term_deposit_period_max ?? 0;
+                _savingbookproduct.posting_frequency = savingmodel.posting_frequency ?? 0;
 
                 db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
             }
@@ -2215,7 +2296,7 @@ namespace DAL
         public List<StandardBookingsModel> GetAllStandardBookings()
         {
             try
-            { 
+            {
                 var _standardbookingsquery = from br in db.StandardBookings
                                              join cracc in db.ChartOfAccounts on br.credit_account_id equals cracc.id
                                              join dracc in db.ChartOfAccounts on br.debit_account_id equals dracc.id
@@ -5459,12 +5540,12 @@ namespace DAL
         }
         #endregion "InstallmentTypes"
         #region "Installments"
-        public void AddNewInstallment(InstallmentsModel installment )
+        public void AddNewInstallment(InstallmentsModel installment)
         {
             try
             {
                 Installment _installment = new Installment();
-                _installment.expected_date = installment.expected_date ;
+                _installment.expected_date = installment.expected_date;
                 _installment.interest_repayment = installment.interest_repayment;
                 _installment.capital_repayment = installment.capital_repayment;
                 _installment.contract_id = installment.contract_id;
@@ -5477,8 +5558,8 @@ namespace DAL
                 _installment.comment = installment.comment;
                 _installment.pending = installment.pending;
                 _installment.start_date = installment.start_date;
-                _installment.olb = installment.olb; 
-                
+                _installment.olb = installment.olb;
+
                 db.Installments.AddObject(_installment);
                 db.SaveChanges();
 
@@ -5505,8 +5586,8 @@ namespace DAL
                 _installment.paid_fees = installment.paid_fees;
                 _installment.comment = installment.comment;
                 _installment.pending = installment.pending;
-                _installment.start_date = installment.start_date ;
-                _installment.olb = installment.olb ;
+                _installment.start_date = installment.start_date;
+                _installment.olb = installment.olb;
 
                 db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
             }
@@ -5535,7 +5616,7 @@ namespace DAL
             {
                 List<InstallmentsModel> _installments = new List<InstallmentsModel>();
                 var _installmentsquery = from br in db.Installments
-                                             select br;
+                                         select br;
                 List<Installment> _nstllmnts = _installmentsquery.ToList();
                 foreach (var installment in _nstllmnts)
                 {
@@ -5572,7 +5653,7 @@ namespace DAL
             {
                 List<InstallmentsModel> _installments = new List<InstallmentsModel>();
                 var _installmentsquery = from br in db.Installments
-                                         where br.contract_id==_contact_id
+                                         where br.contract_id == _contact_id
                                          select br;
                 List<Installment> _nstllmnts = _installmentsquery.ToList();
                 foreach (var installment in _nstllmnts)
@@ -5850,7 +5931,7 @@ namespace DAL
                 return null;
             }
         }
-        public IEnumerable<ClientPersonalInformationModel> GetClientPersonalInformation(int personid,int branchid)
+        public IEnumerable<ClientPersonalInformationModel> GetClientPersonalInformation(int personid, int branchid)
         {
             try
             {
@@ -5899,7 +5980,7 @@ namespace DAL
                                            olb = ci.olb,
                                            start_date = ci.start_date,
                                            status = ci.status,
-                                           total_late_days = ci.total_late_days 
+                                           total_late_days = ci.total_late_days
                                        };
 
                 return _clientinfoquery;
@@ -6109,7 +6190,7 @@ namespace DAL
             try
             {
                 Contract _contract = db.Contracts.First(b => b.id == loanmodel.contractid);
-                _contract.status = loanmodel.status; 
+                _contract.status = loanmodel.status;
 
                 db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
             }
@@ -6181,7 +6262,7 @@ namespace DAL
                 var _loanmodelsquery = from co in db.Contracts
                                        join cr in db.Credits on co.id equals cr.id
                                        join pr in db.Projects on co.project_id equals pr.id
-                                       join pk in db.Packages on cr.package_id equals pk.id 
+                                       join pk in db.Packages on cr.package_id equals pk.id
                                        join tr in db.Tiers on pr.tiers_id equals tr.id
                                        join fl in db.FundingLines on cr.fundingLine_id equals fl.id
                                        where tr.id == clientid
@@ -6300,7 +6381,7 @@ namespace DAL
             try
             {
                 SavingContract _contract = new SavingContract();
-                _contract.product_id = savingmodel.product_id;
+                _contract.product_id = savingmodel.product_id ?? 0;
                 _contract.user_id = savingmodel.user_id;
                 _contract.code = savingmodel.code;
                 _contract.tiers_id = savingmodel.tiers_id;
@@ -6332,7 +6413,7 @@ namespace DAL
                 _bookcontract.flat_reopen_fees = savingmodel.flat_reopen_fees;
                 _bookcontract.flat_ibt_fee = savingmodel.flat_ibt_fee;
                 _bookcontract.rate_ibt_fee = savingmodel.rate_ibt_fee;
-                _bookcontract.use_term_deposit = savingmodel.use_term_deposit;
+                _bookcontract.use_term_deposit = savingmodel.use_term_deposit ?? false;
                 _bookcontract.term_deposit_period = savingmodel.term_deposit_period;
                 _bookcontract.term_deposit_period_min = savingmodel.term_deposit_period_min;
                 _bookcontract.term_deposit_period_max = savingmodel.term_deposit_period_max;
@@ -6354,7 +6435,7 @@ namespace DAL
             try
             {
                 SavingContract _contract = new SavingContract();
-                _contract.product_id = savingmodel.product_id;
+                _contract.product_id = savingmodel.product_id ?? 0;
                 _contract.user_id = savingmodel.user_id;
                 _contract.code = savingmodel.code;
                 _contract.tiers_id = savingmodel.tiers_id;
@@ -6398,7 +6479,7 @@ namespace DAL
                 _bookcontract.flat_reopen_fees = savingmodel.flat_reopen_fees;
                 _bookcontract.flat_ibt_fee = savingmodel.flat_ibt_fee;
                 _bookcontract.rate_ibt_fee = savingmodel.rate_ibt_fee;
-                _bookcontract.use_term_deposit = savingmodel.use_term_deposit;
+                _bookcontract.use_term_deposit = savingmodel.use_term_deposit ?? false;
                 _bookcontract.term_deposit_period = savingmodel.term_deposit_period;
                 _bookcontract.term_deposit_period_min = savingmodel.term_deposit_period_min;
                 _bookcontract.term_deposit_period_max = savingmodel.term_deposit_period_max;
@@ -6427,7 +6508,7 @@ namespace DAL
             {
                 Log.WriteToErrorLogFile(ex);
             }
-        } 
+        }
         public void UpdateClientSavingContract(ClientSavingContractModel savingmodel)
         {
             try
@@ -6624,15 +6705,15 @@ namespace DAL
             try
             {
                 var _savingscontractscountquery = (from sc in db.SavingContracts
-                                                  join sbc in db.SavingBookContracts on sc.id equals sbc.id
-                                                  join sp in db.SavingProducts on sc.product_id equals sp.id
-                                                  join sbp in db.SavingBookProducts on sp.id equals sbp.id
-                                                  join tr in db.Tiers on sc.tiers_id equals tr.id
-                                                  where tr.id == clientid
-                                                  where sp.deleted == false
-                                                  orderby sc.id descending  
-                                                  select sc.id).FirstOrDefault();
-                 
+                                                   join sbc in db.SavingBookContracts on sc.id equals sbc.id
+                                                   join sp in db.SavingProducts on sc.product_id equals sp.id
+                                                   join sbp in db.SavingBookProducts on sp.id equals sbp.id
+                                                   join tr in db.Tiers on sc.tiers_id equals tr.id
+                                                   where tr.id == clientid
+                                                   where sp.deleted == false
+                                                   orderby sc.id descending
+                                                   select sc.id).FirstOrDefault();
+
                 return _savingscontractscountquery + 1;
             }
             catch (Exception ex)
@@ -8184,7 +8265,7 @@ namespace DAL
             {
                 List<CyclesModel> _cycles = new List<CyclesModel>();
                 var _cyclesquery = from br in db.Cycles
-                                       select br;
+                                   select br;
                 List<Cycle> _cycls = _cyclesquery.ToList();
                 foreach (var cycle in _cycls)
                 {
@@ -8360,16 +8441,16 @@ namespace DAL
             try
             {
                 var _cycleparametersquery = (from cp in db.CycleParameters
-                                          where cp.id == id
-                                          select new CycleParametersModel
-                                          {
-                                              cycleparameterid = cp.id,
-                                              cycle_id = cp.cycle_id,
-                                              cycle_object_id = cp.cycle_object_id,
-                                              loan_cycle = cp.loan_cycle,
-                                              max = cp.max,
-                                              min = cp.min
-                                          }).FirstOrDefault();
+                                             where cp.id == id
+                                             select new CycleParametersModel
+                                             {
+                                                 cycleparameterid = cp.id,
+                                                 cycle_id = cp.cycle_id,
+                                                 cycle_object_id = cp.cycle_object_id,
+                                                 loan_cycle = cp.loan_cycle,
+                                                 max = cp.max,
+                                                 min = cp.min
+                                             }).FirstOrDefault();
                 CycleParametersModel _cycleparam = _cycleparametersquery;
                 return _cycleparam;
             }
@@ -8384,17 +8465,17 @@ namespace DAL
             try
             {
                 var _cycleparametersquery = from cp in db.CycleParameters
-                                             where cp.cycle_id == cycle_id
-                                             where cp.cycle_object_id == cycle_object_id
-                                             select new CycleParametersModel
-                                             {
-                                                 cycleparameterid = cp.id,
-                                                 cycle_id = cp.cycle_id,
-                                                 cycle_object_id = cp.cycle_object_id,
-                                                 loan_cycle = cp.loan_cycle,
-                                                 max = cp.max,
-                                                 min = cp.min
-                                             };
+                                            where cp.cycle_id == cycle_id
+                                            where cp.cycle_object_id == cycle_object_id
+                                            select new CycleParametersModel
+                                            {
+                                                cycleparameterid = cp.id,
+                                                cycle_id = cp.cycle_id,
+                                                cycle_object_id = cp.cycle_object_id,
+                                                loan_cycle = cp.loan_cycle,
+                                                max = cp.max,
+                                                min = cp.min
+                                            };
                 List<CycleParametersModel> _cycleparams = _cycleparametersquery.ToList();
                 return _cycleparams;
             }
@@ -8554,6 +8635,168 @@ namespace DAL
             }
         }
         #endregion "ExoticInstallments"
+        #region "Corporate"
+        public void AddNewCorporate(Corporate _corporate)
+        {
+            try
+            {
+                Corporate corporate = new Corporate();
+                corporate.id = _corporate.id;
+                corporate.name = _corporate.name;
+                corporate.deleted = _corporate.deleted;
+                corporate.sigle = _corporate.sigle;
+                corporate.small_name = _corporate.small_name;
+                corporate.volunteer_count = _corporate.volunteer_count;
+                corporate.agrement_date = _corporate.agrement_date;
+                corporate.agrement_solidarity = _corporate.agrement_solidarity;
+                corporate.employee_count = _corporate.employee_count;
+                corporate.siret = _corporate.siret;
+                corporate.activity_id = _corporate.activity_id;
+                corporate.establishment_date = _corporate.establishment_date;
+                corporate.fiscal_status = _corporate.fiscal_status;
+                corporate.registre = _corporate.registre;
+                corporate.legalForm = _corporate.legalForm;
+                corporate.insertionType = _corporate.insertionType;
+                corporate.loan_officer_id = _corporate.loan_officer_id;
+                corporate.photo = _corporate.photo;
+
+                db.Corporates.AddObject(corporate);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+            }
+        }
+        public void UpdateCorporate(Corporate _corporate)
+        {
+            try
+            {
+                Corporate corporate = db.Corporates.First(r => r.id == _corporate.id);
+                corporate.name = _corporate.name;
+                corporate.deleted = _corporate.deleted;
+                corporate.sigle = _corporate.sigle;
+                corporate.small_name = _corporate.small_name;
+                corporate.volunteer_count = _corporate.volunteer_count;
+                corporate.agrement_date = _corporate.agrement_date;
+                corporate.agrement_solidarity = _corporate.agrement_solidarity;
+                corporate.employee_count = _corporate.employee_count;
+                corporate.siret = _corporate.siret;
+                corporate.activity_id = _corporate.activity_id;
+                corporate.establishment_date = _corporate.establishment_date;
+                corporate.fiscal_status = _corporate.fiscal_status;
+                corporate.registre = _corporate.registre;
+                corporate.legalForm = _corporate.legalForm;
+                corporate.insertionType = _corporate.insertionType;
+                corporate.loan_officer_id = _corporate.loan_officer_id;
+                corporate.photo = _corporate.photo;
+
+                db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+            }
+        }
+        public void DeleteCorporate(Corporate _Corporate)
+        {
+            try
+            {
+                Corporate corporate = db.Corporates.Where(r => r.id == _Corporate.id).Single();
+
+                db.Corporates.DeleteObject(corporate);
+                db.SaveChanges(SaveOptions.AcceptAllChangesAfterSave);
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+            }
+
+        }
+        public List<Corporate> GetCorporatesList()
+        {
+            try
+            {
+                List<Corporate> _Corporates = new List<Corporate>();
+                var _Corporatequery = from co in db.Corporates
+                                      select co;
+                List<Corporate> _lst_corporates = _Corporatequery.ToList();
+                foreach (var _corporate in _lst_corporates)
+                {
+                    Corporate corporate = new Corporate();
+                    corporate.id = _corporate.id;
+                    corporate.name = _corporate.name;
+                    corporate.deleted = _corporate.deleted;
+                    corporate.sigle = _corporate.sigle;
+                    corporate.small_name = _corporate.small_name;
+                    corporate.volunteer_count = _corporate.volunteer_count;
+                    corporate.agrement_date = _corporate.agrement_date;
+                    corporate.agrement_solidarity = _corporate.agrement_solidarity;
+                    corporate.employee_count = _corporate.employee_count;
+                    corporate.siret = _corporate.siret;
+                    corporate.activity_id = _corporate.activity_id;
+                    corporate.establishment_date = _corporate.establishment_date;
+                    corporate.fiscal_status = _corporate.fiscal_status;
+                    corporate.registre = _corporate.registre;
+                    corporate.legalForm = _corporate.legalForm;
+                    corporate.insertionType = _corporate.insertionType;
+                    corporate.loan_officer_id = _corporate.loan_officer_id;
+                    corporate.photo = _corporate.photo;
+
+                    _Corporates.Add(corporate);
+                }
+
+                return _Corporates;
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+                return null;
+            }
+        }
+
+        #endregion "Corporates"
+        #region "audit"
+        public void AddNewAuditLog(tbl_audit _audit_log)
+        {
+            try
+            {
+                tbl_audit audit_log = new tbl_audit();
+                audit_log.id = _audit_log.id;
+                audit_log.system = Utils.APP_NAME;
+                audit_log.logged_in_user = _audit_log.logged_in_user;
+                audit_log.role = _audit_log.role;
+                audit_log.event_name = _audit_log.event_name;
+                audit_log.description = _audit_log.description;
+                audit_log.entity = _audit_log.entity;
+                audit_log.created_date = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt");
+
+                audit_db.tbl_audit.AddObject(audit_log);
+                audit_db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+            }
+        }
+        #endregion "audit"
+        public int get_no_of_records_per_page()
+        {
+            try
+            {
+                var setting = db.Settings.FirstOrDefault(s => s.SSKey == "RECORDS_PER_PAGE");
+                if (setting != null)
+                    return int.Parse(setting.SSValue);
+                else
+                    return 10;
+
+            }
+            catch (Exception ex)
+            {
+                Log.WriteToErrorLogFile(ex);
+                return 10;
+            }
+        }
         #endregion "public Methods"
 
 

@@ -56,6 +56,7 @@
             this.Columninterest_rate_min = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Columninterest_rate_max = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Columninterest_rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panelPager = new System.Windows.Forms.Panel();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceLoanProducts)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -65,11 +66,11 @@
             // btnEdit
             // 
             this.btnEdit.AutoSize = true;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.LinkColor = System.Drawing.Color.Yellow;
-            this.btnEdit.Location = new System.Drawing.Point(473, 8);
+            this.btnEdit.Location = new System.Drawing.Point(479, 81);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(36, 17);
+            this.btnEdit.Size = new System.Drawing.Size(46, 24);
             this.btnEdit.TabIndex = 9;
             this.btnEdit.TabStop = true;
             this.btnEdit.Text = "Edit";
@@ -78,11 +79,11 @@
             // btnDelete
             // 
             this.btnDelete.AutoSize = true;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.LinkColor = System.Drawing.Color.Yellow;
-            this.btnDelete.Location = new System.Drawing.Point(512, 8);
+            this.btnDelete.Location = new System.Drawing.Point(534, 81);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(55, 17);
+            this.btnDelete.Size = new System.Drawing.Size(70, 24);
             this.btnDelete.TabIndex = 8;
             this.btnDelete.TabStop = true;
             this.btnDelete.Text = "Delete";
@@ -91,11 +92,11 @@
             // btnViewDetails
             // 
             this.btnViewDetails.AutoSize = true;
-            this.btnViewDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.btnViewDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewDetails.LinkColor = System.Drawing.Color.Yellow;
-            this.btnViewDetails.Location = new System.Drawing.Point(570, 8);
+            this.btnViewDetails.Location = new System.Drawing.Point(608, 81);
             this.btnViewDetails.Name = "btnViewDetails";
-            this.btnViewDetails.Size = new System.Drawing.Size(96, 17);
+            this.btnViewDetails.Size = new System.Drawing.Size(124, 24);
             this.btnViewDetails.TabIndex = 7;
             this.btnViewDetails.TabStop = true;
             this.btnViewDetails.Text = "View Details";
@@ -104,11 +105,11 @@
             // btnAdd
             // 
             this.btnAdd.AutoSize = true;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.LinkColor = System.Drawing.Color.Yellow;
-            this.btnAdd.Location = new System.Drawing.Point(434, 8);
+            this.btnAdd.Location = new System.Drawing.Point(424, 81);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(36, 17);
+            this.btnAdd.Size = new System.Drawing.Size(48, 24);
             this.btnAdd.TabIndex = 6;
             this.btnAdd.TabStop = true;
             this.btnAdd.Text = "Add";
@@ -117,11 +118,11 @@
             // btnClose
             // 
             this.btnClose.AutoSize = true;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.LinkColor = System.Drawing.Color.Yellow;
-            this.btnClose.Location = new System.Drawing.Point(669, 8);
+            this.btnClose.Location = new System.Drawing.Point(738, 81);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(48, 17);
+            this.btnClose.Size = new System.Drawing.Size(63, 24);
             this.btnClose.TabIndex = 5;
             this.btnClose.TabStop = true;
             this.btnClose.Text = "Close";
@@ -129,15 +130,16 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.panelPager);
             this.groupBox2.Controls.Add(this.btnEdit);
             this.groupBox2.Controls.Add(this.btnDelete);
             this.groupBox2.Controls.Add(this.btnViewDetails);
             this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.btnClose);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 338);
+            this.groupBox2.Location = new System.Drawing.Point(0, 381);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(737, 35);
+            this.groupBox2.Size = new System.Drawing.Size(826, 114);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             // 
@@ -147,7 +149,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(737, 338);
+            this.groupBox1.Size = new System.Drawing.Size(826, 381);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
@@ -195,7 +197,7 @@
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewLoanProducts.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewLoanProducts.Size = new System.Drawing.Size(731, 319);
+            this.dataGridViewLoanProducts.Size = new System.Drawing.Size(820, 362);
             this.dataGridViewLoanProducts.TabIndex = 4;
             this.dataGridViewLoanProducts.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLoanProducts_CellContentDoubleClick);
             // 
@@ -295,6 +297,15 @@
             this.Columninterest_rate.Name = "Columninterest_rate";
             this.Columninterest_rate.ReadOnly = true;
             // 
+            // panelPager
+            // 
+            this.panelPager.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.panelPager.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelPager.Location = new System.Drawing.Point(3, 16);
+            this.panelPager.Name = "panelPager";
+            this.panelPager.Size = new System.Drawing.Size(820, 42);
+            this.panelPager.TabIndex = 10;
+            // 
             // LoanProductsListForm
             // 
             this.AcceptButton = this.btnAdd;
@@ -302,7 +313,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(737, 373);
+            this.ClientSize = new System.Drawing.Size(826, 495);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "LoanProductsListForm";
@@ -338,5 +349,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Columninterest_rate_min;
         private System.Windows.Forms.DataGridViewTextBoxColumn Columninterest_rate_max;
         private System.Windows.Forms.DataGridViewTextBoxColumn Columninterest_rate;
+        private System.Windows.Forms.Panel panelPager;
     }
 }

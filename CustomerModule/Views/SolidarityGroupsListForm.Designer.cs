@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.pnlPager = new System.Windows.Forms.Panel();
             this.btnEdit = new System.Windows.Forms.LinkLabel();
             this.btnDelete = new System.Windows.Forms.LinkLabel();
             this.btnViewDetails = new System.Windows.Forms.LinkLabel();
@@ -51,27 +52,37 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.pnlPager);
             this.groupBox2.Controls.Add(this.btnEdit);
             this.groupBox2.Controls.Add(this.btnDelete);
             this.groupBox2.Controls.Add(this.btnViewDetails);
             this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.btnClose);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 308);
+            this.groupBox2.Location = new System.Drawing.Point(0, 401);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(500, 65);
-            this.groupBox2.TabIndex = 2;
+            this.groupBox2.Size = new System.Drawing.Size(512, 101);
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
+            // 
+            // pnlPager
+            // 
+            this.pnlPager.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.pnlPager.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlPager.Location = new System.Drawing.Point(3, 16);
+            this.pnlPager.Name = "pnlPager";
+            this.pnlPager.Size = new System.Drawing.Size(506, 42);
+            this.pnlPager.TabIndex = 20;
             // 
             // btnEdit
             // 
             this.btnEdit.AutoSize = true;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.LinkColor = System.Drawing.Color.Yellow;
-            this.btnEdit.Location = new System.Drawing.Point(215, 26);
+            this.btnEdit.Location = new System.Drawing.Point(219, 67);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(41, 20);
-            this.btnEdit.TabIndex = 19;
+            this.btnEdit.TabIndex = 1;
             this.btnEdit.TabStop = true;
             this.btnEdit.Text = "Edit";
             this.btnEdit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnEdit_LinkClicked);
@@ -81,10 +92,10 @@
             this.btnDelete.AutoSize = true;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.LinkColor = System.Drawing.Color.Yellow;
-            this.btnDelete.Location = new System.Drawing.Point(260, 26);
+            this.btnDelete.Location = new System.Drawing.Point(264, 67);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(62, 20);
-            this.btnDelete.TabIndex = 18;
+            this.btnDelete.TabIndex = 2;
             this.btnDelete.TabStop = true;
             this.btnDelete.Text = "Delete";
             // 
@@ -93,10 +104,10 @@
             this.btnViewDetails.AutoSize = true;
             this.btnViewDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewDetails.LinkColor = System.Drawing.Color.Yellow;
-            this.btnViewDetails.Location = new System.Drawing.Point(326, 26);
+            this.btnViewDetails.Location = new System.Drawing.Point(330, 67);
             this.btnViewDetails.Name = "btnViewDetails";
             this.btnViewDetails.Size = new System.Drawing.Size(108, 20);
-            this.btnViewDetails.TabIndex = 17;
+            this.btnViewDetails.TabIndex = 3;
             this.btnViewDetails.TabStop = true;
             this.btnViewDetails.Text = "View Details";
             this.btnViewDetails.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnViewDetails_LinkClicked);
@@ -106,10 +117,10 @@
             this.btnAdd.AutoSize = true;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.LinkColor = System.Drawing.Color.Yellow;
-            this.btnAdd.Location = new System.Drawing.Point(170, 26);
+            this.btnAdd.Location = new System.Drawing.Point(174, 67);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(41, 20);
-            this.btnAdd.TabIndex = 16;
+            this.btnAdd.TabIndex = 0;
             this.btnAdd.TabStop = true;
             this.btnAdd.Text = "Add";
             this.btnAdd.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnAddNewSolidarityGroup_LinkClicked);
@@ -119,10 +130,10 @@
             this.btnClose.AutoSize = true;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.LinkColor = System.Drawing.Color.Yellow;
-            this.btnClose.Location = new System.Drawing.Point(438, 26);
+            this.btnClose.Location = new System.Drawing.Point(442, 67);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(54, 20);
-            this.btnClose.TabIndex = 15;
+            this.btnClose.TabIndex = 4;
             this.btnClose.TabStop = true;
             this.btnClose.Text = "Close";
             this.btnClose.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnClose_LinkClicked);
@@ -133,8 +144,8 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(500, 308);
-            this.groupBox1.TabIndex = 3;
+            this.groupBox1.Size = new System.Drawing.Size(512, 401);
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
             // dataGridViewSolidarityGroup
@@ -174,14 +185,14 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewSolidarityGroup.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewSolidarityGroup.Size = new System.Drawing.Size(494, 289);
+            this.dataGridViewSolidarityGroup.Size = new System.Drawing.Size(506, 382);
             this.dataGridViewSolidarityGroup.TabIndex = 2;
             this.dataGridViewSolidarityGroup.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSolidarityGroup_CellContentDoubleClick);
             // 
             // ColumnSolidarityGroupID
             // 
             this.ColumnSolidarityGroupID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnSolidarityGroupID.DataPropertyName = "Id";
+            this.ColumnSolidarityGroupID.DataPropertyName = "id";
             this.ColumnSolidarityGroupID.HeaderText = "Id";
             this.ColumnSolidarityGroupID.Name = "ColumnSolidarityGroupID";
             this.ColumnSolidarityGroupID.ReadOnly = true;
@@ -189,7 +200,7 @@
             // ColumnDescription
             // 
             this.ColumnDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnDescription.DataPropertyName = "Description";
+            this.ColumnDescription.DataPropertyName = "name";
             this.ColumnDescription.HeaderText = "Name";
             this.ColumnDescription.Name = "ColumnDescription";
             this.ColumnDescription.ReadOnly = true;
@@ -201,7 +212,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(500, 373);
+            this.ClientSize = new System.Drawing.Size(512, 502);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "SolidarityGroupsListForm";
@@ -228,6 +239,7 @@
         private System.Windows.Forms.LinkLabel btnClose;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridViewSolidarityGroup;
+        private System.Windows.Forms.Panel pnlPager;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSolidarityGroupID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDescription;
     }

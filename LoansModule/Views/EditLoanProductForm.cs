@@ -253,7 +253,7 @@ namespace LoansModule.Views
                     }
                     if (cboRoundingType.SelectedIndex != -1)
                     {
-                        loan.rounding_type = int.Parse(cboRoundingType.SelectedValue.ToString());
+                        loan.rounding_type = short.Parse(cboRoundingType.SelectedValue.ToString());
                     }
                     if (cboFundingLine.SelectedIndex != -1)
                     {
@@ -1001,7 +1001,7 @@ namespace LoansModule.Views
                 {
                     txtValueNumberofInstallments.Text = loan.number_of_installments.ToString();
                 }
-                chkUseLoanCycleEntryFees.Checked = loan.use_entry_fees_cycles;
+                chkUseLoanCycleEntryFees.Checked = loan.use_entry_fees_cycles ?? false;
                 if (loan.non_repayment_penalties_based_on_initial_amount_min != null)
                 {
                     txtMinLateFeesonTotalLoanAmount.Text = loan.non_repayment_penalties_based_on_initial_amount_min.ToString();
@@ -1106,7 +1106,7 @@ namespace LoansModule.Views
                             break;
                     }
                 }
-                chkAllowFlexibleSchedule.Checked = loan.allow_flexible_schedule;
+                chkAllowFlexibleSchedule.Checked = loan.allow_flexible_schedule??false;
                 if (loan.number_of_drawings_loc != null)
                 {
                     txtNoofDrawingsunderLOC.Text = loan.number_of_drawings_loc.ToString();
@@ -1128,7 +1128,7 @@ namespace LoansModule.Views
                 {
                     txtMinPercentageofGuarantorsandCollaterals.Text = loan.percentage_total_guarantor_collateral.ToString();
                 }
-                chkSetSeparateValuesforGuarantorsandCollaterals.Checked = loan.set_separate_guarantor_collateral;
+                chkSetSeparateValuesforGuarantorsandCollaterals.Checked = loan.set_separate_guarantor_collateral??false;
                 if (loan.percentage_separate_guarantor != null)
                 {
                     txtMinPercentageforGuarantors.Text = loan.percentage_separate_guarantor.ToString();
@@ -1137,7 +1137,7 @@ namespace LoansModule.Views
                 {
                     txtMinPercentageforCollaterals.Text = loan.percentage_separate_collateral.ToString();
                 }
-                chkUseCompulsorySavings.Checked = loan.use_compulsory_savings;
+                chkUseCompulsorySavings.Checked = loan.use_compulsory_savings ?? false;
                 radioButtonRateCompulsorySavingAmount.Checked = true;
                 if (loan.compulsory_amount_min != null)
                 {

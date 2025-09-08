@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountingReportsPDFViewer));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonExit = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblstatusinfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cashBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,6 @@
             this.trialBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.appNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.tabControlReports = new System.Windows.Forms.TabControl();
             this.tabPageConfigurations = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -65,7 +65,15 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtlog = new System.Windows.Forms.RichTextBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.lblstatusinfo = new System.Windows.Forms.ToolStripStatusLabel();
+            this.appNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.toolStripButton_cashbook = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_general_accounting = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_general_ledger = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_trial_balance = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -84,6 +92,14 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton_cashbook,
+            this.toolStripSeparator1,
+            this.toolStripButton_general_accounting,
+            this.toolStripSeparator2,
+            this.toolStripButton_general_ledger,
+            this.toolStripSeparator3,
+            this.toolStripButton_trial_balance,
+            this.toolStripSeparator4,
             this.toolStripButtonExit});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
@@ -99,6 +115,7 @@
             this.toolStripButtonExit.Name = "toolStripButtonExit";
             this.toolStripButtonExit.Size = new System.Drawing.Size(30, 22);
             this.toolStripButtonExit.Text = "Exit";
+            this.toolStripButtonExit.Click += new System.EventHandler(this.toolStripButtonExit_Click);
             // 
             // statusStrip1
             // 
@@ -110,6 +127,13 @@
             this.statusStrip1.Size = new System.Drawing.Size(1237, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblstatusinfo
+            // 
+            this.lblstatusinfo.Name = "lblstatusinfo";
+            this.lblstatusinfo.Size = new System.Drawing.Size(39, 17);
+            this.lblstatusinfo.Text = "Ready";
+            this.lblstatusinfo.Click += new System.EventHandler(this.lblstatusinfo_Click);
             // 
             // menuStrip1
             // 
@@ -138,30 +162,35 @@
             this.cashBookToolStripMenuItem.Name = "cashBookToolStripMenuItem";
             this.cashBookToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.cashBookToolStripMenuItem.Text = "Cash Book";
+            this.cashBookToolStripMenuItem.Click += new System.EventHandler(this.cashBookToolStripMenuItem_Click);
             // 
             // generalAccountingToolStripMenuItem
             // 
             this.generalAccountingToolStripMenuItem.Name = "generalAccountingToolStripMenuItem";
             this.generalAccountingToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.generalAccountingToolStripMenuItem.Text = "General Accounting";
+            this.generalAccountingToolStripMenuItem.Click += new System.EventHandler(this.generalAccountingToolStripMenuItem_Click);
             // 
             // generalLedgerToolStripMenuItem
             // 
             this.generalLedgerToolStripMenuItem.Name = "generalLedgerToolStripMenuItem";
             this.generalLedgerToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.generalLedgerToolStripMenuItem.Text = "General Ledger";
+            this.generalLedgerToolStripMenuItem.Click += new System.EventHandler(this.generalLedgerToolStripMenuItem_Click);
             // 
             // trialBalanceToolStripMenuItem
             // 
             this.trialBalanceToolStripMenuItem.Name = "trialBalanceToolStripMenuItem";
             this.trialBalanceToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.trialBalanceToolStripMenuItem.Text = "Trial Balance";
+            this.trialBalanceToolStripMenuItem.Click += new System.EventHandler(this.trialBalanceToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -179,11 +208,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(1237, 651);
             this.splitContainer1.SplitterDistance = 411;
             this.splitContainer1.TabIndex = 3;
-            // 
-            // appNotifyIcon
-            // 
-            this.appNotifyIcon.Text = "notifyIcon1";
-            this.appNotifyIcon.Visible = true;
             // 
             // tabControlReports
             // 
@@ -213,35 +237,35 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle29;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 254);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridView1.Size = new System.Drawing.Size(397, 368);
             this.dataGridView1.TabIndex = 1;
             // 
@@ -380,7 +404,7 @@
             this.tabPageLogs.Controls.Add(this.groupBox2);
             this.tabPageLogs.Location = new System.Drawing.Point(4, 22);
             this.tabPageLogs.Name = "tabPageLogs";
-            this.tabPageLogs.Size = new System.Drawing.Size(401, 633);
+            this.tabPageLogs.Size = new System.Drawing.Size(403, 625);
             this.tabPageLogs.TabIndex = 1;
             this.tabPageLogs.Text = "Logs";
             // 
@@ -390,7 +414,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(401, 633);
+            this.groupBox2.Size = new System.Drawing.Size(403, 625);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             // 
@@ -403,7 +427,7 @@
             this.txtlog.Location = new System.Drawing.Point(3, 16);
             this.txtlog.Name = "txtlog";
             this.txtlog.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.txtlog.Size = new System.Drawing.Size(395, 614);
+            this.txtlog.Size = new System.Drawing.Size(397, 606);
             this.txtlog.TabIndex = 0;
             this.txtlog.Text = "";
             // 
@@ -418,12 +442,66 @@
             this.webBrowser.TabIndex = 1;
             this.webBrowser.Url = new System.Uri("", System.UriKind.Relative);
             // 
-            // lblstatusinfo
+            // appNotifyIcon
             // 
-            this.lblstatusinfo.Name = "lblstatusinfo";
-            this.lblstatusinfo.Size = new System.Drawing.Size(39, 17);
-            this.lblstatusinfo.Text = "Ready";
-            this.lblstatusinfo.Click += new System.EventHandler(this.lblstatusinfo_Click);
+            this.appNotifyIcon.Text = "notifyIcon1";
+            this.appNotifyIcon.Visible = true;
+            // 
+            // toolStripButton_cashbook
+            // 
+            this.toolStripButton_cashbook.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_cashbook.Image")));
+            this.toolStripButton_cashbook.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_cashbook.Name = "toolStripButton_cashbook";
+            this.toolStripButton_cashbook.Size = new System.Drawing.Size(83, 22);
+            this.toolStripButton_cashbook.Text = "Cash Book";
+            this.toolStripButton_cashbook.Click += new System.EventHandler(this.toolStripButton_cashbook_Click);
+            // 
+            // toolStripButton_general_accounting
+            // 
+            this.toolStripButton_general_accounting.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_general_accounting.Image")));
+            this.toolStripButton_general_accounting.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_general_accounting.Name = "toolStripButton_general_accounting";
+            this.toolStripButton_general_accounting.Size = new System.Drawing.Size(132, 22);
+            this.toolStripButton_general_accounting.Text = "General Accounting";
+            this.toolStripButton_general_accounting.Click += new System.EventHandler(this.toolStripButton_general_accounting_Click);
+            // 
+            // toolStripButton_general_ledger
+            // 
+            this.toolStripButton_general_ledger.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_general_ledger.Image")));
+            this.toolStripButton_general_ledger.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_general_ledger.Name = "toolStripButton_general_ledger";
+            this.toolStripButton_general_ledger.Size = new System.Drawing.Size(106, 22);
+            this.toolStripButton_general_ledger.Text = "General Ledger";
+            this.toolStripButton_general_ledger.Click += new System.EventHandler(this.toolStripButton_general_ledger_Click);
+            // 
+            // toolStripButton_trial_balance
+            // 
+            this.toolStripButton_trial_balance.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_trial_balance.Image")));
+            this.toolStripButton_trial_balance.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_trial_balance.Name = "toolStripButton_trial_balance";
+            this.toolStripButton_trial_balance.Size = new System.Drawing.Size(92, 22);
+            this.toolStripButton_trial_balance.Text = "Trial Balance";
+            this.toolStripButton_trial_balance.Click += new System.EventHandler(this.toolStripButton_trial_balance_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // AccountingReportsPDFViewer
             // 
@@ -499,5 +577,13 @@
         private System.Windows.Forms.RichTextBox txtlog;
         private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.ToolStripStatusLabel lblstatusinfo;
+        private System.Windows.Forms.ToolStripButton toolStripButton_cashbook;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripButton_general_accounting;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripButton_general_ledger;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButton_trial_balance;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }

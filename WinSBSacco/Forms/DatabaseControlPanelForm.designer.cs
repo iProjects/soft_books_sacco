@@ -37,6 +37,7 @@
             this.tabControlDBPanel = new System.Windows.Forms.TabControl();
             this.tabPageServerSettings = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnrefreshdatabases = new System.Windows.Forms.LinkLabel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.listViewDatabaseList = new System.Windows.Forms.ListView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -81,6 +82,7 @@
             this.txtusername = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.chkshowpassword = new System.Windows.Forms.CheckBox();
             this.chkRememberPassword = new System.Windows.Forms.CheckBox();
             this.txtpassword = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -217,6 +219,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnrefreshdatabases);
             this.groupBox3.Controls.Add(this.groupBox5);
             this.groupBox3.Controls.Add(this.groupBox4);
             this.groupBox3.Controls.Add(this.lblDatabaseNo);
@@ -227,6 +230,20 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Database Management";
+            // 
+            // btnrefreshdatabases
+            // 
+            this.btnrefreshdatabases.AutoSize = true;
+            this.btnrefreshdatabases.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnrefreshdatabases.LinkColor = System.Drawing.Color.Yellow;
+            this.btnrefreshdatabases.Location = new System.Drawing.Point(231, 20);
+            this.btnrefreshdatabases.Name = "btnrefreshdatabases";
+            this.btnrefreshdatabases.Size = new System.Drawing.Size(165, 20);
+            this.btnrefreshdatabases.TabIndex = 19;
+            this.btnrefreshdatabases.TabStop = true;
+            this.btnrefreshdatabases.Text = "Refresh Databases";
+            this.toolTip1.SetToolTip(this.btnrefreshdatabases, "refresh databases");
+            this.btnrefreshdatabases.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnrefreshdatabases_LinkClicked);
             // 
             // groupBox5
             // 
@@ -438,6 +455,7 @@
             this.txtlog_settings.BackColor = System.Drawing.Color.Black;
             this.txtlog_settings.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtlog_settings.Dock = System.Windows.Forms.DockStyle.Right;
+            this.txtlog_settings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtlog_settings.ForeColor = System.Drawing.Color.Lime;
             this.txtlog_settings.HideSelection = false;
             this.txtlog_settings.Location = new System.Drawing.Point(366, 16);
@@ -777,6 +795,7 @@
             // 
             // groupBox14
             // 
+            this.groupBox14.Controls.Add(this.chkshowpassword);
             this.groupBox14.Controls.Add(this.chkRememberPassword);
             this.groupBox14.Controls.Add(this.txtpassword);
             this.groupBox14.Controls.Add(this.label10);
@@ -786,6 +805,19 @@
             this.groupBox14.Size = new System.Drawing.Size(354, 69);
             this.groupBox14.TabIndex = 1;
             this.groupBox14.TabStop = false;
+            // 
+            // chkshowpassword
+            // 
+            this.chkshowpassword.AutoSize = true;
+            this.chkshowpassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkshowpassword.Location = new System.Drawing.Point(227, 44);
+            this.chkshowpassword.Name = "chkshowpassword";
+            this.chkshowpassword.Size = new System.Drawing.Size(99, 17);
+            this.chkshowpassword.TabIndex = 24;
+            this.chkshowpassword.Text = "Show Password";
+            this.toolTip1.SetToolTip(this.chkshowpassword, "Show Password");
+            this.chkshowpassword.UseVisualStyleBackColor = true;
+            this.chkshowpassword.CheckedChanged += new System.EventHandler(this.chkshowpassword_CheckedChanged);
             // 
             // chkRememberPassword
             // 
@@ -800,6 +832,7 @@
         "eed to type the Password again\r\n next time you need to login.Tick this check box" +
         " with caution!\r\n");
             this.chkRememberPassword.UseVisualStyleBackColor = true;
+            this.chkRememberPassword.CheckedChanged += new System.EventHandler(this.chkRememberPassword_CheckedChanged);
             // 
             // txtpassword
             // 
@@ -837,6 +870,7 @@
             this.txtlog_connect.BackColor = System.Drawing.Color.Black;
             this.txtlog_connect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtlog_connect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtlog_connect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtlog_connect.ForeColor = System.Drawing.Color.Lime;
             this.txtlog_connect.HideSelection = false;
             this.txtlog_connect.Location = new System.Drawing.Point(319, 16);
@@ -1306,5 +1340,7 @@
         private System.Windows.Forms.ProgressBar progressBar_connect;
         private System.Windows.Forms.TextBox txtlog_settings;
         private System.Windows.Forms.TextBox txtlog_connect;
+        private System.Windows.Forms.CheckBox chkshowpassword;
+        private System.Windows.Forms.LinkLabel btnrefreshdatabases;
     }
 }

@@ -7,6 +7,7 @@ using DAL;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
+using System.IO;
 
 namespace CustomerModule.Views
 {
@@ -49,6 +50,22 @@ namespace CustomerModule.Views
                 // Set filter for file extension 
                 //ofd.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png";
                 ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+                for (int i = 0; i < codecs.Count(); i++)
+                {
+                    var temp1 = codecs[0];
+                    var temp2 = codecs[1];
+                    var temp3 = codecs[2];
+                    var temp4 = codecs[3];
+                    var temp5 = codecs[4];
+
+                    codecs[0] = temp5;
+                    codecs[1] = temp2;
+                    codecs[2] = temp1;
+                    codecs[3] = temp3;
+                    codecs[4] = temp4;
+                }
+
                 string sep = string.Empty;
                 foreach (var c in codecs)
                 {
@@ -83,44 +100,49 @@ namespace CustomerModule.Views
         private void btnAdd_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
+            errorProvider.Clear();
             if (IsNonSolidarityGroupValid())
             {
                 try
                 {
-                    //gl_NonSolidarityGroup nonsolidaritygroup = new gl_NonSolidarityGroup();
+                    tbl_non_solidarity_groups nonsolidaritygroup = new tbl_non_solidarity_groups();
 
-                    //if (!string.IsNullOrEmpty(txtGroupName.Text))
-                    //{
-                    //    nonsolidaritygroup.Description = Utils.ConvertFirstLetterToUpper(txtGroupName.Text.Trim());
-                    //}
-                    //nonsolidaritygroup.nDateofEstablishment = dtpEstablishmentDate.Value;
-                    //if (cboGroupOfficer.SelectedIndex != -1)
-                    //{
-                    //    nonsolidaritygroup.nGroupOfficer = cboGroupOfficer.SelectedValue.ToString();
-                    //}
-                    //nonsolidaritygroup.nSetMeetingDate = chkSetMeetingDate.Checked;
-                    //if (cboMeetingDate.SelectedIndex != -1)
-                    //{
-                    //    nonsolidaritygroup.nMeetingDate = cboMeetingDate.Text;
-                    //}
-                    //if (cboBranch.SelectedIndex != -1)
-                    //{
-                    //    nonsolidaritygroup.BranchId = int.Parse(cboBranch.SelectedValue.ToString());
-                    //}
-                    //if (pbPhoto.ImageLocation != null)
-                    //{
-                    //    nonsolidaritygroup.nPhoto = pbPhoto.ImageLocation.ToString().Trim();
-                    //}
+                    if (!string.IsNullOrEmpty(txtName.Text))
+                    {
+                        nonsolidaritygroup.name = Utils.ConvertFirstLetterToUpper(txtName.Text.Trim());
+                    }
+                    nonsolidaritygroup.establishment_date = dtpEstablishmentDate.Value.ToString("dd-MM-yyyy HH:mm:ss tt");
+                    if (cboGroupOfficer.SelectedIndex != -1)
+                    {
+                        nonsolidaritygroup.group_officer = cboGroupOfficer.SelectedValue.ToString();
+                    }
+                    if (chkSetMeetingDate.Checked)
+                    {
+                        if (cboMeetingDate.SelectedIndex != -1)
+                        {
+                            nonsolidaritygroup.meeting_day = cboMeetingDate.Text;
+                        }
+                    }
+                    if (cboBranch.SelectedIndex != -1)
+                    {
+                        nonsolidaritygroup.branch_id = cboBranch.SelectedValue.ToString();
+                    }
+                    if (pbPhoto.ImageLocation != null)
+                    {
+                        nonsolidaritygroup.photo = pbPhoto.ImageLocation.ToString().Trim();
+                    }
+                    nonsolidaritygroup.status = "active";
+                    nonsolidaritygroup.created_date = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt");
 
-                    //if (!db.gl_NonSolidarityGroup.Any(i => i.Description == nonsolidaritygroup.Description))
-                    //{
-                    //    db.gl_NonSolidarityGroup.AddObject(nonsolidaritygroup);
-                    //    db.SaveChanges();
-                    //}
+                    if (!db.tbl_non_solidarity_groups.Any(i => i.name == nonsolidaritygroup.name))
+                    {
+                        db.tbl_non_solidarity_groups.AddObject(nonsolidaritygroup);
+                        db.SaveChanges();
+                    }
 
-                    //NonSolidarityGroupsListForm f = (NonSolidarityGroupsListForm)this.Owner;
-                    //f.RefreshGrid();
-                    //this.Close();
+                    NonSolidarityGroupsListForm f = (NonSolidarityGroupsListForm)this.Owner;
+                    f.RefreshGrid(1);
+                    this.Close();
 
                 }
                 catch (Exception ex)
@@ -129,54 +151,81 @@ namespace CustomerModule.Views
                 }
             }
         }
+
         #region "Validation"
         private bool IsNonSolidarityGroupValid()
         {
             bool noerror = true;
-            if (string.IsNullOrEmpty(txtGroupName.Text))
+
+            if (string.IsNullOrEmpty(txtName.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtGroupName, "Group Name cannot be null!");
-                return false;
+                errorProvider.SetError(txtName, "Name cannot be null!");
+                noerror = false;
+            }
+            if (cboGroupOfficer.SelectedIndex == -1)
+            {
+                errorProvider.SetError(cboGroupOfficer, "Select Group Officer!");
+                noerror = false;
+            }
+            if (cboBranch.SelectedIndex == -1)
+            {
+                errorProvider.SetError(cboBranch, "Select Branch!");
+                noerror = false;
             }
             if (chkSetMeetingDate.Checked && cboMeetingDate.SelectedIndex == -1)
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(cboMeetingDate, "Select Meeting Day!");
-                return false;
+                errorProvider.SetError(cboMeetingDate, "Select Meeting Day!");
+                noerror = false;
             }
             return noerror;
         }
+
         #endregion "Validation"
         private void AddNewNonSolidarityGroupForm_Load(object sender, EventArgs e)
         {
             try
             {
-
                 pbPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
 
-                //var _branchesquery = from af in db.gl_Branches
-                //                     where af.Isdeleted == false
-                //                     select af;
-                //List<gl_Branches> _Branches = _branchesquery.ToList();
-                //cboBranch.DataSource = _Branches;
-                //cboBranch.ValueMember = "Id";
-                //cboBranch.DisplayMember = "BranchName";
+                var _branchesquery = from af in db.Branches
+                                     where af.deleted == false
+                                     select af;
+                List<Branch> _Branches = _branchesquery.ToList();
+                cboBranch.DataSource = _Branches;
+                cboBranch.ValueMember = "id";
+                cboBranch.DisplayMember = "name";
                 //cboBranch.SelectedIndex = -1;
 
-                //var _UsersQuery = from us in db.sec_Users
-                //                  select us;
-                //List<sec_Users> _Users = _UsersQuery.ToList();
+                var _UsersQuery = from us in db.spUsers
+                                  select us;
+                List<spUser> _Users = _UsersQuery.ToList();
 
-                //cboGroupOfficer.DataSource = _Users;
-                //cboGroupOfficer.DisplayMember = "FullNames";
-                //cboGroupOfficer.ValueMember = "UserName";
+                cboGroupOfficer.DataSource = _Users;
+                cboGroupOfficer.ValueMember = "Id";
+                cboGroupOfficer.DisplayMember = "UserName";
                 //cboGroupOfficer.SelectedIndex = -1;
 
                 cboMeetingDate.DataSource = GetDayNames();
-                cboMeetingDate.SelectedIndex = -1;
+                //cboMeetingDate.SelectedIndex = -1;
+
                 chkSetMeetingDate.Checked = false;
                 cboMeetingDate.Enabled = false;
+
+                string default_image = "defaultphoto.jpg";
+
+                string base_directory = AppDomain.CurrentDomain.BaseDirectory;
+                string image_path = Path.Combine(base_directory, "Resources");
+                string image_file_path = Path.Combine(image_path, default_image);
+
+                FileInfo image_file = new FileInfo(image_file_path);
+
+                if (image_file.Exists)
+                {
+                    string imagepath = image_file.FullName;
+                    pbPhoto.ImageLocation = imagepath;
+                    pbPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
             }
             catch (Exception ex)
             {

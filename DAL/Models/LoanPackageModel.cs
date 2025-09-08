@@ -18,7 +18,7 @@ namespace DAL
             get;
             set;
         }
-        public bool deleted
+        public bool? deleted
         {
             get;
             set;
@@ -119,18 +119,18 @@ namespace DAL
             get;
             set;
         }
-        public int? loan_type
+        public short? loan_type
         {
             get;
             set;
         }
-        public bool keep_expected_installment
+        public bool? keep_expected_installment
         {
             get;
             set;
 
         }
-        public bool charge_interest_within_grace_period
+        public bool? charge_interest_within_grace_period
         {
             get;
             set;
@@ -206,17 +206,17 @@ namespace DAL
             get;
             set;
         }
-        public int currency_id
+        public int? currency_id
         {
             get;
             set;
         }
-        public int rounding_type
+        public short? rounding_type
         {
             get;
             set;
         }
-        public int grace_period_of_latefees
+        public int? grace_period_of_latefees
         {
             get;
             set;
@@ -236,12 +236,12 @@ namespace DAL
             get;
             set;
         }
-        public double? anticipated_partial_repayment_base
+        public short? anticipated_partial_repayment_base
         {
             get;
             set;
         }
-        public int? anticipated_total_repayment_base
+        public short? anticipated_total_repayment_base
         {
             get;
             set;
@@ -282,12 +282,12 @@ namespace DAL
             get;
             set;
         }
-        public bool activated_loc
+        public bool? activated_loc
         {
             get;
             set;
         } 
-        public bool allow_flexible_schedule
+        public bool? allow_flexible_schedule
         {
             get;
             set;
@@ -298,27 +298,27 @@ namespace DAL
             set;
 
         }
-        public bool set_separate_guarantor_collateral
+        public bool? set_separate_guarantor_collateral
         {
             get;
             set;
         }
-        public int percentage_total_guarantor_collateral
+        public int? percentage_total_guarantor_collateral
         {
             get;
             set;
         }
-        public int percentage_separate_guarantor
+        public int? percentage_separate_guarantor
         {
             get;
             set;
         }
-        public int percentage_separate_collateral
+        public int? percentage_separate_collateral
         {
             get;
             set;
         }
-        public bool use_compulsory_savings
+        public bool? use_compulsory_savings
         {
             get;
             set;
@@ -338,27 +338,33 @@ namespace DAL
             get;
             set;
         }
-        public decimal insurance_min
+        public decimal? insurance_min
         {
             get;
             set;
         }
-        public decimal insurance_max
+        public decimal? insurance_max
         {
             get;
             set;
         }
-        public bool use_entry_fees_cycles
+        public bool? use_entry_fees_cycles
         {
             get;
             set;
 
         }
-        public bool is_balloon
+        public bool? is_balloon
+        {
+            get;
+            set;
+        }
+        public string created_date
         {
             get;
             set;
         } 
+
         #endregion "Packages"
 
     }

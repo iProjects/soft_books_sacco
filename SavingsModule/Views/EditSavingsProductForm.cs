@@ -53,7 +53,34 @@ namespace SavingsModule.Views
                     if (!string.IsNullOrEmpty(txtCode.Text))
                     {
                         savings.code = Utils.ConvertFirstLetterToUpper(txtCode.Text);
-                    } 
+                    }
+                    foreach (Control ctrl in groupBoxClientType.Controls)
+                    {
+                        if (ctrl.GetType() == typeof(RadioButton))
+                        {
+                            if (((RadioButton)ctrl).Checked)
+                            {
+                                switch (((RadioButton)ctrl).Name)
+                                {
+                                    case "chkAllClients":
+                                        savings.client_type = Enums.Client_Types.All.ToString();
+                                        break;
+                                    case "chkSolidarityClient":
+                                        savings.client_type = Enums.Client_Types.Solidarity.ToString();
+                                        break;
+                                    case "chkNonSolidarityClient":
+                                        savings.client_type = Enums.Client_Types.NonSolidarity.ToString();
+                                        break;
+                                    case "chkIndividualClient":
+                                        savings.client_type = Enums.Client_Types.Individual.ToString();
+                                        break;
+                                    case "chkCorporateClient":
+                                        savings.client_type = Enums.Client_Types.Corporate.ToString();
+                                        break;
+                                }
+                            }
+                        }
+                    }
                     if (cboCurrency.SelectedIndex != -1)
                     {
                         savings.currency_id = int.Parse(cboCurrency.SelectedValue.ToString());
@@ -545,19 +572,19 @@ namespace SavingsModule.Views
                 {
                     switch (savings.client_type)
                     {
-                        case "I":
+                        case "1":
                             chkIndividualClient.Checked = true;
                             break;
-                        case "A":
+                        case "2":
                             chkAllClients.Checked = true;
                             break;
-                        case "V":
+                        case "3":
                             chkNonSolidarityClient.Checked = true;
                             break;
-                        case "S":
+                        case "4":
                             chkSolidarityClient.Checked = true;
                             break;
-                        case "C":
+                        case "5":
                             chkCorporateClient.Checked = true;
                             break;
                     }
@@ -795,7 +822,7 @@ namespace SavingsModule.Views
                 }
                 if (savings.use_term_deposit != null)
                 {
-                    chkUseTermDeposits.Checked = savings.use_term_deposit;
+                    chkUseTermDeposits.Checked = savings.use_term_deposit ?? false;
                 }
                 if (savings.term_deposit_period_min != null)
                 {
@@ -805,7 +832,7 @@ namespace SavingsModule.Views
                 {
                     txtMaxNumberofPeriods.Text = savings.term_deposit_period_max.ToString();
                 }
-                if (savings.use_term_deposit)
+                if (savings.use_term_deposit ?? false)
                 {
                     groupBoxNumberofPeriods.Enabled = true;
                     groupBoxPostingFrequency.Enabled = true;

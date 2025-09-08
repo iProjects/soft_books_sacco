@@ -36,6 +36,30 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtMaxBalance = new System.Windows.Forms.NumericUpDown();
+            this.txtMinBalance = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtMaxInitialAmount = new System.Windows.Forms.NumericUpDown();
+            this.txtMinInitialAmount = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cboCurrency = new System.Windows.Forms.ComboBox();
+            this.groupBoxClientType = new System.Windows.Forms.GroupBox();
+            this.chkNonSolidarityClient = new System.Windows.Forms.CheckBox();
+            this.chkCorporateClient = new System.Windows.Forms.CheckBox();
+            this.chkIndividualClient = new System.Windows.Forms.CheckBox();
+            this.chkSolidarityClient = new System.Windows.Forms.CheckBox();
+            this.chkAllClients = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtValueInterestRate = new System.Windows.Forms.NumericUpDown();
             this.txtMinInterestRate = new System.Windows.Forms.NumericUpDown();
@@ -53,10 +77,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtCode = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.groupBoxTransferFees = new System.Windows.Forms.GroupBox();
@@ -182,31 +202,21 @@
             this.txtMinNumberofPeriods = new System.Windows.Forms.NumericUpDown();
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBoxClientType = new System.Windows.Forms.GroupBox();
-            this.chkNonSolidarityClient = new System.Windows.Forms.CheckBox();
-            this.chkCorporateClient = new System.Windows.Forms.CheckBox();
-            this.chkIndividualClient = new System.Windows.Forms.CheckBox();
-            this.chkSolidarityClient = new System.Windows.Forms.CheckBox();
-            this.chkAllClients = new System.Windows.Forms.CheckBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtMaxBalance = new System.Windows.Forms.NumericUpDown();
-            this.txtMinBalance = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtMaxInitialAmount = new System.Windows.Forms.NumericUpDown();
-            this.txtMinInitialAmount = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.cboCurrency = new System.Windows.Forms.ComboBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxBalance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinBalance)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxInitialAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinInitialAmount)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.groupBoxClientType.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtValueInterestRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinInterestRate)).BeginInit();
@@ -268,17 +278,7 @@
             this.groupBoxNumberofPeriods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaxNumberofPeriods)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinNumberofPeriods)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBoxClientType.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaxBalance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMinBalance)).BeginInit();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaxInitialAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMinInitialAmount)).BeginInit();
-            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -356,6 +356,279 @@
             this.tabPage1.Size = new System.Drawing.Size(717, 438);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main Parameters";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.groupBox6);
+            this.groupBox9.Controls.Add(this.groupBox5);
+            this.groupBox9.Controls.Add(this.groupBox4);
+            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox9.Location = new System.Drawing.Point(3, 109);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(711, 126);
+            this.groupBox9.TabIndex = 2;
+            this.groupBox9.TabStop = false;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtMaxBalance);
+            this.groupBox6.Controls.Add(this.txtMinBalance);
+            this.groupBox6.Controls.Add(this.label5);
+            this.groupBox6.Controls.Add(this.label6);
+            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox6.Location = new System.Drawing.Point(227, 16);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(243, 107);
+            this.groupBox6.TabIndex = 1;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Balance";
+            // 
+            // txtMaxBalance
+            // 
+            this.txtMaxBalance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaxBalance.Location = new System.Drawing.Point(47, 59);
+            this.txtMaxBalance.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.txtMaxBalance.Name = "txtMaxBalance";
+            this.txtMaxBalance.Size = new System.Drawing.Size(146, 20);
+            this.txtMaxBalance.TabIndex = 1;
+            this.txtMaxBalance.ThousandsSeparator = true;
+            // 
+            // txtMinBalance
+            // 
+            this.txtMinBalance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMinBalance.Location = new System.Drawing.Point(47, 22);
+            this.txtMinBalance.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.txtMinBalance.Name = "txtMinBalance";
+            this.txtMinBalance.Size = new System.Drawing.Size(146, 20);
+            this.txtMinBalance.TabIndex = 0;
+            this.txtMinBalance.ThousandsSeparator = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 63);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Max";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 25);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(24, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Min";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.txtMaxInitialAmount);
+            this.groupBox5.Controls.Add(this.txtMinInitialAmount);
+            this.groupBox5.Controls.Add(this.label4);
+            this.groupBox5.Controls.Add(this.label3);
+            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox5.Location = new System.Drawing.Point(3, 16);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(224, 107);
+            this.groupBox5.TabIndex = 0;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Initial Amount";
+            // 
+            // txtMaxInitialAmount
+            // 
+            this.txtMaxInitialAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaxInitialAmount.Location = new System.Drawing.Point(48, 60);
+            this.txtMaxInitialAmount.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.txtMaxInitialAmount.Name = "txtMaxInitialAmount";
+            this.txtMaxInitialAmount.Size = new System.Drawing.Size(146, 20);
+            this.txtMaxInitialAmount.TabIndex = 1;
+            this.txtMaxInitialAmount.ThousandsSeparator = true;
+            // 
+            // txtMinInitialAmount
+            // 
+            this.txtMinInitialAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMinInitialAmount.Location = new System.Drawing.Point(48, 23);
+            this.txtMinInitialAmount.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
+            this.txtMinInitialAmount.Name = "txtMinInitialAmount";
+            this.txtMinInitialAmount.Size = new System.Drawing.Size(146, 20);
+            this.txtMinInitialAmount.TabIndex = 0;
+            this.txtMinInitialAmount.ThousandsSeparator = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 63);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Max";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(22, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(24, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Min";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.cboCurrency);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox4.Location = new System.Drawing.Point(470, 16);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(238, 107);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Attach Product to Currency";
+            // 
+            // cboCurrency
+            // 
+            this.cboCurrency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCurrency.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboCurrency.FormattingEnabled = true;
+            this.cboCurrency.Location = new System.Drawing.Point(6, 33);
+            this.cboCurrency.Name = "cboCurrency";
+            this.cboCurrency.Size = new System.Drawing.Size(189, 21);
+            this.cboCurrency.TabIndex = 0;
+            // 
+            // groupBoxClientType
+            // 
+            this.groupBoxClientType.Controls.Add(this.chkNonSolidarityClient);
+            this.groupBoxClientType.Controls.Add(this.chkCorporateClient);
+            this.groupBoxClientType.Controls.Add(this.chkIndividualClient);
+            this.groupBoxClientType.Controls.Add(this.chkSolidarityClient);
+            this.groupBoxClientType.Controls.Add(this.chkAllClients);
+            this.groupBoxClientType.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBoxClientType.Location = new System.Drawing.Point(3, 56);
+            this.groupBoxClientType.Name = "groupBoxClientType";
+            this.groupBoxClientType.Size = new System.Drawing.Size(711, 53);
+            this.groupBoxClientType.TabIndex = 1;
+            this.groupBoxClientType.TabStop = false;
+            this.groupBoxClientType.Text = "Attach Product to a Specific Client Type";
+            // 
+            // chkNonSolidarityClient
+            // 
+            this.chkNonSolidarityClient.AutoSize = true;
+            this.chkNonSolidarityClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkNonSolidarityClient.Location = new System.Drawing.Point(188, 19);
+            this.chkNonSolidarityClient.Name = "chkNonSolidarityClient";
+            this.chkNonSolidarityClient.Size = new System.Drawing.Size(120, 17);
+            this.chkNonSolidarityClient.TabIndex = 2;
+            this.chkNonSolidarityClient.Text = "Non-Solidarity Group";
+            this.chkNonSolidarityClient.UseVisualStyleBackColor = true;
+            // 
+            // chkCorporateClient
+            // 
+            this.chkCorporateClient.AutoSize = true;
+            this.chkCorporateClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkCorporateClient.Location = new System.Drawing.Point(429, 19);
+            this.chkCorporateClient.Name = "chkCorporateClient";
+            this.chkCorporateClient.Size = new System.Drawing.Size(69, 17);
+            this.chkCorporateClient.TabIndex = 4;
+            this.chkCorporateClient.Text = "Corporate";
+            this.chkCorporateClient.UseVisualStyleBackColor = true;
+            // 
+            // chkIndividualClient
+            // 
+            this.chkIndividualClient.AutoSize = true;
+            this.chkIndividualClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkIndividualClient.Location = new System.Drawing.Point(318, 19);
+            this.chkIndividualClient.Name = "chkIndividualClient";
+            this.chkIndividualClient.Size = new System.Drawing.Size(97, 17);
+            this.chkIndividualClient.TabIndex = 3;
+            this.chkIndividualClient.Text = "Individual Client";
+            this.chkIndividualClient.UseVisualStyleBackColor = true;
+            // 
+            // chkSolidarityClient
+            // 
+            this.chkSolidarityClient.AutoSize = true;
+            this.chkSolidarityClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkSolidarityClient.Location = new System.Drawing.Point(71, 19);
+            this.chkSolidarityClient.Name = "chkSolidarityClient";
+            this.chkSolidarityClient.Size = new System.Drawing.Size(97, 17);
+            this.chkSolidarityClient.TabIndex = 1;
+            this.chkSolidarityClient.Text = "Solidarity Group";
+            this.chkSolidarityClient.UseVisualStyleBackColor = true;
+            // 
+            // chkAllClients
+            // 
+            this.chkAllClients.AutoSize = true;
+            this.chkAllClients.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkAllClients.Location = new System.Drawing.Point(18, 19);
+            this.chkAllClients.Name = "chkAllClients";
+            this.chkAllClients.Size = new System.Drawing.Size(34, 17);
+            this.chkAllClients.TabIndex = 0;
+            this.chkAllClients.Text = "All";
+            this.chkAllClients.UseVisualStyleBackColor = true;
+            this.chkAllClients.CheckedChanged += new System.EventHandler(this.chkAllClients_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtName);
+            this.groupBox2.Controls.Add(this.txtCode);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(711, 53);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            // 
+            // txtName
+            // 
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtName.Location = new System.Drawing.Point(64, 19);
+            this.txtName.MaxLength = 200;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(322, 20);
+            this.txtName.TabIndex = 0;
+            // 
+            // txtCode
+            // 
+            this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCode.Location = new System.Drawing.Point(470, 22);
+            this.txtCode.MaxLength = 50;
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(189, 20);
+            this.txtCode.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Name*";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(432, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Code*";
             // 
             // groupBox7
             // 
@@ -544,42 +817,6 @@
             this.label18.Size = new System.Drawing.Size(43, 13);
             this.label18.TabIndex = 0;
             this.label18.Text = "Accrual";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(432, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Code*";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Name*";
-            // 
-            // txtCode
-            // 
-            this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCode.Location = new System.Drawing.Point(470, 22);
-            this.txtCode.MaxLength = 50;
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(189, 20);
-            this.txtCode.TabIndex = 1;
-            // 
-            // txtName
-            // 
-            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtName.Location = new System.Drawing.Point(64, 19);
-            this.txtName.MaxLength = 200;
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(322, 20);
-            this.txtName.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -2079,246 +2316,9 @@
             this.label46.TabIndex = 10;
             this.label46.Text = "Min";
             // 
-            // errorProvider1
+            // errorProvider
             // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtName);
-            this.groupBox2.Controls.Add(this.txtCode);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(711, 53);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            // 
-            // groupBoxClientType
-            // 
-            this.groupBoxClientType.Controls.Add(this.chkNonSolidarityClient);
-            this.groupBoxClientType.Controls.Add(this.chkCorporateClient);
-            this.groupBoxClientType.Controls.Add(this.chkIndividualClient);
-            this.groupBoxClientType.Controls.Add(this.chkSolidarityClient);
-            this.groupBoxClientType.Controls.Add(this.chkAllClients);
-            this.groupBoxClientType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBoxClientType.Location = new System.Drawing.Point(3, 56);
-            this.groupBoxClientType.Name = "groupBoxClientType";
-            this.groupBoxClientType.Size = new System.Drawing.Size(711, 53);
-            this.groupBoxClientType.TabIndex = 1;
-            this.groupBoxClientType.TabStop = false;
-            this.groupBoxClientType.Text = "Attach Product to a Specific Client Type";
-            // 
-            // chkNonSolidarityClient
-            // 
-            this.chkNonSolidarityClient.AutoSize = true;
-            this.chkNonSolidarityClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkNonSolidarityClient.Location = new System.Drawing.Point(188, 19);
-            this.chkNonSolidarityClient.Name = "chkNonSolidarityClient";
-            this.chkNonSolidarityClient.Size = new System.Drawing.Size(120, 17);
-            this.chkNonSolidarityClient.TabIndex = 2;
-            this.chkNonSolidarityClient.Text = "Non-Solidarity Group";
-            this.chkNonSolidarityClient.UseVisualStyleBackColor = true;
-            // 
-            // chkCorporateClient
-            // 
-            this.chkCorporateClient.AutoSize = true;
-            this.chkCorporateClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkCorporateClient.Location = new System.Drawing.Point(429, 19);
-            this.chkCorporateClient.Name = "chkCorporateClient";
-            this.chkCorporateClient.Size = new System.Drawing.Size(69, 17);
-            this.chkCorporateClient.TabIndex = 4;
-            this.chkCorporateClient.Text = "Corporate";
-            this.chkCorporateClient.UseVisualStyleBackColor = true;
-            // 
-            // chkIndividualClient
-            // 
-            this.chkIndividualClient.AutoSize = true;
-            this.chkIndividualClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkIndividualClient.Location = new System.Drawing.Point(318, 19);
-            this.chkIndividualClient.Name = "chkIndividualClient";
-            this.chkIndividualClient.Size = new System.Drawing.Size(97, 17);
-            this.chkIndividualClient.TabIndex = 3;
-            this.chkIndividualClient.Text = "Individual Client";
-            this.chkIndividualClient.UseVisualStyleBackColor = true;
-            // 
-            // chkSolidarityClient
-            // 
-            this.chkSolidarityClient.AutoSize = true;
-            this.chkSolidarityClient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkSolidarityClient.Location = new System.Drawing.Point(71, 19);
-            this.chkSolidarityClient.Name = "chkSolidarityClient";
-            this.chkSolidarityClient.Size = new System.Drawing.Size(97, 17);
-            this.chkSolidarityClient.TabIndex = 1;
-            this.chkSolidarityClient.Text = "Solidarity Group";
-            this.chkSolidarityClient.UseVisualStyleBackColor = true;
-            // 
-            // chkAllClients
-            // 
-            this.chkAllClients.AutoSize = true;
-            this.chkAllClients.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkAllClients.Location = new System.Drawing.Point(18, 19);
-            this.chkAllClients.Name = "chkAllClients";
-            this.chkAllClients.Size = new System.Drawing.Size(34, 17);
-            this.chkAllClients.TabIndex = 0;
-            this.chkAllClients.Text = "All";
-            this.chkAllClients.UseVisualStyleBackColor = true;
-            this.chkAllClients.CheckedChanged += new System.EventHandler(this.chkAllClients_CheckedChanged);
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.groupBox6);
-            this.groupBox9.Controls.Add(this.groupBox5);
-            this.groupBox9.Controls.Add(this.groupBox4);
-            this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox9.Location = new System.Drawing.Point(3, 109);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(711, 126);
-            this.groupBox9.TabIndex = 2;
-            this.groupBox9.TabStop = false;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.txtMaxBalance);
-            this.groupBox6.Controls.Add(this.txtMinBalance);
-            this.groupBox6.Controls.Add(this.label5);
-            this.groupBox6.Controls.Add(this.label6);
-            this.groupBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox6.Location = new System.Drawing.Point(227, 16);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(243, 107);
-            this.groupBox6.TabIndex = 1;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Balance";
-            // 
-            // txtMaxBalance
-            // 
-            this.txtMaxBalance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaxBalance.Location = new System.Drawing.Point(47, 59);
-            this.txtMaxBalance.Maximum = new decimal(new int[] {
-            1410065407,
-            2,
-            0,
-            0});
-            this.txtMaxBalance.Name = "txtMaxBalance";
-            this.txtMaxBalance.Size = new System.Drawing.Size(146, 20);
-            this.txtMaxBalance.TabIndex = 1;
-            this.txtMaxBalance.ThousandsSeparator = true;
-            // 
-            // txtMinBalance
-            // 
-            this.txtMinBalance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMinBalance.Location = new System.Drawing.Point(47, 22);
-            this.txtMinBalance.Maximum = new decimal(new int[] {
-            1410065407,
-            2,
-            0,
-            0});
-            this.txtMinBalance.Name = "txtMinBalance";
-            this.txtMinBalance.Size = new System.Drawing.Size(146, 20);
-            this.txtMinBalance.TabIndex = 0;
-            this.txtMinBalance.ThousandsSeparator = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 63);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(27, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Max";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Min";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.txtMaxInitialAmount);
-            this.groupBox5.Controls.Add(this.txtMinInitialAmount);
-            this.groupBox5.Controls.Add(this.label4);
-            this.groupBox5.Controls.Add(this.label3);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox5.Location = new System.Drawing.Point(3, 16);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(224, 107);
-            this.groupBox5.TabIndex = 0;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Initial Amount";
-            // 
-            // txtMaxInitialAmount
-            // 
-            this.txtMaxInitialAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaxInitialAmount.Location = new System.Drawing.Point(48, 60);
-            this.txtMaxInitialAmount.Maximum = new decimal(new int[] {
-            1410065407,
-            2,
-            0,
-            0});
-            this.txtMaxInitialAmount.Name = "txtMaxInitialAmount";
-            this.txtMaxInitialAmount.Size = new System.Drawing.Size(146, 20);
-            this.txtMaxInitialAmount.TabIndex = 1;
-            this.txtMaxInitialAmount.ThousandsSeparator = true;
-            // 
-            // txtMinInitialAmount
-            // 
-            this.txtMinInitialAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMinInitialAmount.Location = new System.Drawing.Point(48, 23);
-            this.txtMinInitialAmount.Maximum = new decimal(new int[] {
-            1410065407,
-            2,
-            0,
-            0});
-            this.txtMinInitialAmount.Name = "txtMinInitialAmount";
-            this.txtMinInitialAmount.Size = new System.Drawing.Size(146, 20);
-            this.txtMinInitialAmount.TabIndex = 0;
-            this.txtMinInitialAmount.ThousandsSeparator = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 63);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(27, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Max";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Min";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.cboCurrency);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox4.Location = new System.Drawing.Point(470, 16);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(238, 107);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Attach Product to Currency";
-            // 
-            // cboCurrency
-            // 
-            this.cboCurrency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCurrency.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboCurrency.FormattingEnabled = true;
-            this.cboCurrency.Location = new System.Drawing.Point(6, 33);
-            this.cboCurrency.Name = "cboCurrency";
-            this.cboCurrency.Size = new System.Drawing.Size(189, 21);
-            this.cboCurrency.TabIndex = 0;
+            this.errorProvider.ContainerControl = this;
             // 
             // AddSavingsProductForm
             // 
@@ -2340,6 +2340,20 @@
             this.groupBox1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxBalance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinBalance)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxInitialAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinInitialAmount)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBoxClientType.ResumeLayout(false);
+            this.groupBoxClientType.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtValueInterestRate)).EndInit();
@@ -2418,21 +2432,7 @@
             this.groupBoxNumberofPeriods.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaxNumberofPeriods)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinNumberofPeriods)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBoxClientType.ResumeLayout(false);
-            this.groupBoxClientType.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaxBalance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMinBalance)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaxInitialAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMinInitialAmount)).EndInit();
-            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2591,7 +2591,7 @@
         private System.Windows.Forms.NumericUpDown txtMinNumberofPeriods;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.NumericUpDown txtMaxBalance;

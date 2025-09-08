@@ -44,7 +44,7 @@ namespace LoansModule.Views
                 cboRoundingType.DataSource = RoundingTypes;
                 cboRoundingType.ValueMember = "Key";
                 cboRoundingType.DisplayMember = "Value";
-                cboRoundingType.SelectedIndex = -1;
+                //cboRoundingType.SelectedIndex = -1;
 
                 var currenciesquery = from cr in rep.GetCurrenciesList()
                                       select cr;
@@ -52,7 +52,7 @@ namespace LoansModule.Views
                 cboCurrency.DataSource = currencies;
                 cboCurrency.ValueMember = "currencyid";
                 cboCurrency.DisplayMember = "name";
-                cboCurrency.SelectedIndex = -1;
+                //cboCurrency.SelectedIndex = -1;
 
                 var installmenttypesquery = from it in db.InstallmentTypes
                                             select it;
@@ -60,13 +60,13 @@ namespace LoansModule.Views
                 cboInstallmentTypes.DataSource = InstallmentTypes;
                 cboInstallmentTypes.ValueMember = "id";
                 cboInstallmentTypes.DisplayMember = "name";
-                cboInstallmentTypes.SelectedIndex = -1;
+                //cboInstallmentTypes.SelectedIndex = -1;
 
                 List<FundingLineModel> FundingLines = rep.GetFundingLinesList();
                 cboFundingLine.DataSource = FundingLines;
                 cboFundingLine.ValueMember = "fundinglineid";
                 cboFundingLine.DisplayMember = "name";
-                cboFundingLine.SelectedIndex = -1;
+                //cboFundingLine.SelectedIndex = -1;
 
                 var AdvancedParametersLoanCyclesquery = from lc in rep.GetAllCycles()
                                                         select lc;
@@ -136,6 +136,10 @@ namespace LoansModule.Views
                 {
 
                     LoanPackageModel loan = new LoanPackageModel();
+                    loan.loan_type = 0;
+                    loan.client_type = "I";
+                    loan.installment_type = 1;
+
                     if (!string.IsNullOrEmpty(txtName.Text))
                     {
                         loan.name = Utils.ConvertFirstLetterToUpper(txtName.Text.Trim());
@@ -438,8 +442,12 @@ namespace LoansModule.Views
                     {
                         rep.AddNewLoanPackage(loan);
 
-                        LoanProductsListForm f = (LoanProductsListForm)this.Owner;
-                        f.RefreshGrid();
+                        //LoanProductsListForm f = (LoanProductsListForm)this.Owner;
+                        LoanProductsListForm f = new LoanProductsListForm(connection);
+                        if (this.Owner == f)
+                        {
+                            f.RefreshGrid();
+                        }
                         this.Close();
                     }
                 }
@@ -456,14 +464,14 @@ namespace LoansModule.Views
 
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtName, "Name cannot be null!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtName, "Name cannot be null!");
                 return false;
             }
             if (string.IsNullOrEmpty(txtCode.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtCode, "Code cannot be null!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtCode, "Code cannot be null!");
                 return false;
             }
             return noerror;
@@ -473,28 +481,28 @@ namespace LoansModule.Views
             bool noerror = true;
             if (string.IsNullOrEmpty(txtCycleMinAmount.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtCycleMinAmount, "Min Amount cannot be null!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtCycleMinAmount, "Min Amount cannot be null!");
                 return false;
             }
             decimal _MinAmount;
             if (!decimal.TryParse(txtCycleMinAmount.Text, out _MinAmount))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtCycleMinAmount, "Min Amount must be decimal!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtCycleMinAmount, "Min Amount must be decimal!");
                 return false;
             }
             if (string.IsNullOrEmpty(txtCycleMaxAmount.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtCycleMaxAmount, "Max Amount cannot be null!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtCycleMaxAmount, "Max Amount cannot be null!");
                 return false;
             }
             decimal _MaxAmount;
             if (!decimal.TryParse(txtCycleMaxAmount.Text, out _MaxAmount))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtCycleMaxAmount, "Max Amount must be decimal!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtCycleMaxAmount, "Max Amount must be decimal!");
                 return false;
             }
             return noerror;
@@ -604,11 +612,11 @@ namespace LoansModule.Views
         {
             try
             {
-                errorProvider1.Clear();
+                errorProvider.Clear();
                 if (string.IsNullOrEmpty(txtLoancycle.Text))
                 {
-                    errorProvider1.Clear();
-                    errorProvider1.SetError(txtLoancycle, "Description cannot be null!");
+                    errorProvider.Clear();
+                    errorProvider.SetError(txtLoancycle, "Description cannot be null!");
                     return;
                 }
                 if (!string.IsNullOrEmpty(txtLoancycle.Text))
@@ -759,7 +767,7 @@ namespace LoansModule.Views
             {
                 btnRemoveCycleAmount.Enabled = false;
             }
-        } 
+        }
         public void RefreshLoanCyclesCombo()
         {
             try
@@ -787,13 +795,13 @@ namespace LoansModule.Views
             try
             {
                 cboCycleObjects.DataSource = null;
-                cboCycleObjects.Items.Clear(); 
+                cboCycleObjects.Items.Clear();
                 var cycleobjectsquery = from co in rep.GetAllCycleObjects()
                                         select co;
                 List<CycleObjectsModel> CycleObjects = cycleobjectsquery.ToList();
                 cboCycleObjects.DataSource = CycleObjects;
                 cboCycleObjects.ValueMember = "cycleobjectid";
-                cboCycleObjects.DisplayMember = "name"; 
+                cboCycleObjects.DisplayMember = "name";
             }
             catch (Exception ex)
             {
@@ -816,31 +824,31 @@ namespace LoansModule.Views
                     }
                     CyclesModel LoanCycle = (CyclesModel)cboCycles.SelectedItem;
                     CycleObjectsModel cycleobjs = (CycleObjectsModel)cboCycleObjects.SelectedItem;
-                     
-                        var cyclepropertiesquery = from cp in rep.GetAllCycleParameters()
-                                                   where cp.cycle_id == LoanCycle.cycleid
-                                                   where cp.cycle_object_id == cycleobjs.cycleobjectid
-                                                   select cp;
-                        BindingList<CycleParametersModel> _CyclbjctPrmtrs = new BindingList<CycleParametersModel>(cyclepropertiesquery.ToList());
-                    var _counter=1;
-                        foreach (var _cycle in _CyclbjctPrmtrs)
+
+                    var cyclepropertiesquery = from cp in rep.GetAllCycleParameters()
+                                               where cp.cycle_id == LoanCycle.cycleid
+                                               where cp.cycle_object_id == cycleobjs.cycleobjectid
+                                               select cp;
+                    BindingList<CycleParametersModel> _CyclbjctPrmtrs = new BindingList<CycleParametersModel>(cyclepropertiesquery.ToList());
+                    var _counter = 1;
+                    foreach (var _cycle in _CyclbjctPrmtrs)
+                    {
+                        if (!_CycleObjectParameters.Any(i => i.cycle_id == _cycle.cycle_id && i.cycle_object_id == _cycle.cycle_object_id && i.min == _cycle.min && i.max == _cycle.max))
                         {
-                            if (!_CycleObjectParameters.Any(i => i.cycle_id == _cycle.cycle_id && i.cycle_object_id == _cycle.cycle_object_id && i.min == _cycle.min && i.max == _cycle.max))
-                            {
-                                _cycle._cycle_parameter_id = _counter;
-                                _CycleObjectParameters.Add(_cycle);
-                                _counter++;
-                            }
+                            _cycle._cycle_parameter_id = _counter;
+                            _CycleObjectParameters.Add(_cycle);
+                            _counter++;
                         }
-                        bindingSourceCycleObjectParameters.DataSource = _CycleObjectParameters;
-                        groupBoxCycleObjectParameters.Text = bindingSourceCycleObjectParameters.Count.ToString();
-                        foreach (DataGridViewRow row in dataGridViewCycleObjectParameters.Rows)
-                        {
-                            dataGridViewCycleObjectParameters.Rows[dataGridViewCycleObjectParameters.Rows.Count - 1].Selected = true;
-                            int nRowIndex = dataGridViewCycleObjectParameters.Rows.Count - 1;
-                            bindingSourceCycleObjectParameters.Position = nRowIndex;
-                        }
-                    } 
+                    }
+                    bindingSourceCycleObjectParameters.DataSource = _CycleObjectParameters;
+                    groupBoxCycleObjectParameters.Text = bindingSourceCycleObjectParameters.Count.ToString();
+                    foreach (DataGridViewRow row in dataGridViewCycleObjectParameters.Rows)
+                    {
+                        dataGridViewCycleObjectParameters.Rows[dataGridViewCycleObjectParameters.Rows.Count - 1].Selected = true;
+                        int nRowIndex = dataGridViewCycleObjectParameters.Rows.Count - 1;
+                        bindingSourceCycleObjectParameters.Position = nRowIndex;
+                    }
+                }
                 catch (Exception ex)
                 {
                     Utils.ShowError(ex);
@@ -939,9 +947,9 @@ namespace LoansModule.Views
                                     groupBox15.Visible = false;
                                     groupBox17.Visible = false;
                                     _CycleObjectParameters = new BindingList<CycleParametersModel>();
-                                     RefreshLoanCyclesCombo();
+                                    RefreshLoanCyclesCombo();
                                     RefreshCycleObjectsCombo();
-                                    RefreshCycleObjectParametersGrid(); 
+                                    RefreshCycleObjectParametersGrid();
                                     break;
                                 case "rbtnUseLineofCredit":
                                     groupBox17.Visible = true;
@@ -985,7 +993,7 @@ namespace LoansModule.Views
         {
             try
             {
-                CollectionEditor epf = new CollectionEditor( connection) { Owner = this }; 
+                CollectionEditor epf = new CollectionEditor(connection) { Owner = this };
                 epf.ShowDialog();
             }
             catch (Exception ex)
@@ -1020,7 +1028,7 @@ namespace LoansModule.Views
 
         #endregion "Private Methods"
 
-        
+
 
 
 

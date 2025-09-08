@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using SearchModule.Views;
+using System.IO;
 
 namespace CustomerModule.Views
 {
@@ -34,9 +35,283 @@ namespace CustomerModule.Views
         #endregion "Constructor"
 
         #region "Private Methods"
+        private void AddPersonForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                txtFirstName.Focus();
+                pbPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                lblNoofYears.Text = string.Empty;
+                txtLoanCycle.Text = "0";
+                txtCitizenShip.Text = RegionAndLanguageHelper.GetMachineCurrentLocation();
+                txtCitizenShip.Text = "Kenya";
+                dtpDateofBirth.Value = DateTime.Now.AddYears(-18);
+
+                //Gender Combox
+                var gender = new BindingList<KeyValuePair<string, string>>();
+                gender.Add(new KeyValuePair<string, string>("M", "Male"));
+                gender.Add(new KeyValuePair<string, string>("F", "Female"));
+                cboGender.DataSource = gender;
+                cboGender.ValueMember = "Key";
+                cboGender.DisplayMember = "Value";
+                //cboGender.SelectedIndex = -1;
+
+                List<ActivityModel> _EconomicActivities = rep.GetEconomicActivitiesList();
+                cboEconomicActivity.DataSource = _EconomicActivities;
+                cboEconomicActivity.ValueMember = "activityid";
+                cboEconomicActivity.DisplayMember = "name";
+                //cboEconomicActivity.SelectedIndex = -1;
+
+                var _branchesquery = from br in rep.GetNonDeletedBranches()
+                                     select br;
+                List<BranchModel> _Branches = _branchesquery.ToList();
+                cboBranch.DataSource = _Branches;
+                cboBranch.ValueMember = "branchid";
+                cboBranch.DisplayMember = "name";
+                //cboBranch.SelectedIndex = -1;
+
+                //var _haprovincesquery = from ds in rep.GetNonDeletedProvinces()
+                //                        select ds;
+                //List<ProvinceModel> _haProvinces = _haprovincesquery.ToList();
+                //cboHAProvince.DataSource = _haProvinces;
+                //cboHAProvince.ValueMember = "provinceid";
+                //cboHAProvince.DisplayMember = "name";
+                //cboHAProvince.SelectedIndex = -1;
+
+                //var _baprovincesquery = from ds in rep.GetNonDeletedProvinces()
+                //                        select ds;
+                //List<ProvinceModel> _baProvinces = _baprovincesquery.ToList();
+                //cboBAProvince.DataSource = _baProvinces;
+                //cboBAProvince.ValueMember = "provinceid";
+                //cboBAProvince.DisplayMember = "name";
+                //cboBAProvince.SelectedIndex = -1;
+
+                //lblCustomFieldsName.Text = string.Empty;
+                //lblCustomFieldsDescription.Text = string.Empty;
+                //chkattMandatory.Checked = false;
+                //chkattUnique.Checked = false;
+
+                string default_image = "defaultphoto.jpg";
+
+                string base_directory = AppDomain.CurrentDomain.BaseDirectory;
+                string image_path = Path.Combine(base_directory, "Resources");
+                string image_file_path = Path.Combine(image_path, default_image);
+
+                FileInfo image_file = new FileInfo(image_file_path);
+
+                if (image_file.Exists)
+                {
+                    string imagepath = image_file.FullName;
+                    pbPhoto.ImageLocation = imagepath;
+                    pbPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowError(ex);
+            }
+        }
         private void btnClose_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAdd_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            if (IsPersonValid())
+            {
+                try
+                {
+                    Tier _Tier = new Tier();
+                    _Tier.client_type_code = "I";
+                    if (!string.IsNullOrEmpty(txtphone_no.Text))
+                    {
+                        _Tier.personal_phone = txtphone_no.Text.Trim();
+                    }
+                    if (!string.IsNullOrEmpty(txtemail.Text))
+                    {
+                        _Tier.email = txtemail.Text.Trim();
+                    }
+                    _Tier.active = true;
+                    _Tier.status = rep.GetDefaultStatus();
+                    _Tier.scoring = 0.99;
+                    _Tier.email = txtemail.Text;
+                    _Tier.creation_date = DateTime.Now;
+                    _Tier.created_date = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt");
+                    int cycle;
+                    if (!string.IsNullOrEmpty(txtLoanCycle.Text) && int.TryParse(txtLoanCycle.Text, out cycle))
+                    {
+                        _Tier.loan_cycle = int.Parse(txtLoanCycle.Text.Trim());
+                    }
+                    if (cboBranch.SelectedIndex != -1)
+                    {
+                        _Tier.branch_id = int.Parse(cboBranch.SelectedValue.ToString());
+                    }
+
+                    if (!db.Tiers.Any(i => i.email == _Tier.email))
+                    {
+                        db.Tiers.AddObject(_Tier);
+                        db.SaveChanges();
+                    }
+
+                    Person _Person = new Person();
+                    _Person.id = _Tier.id;
+                    if (!string.IsNullOrEmpty(txtFirstName.Text))
+                    {
+                        _Person.first_name = Utils.ConvertFirstLetterToUpper(txtFirstName.Text.Trim());
+                    }
+                    if (!string.IsNullOrEmpty(txtLastName.Text))
+                    {
+                        _Person.last_name = Utils.ConvertFirstLetterToUpper(txtLastName.Text.Trim());
+                    }
+                    if (!string.IsNullOrEmpty(txtFatherName.Text))
+                    {
+                        _Person.father_name = Utils.ConvertFirstLetterToUpper(txtFatherName.Text.Trim());
+                    }
+                    _Person.birth_date = dtpDateofBirth.Value;
+                    if (cboGender.SelectedIndex != -1)
+                    {
+                        _Person.sex = cboGender.SelectedValue.ToString();
+                    }
+                    if (!string.IsNullOrEmpty(txtIDNo.Text))
+                    {
+                        _Person.identification_data = txtIDNo.Text.Trim();
+                    }
+
+                    if (cboEconomicActivity.SelectedIndex != -1)
+                    {
+                        _Person.activity_id = int.Parse(cboEconomicActivity.SelectedValue.ToString());
+                    }
+
+                    if (!string.IsNullOrEmpty(txtPlaceofBirth.Text))
+                    {
+                        _Person.birth_place = Utils.ConvertFirstLetterToUpper(txtPlaceofBirth.Text.Trim());
+                    }
+                    if (!string.IsNullOrEmpty(txtCitizenShip.Text))
+                    {
+                        _Person.nationality = Utils.ConvertFirstLetterToUpper(txtCitizenShip.Text.Trim());
+                    }
+                    _Person.household_head = chkHeadofHouseHold.Checked;
+                    if (pbPhoto.ImageLocation != null)
+                    {
+                        _Person.image_path = pbPhoto.ImageLocation.ToString();
+                    }
+                    _Person.handicapped = chkdisability.Checked;
+                    _Person.created_date = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt");
+                    _Person.status = "active";
+                    _Person.deleted = false;
+
+                    if (!db.Persons.Any(i => i.first_name == _Person.first_name && i.last_name == _Person.last_name))
+                    {
+                        db.Persons.AddObject(_Person);
+                        db.SaveChanges();
+                    }
+
+                    PersonsListForm f = (PersonsListForm)this.Owner;
+                    f.RefreshGrid(1);
+                    this.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    Utils.ShowError(ex);
+                }
+            }
+        }
+        #region "Validation"
+        private bool IsPersonValid()
+        {
+            bool noerror = true;
+            errorProvider.Clear();
+
+            if (string.IsNullOrEmpty(txtFirstName.Text))
+            {
+                errorProvider.SetError(txtFirstName, "First Name cannot be null!");
+                noerror = false;
+            }
+            if (string.IsNullOrEmpty(txtLastName.Text))
+            {
+                errorProvider.SetError(txtLastName, "Last Name cannot be null!");
+                noerror = false;
+            }
+            if (string.IsNullOrEmpty(txtFatherName.Text))
+            {
+                errorProvider.SetError(txtFatherName, "Father Name cannot be null!");
+                noerror = false;
+            }
+            if (dtpDateofBirth.Value == null)
+            {
+                errorProvider.SetError(txtFatherName, "Father Name cannot be null!");
+                noerror = false;
+            }
+            else
+            {
+                DateTime dob = dtpDateofBirth.Value;
+                int age = DateTime.Now.Year - dob.Year;
+                if (age < 18)
+                {
+                    errorProvider.SetError(dtpDateofBirth, "Must be 18 years and above!");
+                    noerror = false;
+                }
+            }
+            if (cboGender.SelectedIndex == -1)
+            {
+                errorProvider.SetError(cboGender, "Select Gender!");
+                noerror = false;
+            }
+            if (string.IsNullOrEmpty(txtIDNo.Text))
+            {
+                errorProvider.SetError(txtIDNo, "Id No cannot be null!");
+                noerror = false;
+            }
+            if (string.IsNullOrEmpty(txtemail.Text))
+            {
+                errorProvider.SetError(txtemail, "Email cannot be null!");
+                noerror = false;
+            }
+            if (string.IsNullOrEmpty(txtphone_no.Text))
+            {
+                errorProvider.SetError(txtphone_no, "Phone No cannot be null!");
+                noerror = false;
+            }
+            if (cboBranch.SelectedIndex == -1)
+            {
+                errorProvider.SetError(cboBranch, "Select Branch!");
+                noerror = false;
+            }
+            if (cboEconomicActivity.SelectedIndex == -1)
+            {
+                errorProvider.SetError(cboEconomicActivity, "Select Economic Activity!");
+                noerror = false;
+            }
+            if (string.IsNullOrEmpty(txtPlaceofBirth.Text))
+            {
+                errorProvider.SetError(txtPlaceofBirth, "Place of Birth cannot be null!");
+                noerror = false;
+            }
+            if (string.IsNullOrEmpty(txtCitizenShip.Text))
+            {
+                errorProvider.SetError(txtCitizenShip, "CitizenShip cannot be null!");
+                noerror = false;
+            }
+            return noerror;
+        }
+        #endregion "Validation"
+        private void dtpDateofBirth_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int datetoday = DateTime.Today.Year;
+                int selecteddate = dtpDateofBirth.Value.Year;
+                int noofyrs = datetoday - selecteddate;
+                lblNoofYears.Text = noofyrs.ToString() + "  Years";
+            }
+            catch (Exception ex)
+            {
+                Utils.ShowError(ex);
+            }
         }
         private void btnUpload_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -48,6 +323,23 @@ namespace CustomerModule.Views
                 // Set filter for file extension 
                 //ofd.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png";
                 ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+                for (int i = 0; i < codecs.Count(); i++)
+                {
+                    var temp1 = codecs[0];
+                    var temp2 = codecs[1];
+                    var temp3 = codecs[2];
+                    var temp4 = codecs[3];
+                    var temp5 = codecs[4];
+
+                    codecs[0] = temp5;
+                    codecs[1] = temp2;
+                    codecs[2] = temp1;
+                    codecs[3] = temp3;
+                    codecs[4] = temp4;
+                }
+
+                //codecs = codecs.OrderByDescending(r => r.CodecName).ToArray();
                 string sep = string.Empty;
                 foreach (var c in codecs)
                 {
@@ -79,332 +371,48 @@ namespace CustomerModule.Views
                 Utils.ShowError(ex);
             }
         }
-        private void btnAdd_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
 
-            if (IsPersonValid())
-            {
-                try
-                {
-                    ClientModel _clientModel = new ClientModel();
-                    _clientModel.client_type_code = "I";
-                    if (!string.IsNullOrEmpty(txtFirstName.Text))
-                    {
-                        _clientModel.first_name = Utils.ConvertFirstLetterToUpper(txtFirstName.Text.Trim());
-                    }
-                    if (!string.IsNullOrEmpty(txtLastName.Text))
-                    {
-                        _clientModel.last_name = Utils.ConvertFirstLetterToUpper(txtLastName.Text.Trim());
-                    }
-                    if (!string.IsNullOrEmpty(txtFatherName.Text))
-                    {
-                        _clientModel.father_name = Utils.ConvertFirstLetterToUpper(txtFatherName.Text.Trim());
-                    }
-                    _clientModel.birth_date = dtpDateofBirth.Value;
-                    if (cboGender.SelectedIndex != -1)
-                    {
-                        _clientModel.sex = cboGender.SelectedValue.ToString();
-                    }
-                    if (!string.IsNullOrEmpty(txtIDNo.Text))
-                    {
-                        _clientModel.identification_data = txtIDNo.Text.Trim();
-                    }
-                    if (cboBranch.SelectedIndex != -1)
-                    {
-                        _clientModel.branch_id = int.Parse(cboBranch.SelectedValue.ToString());
-                    }
-                    if (cboEconomicActivity.SelectedIndex != -1)
-                    {
-                        _clientModel.activity_id = int.Parse(cboEconomicActivity.SelectedValue.ToString());
-                    }
-                    int cycle;
-                    if (!string.IsNullOrEmpty(txtLoanCycle.Text) && int.TryParse(txtLoanCycle.Text, out cycle))
-                    {
-                        _clientModel.loan_cycle = int.Parse(txtLoanCycle.Text.Trim());
-                    }
-                    if (!string.IsNullOrEmpty(txtPlaceofBirth.Text))
-                    {
-                        _clientModel.birth_place = Utils.ConvertFirstLetterToUpper(txtPlaceofBirth.Text.Trim());
-                    }
-                    if (!string.IsNullOrEmpty(txtCitizenShip.Text))
-                    {
-                        _clientModel.nationality = Utils.ConvertFirstLetterToUpper(txtCitizenShip.Text.Trim());
-                    }
-                    _clientModel.household_head = chkHeadofHouseHold.Checked;
-                    if (pbPhoto.ImageLocation != null)
-                    {
-                        _clientModel.image_path = pbPhoto.ImageLocation.ToString();
-                    }
-                    _clientModel.status = rep.GetDefaultStatus();
-                    _clientModel.active = false;
-                    _clientModel.bad_client = false;
-                    _clientModel.scoring = 0.599;
-                    _clientModel.creation_date = DateTime.Now;
-
-                    #region "Home Address"
-                    if (cboHAProvince.SelectedIndex != -1)
-                    {
-                        _clientModel.province_id = int.Parse(cboHAProvince.SelectedValue.ToString());
-                    }
-                    if (cboHADistrict.SelectedIndex != -1)
-                    {
-                        _clientModel.district_id = int.Parse(cboHADistrict.SelectedValue.ToString());
-                    }
-                    if (!string.IsNullOrEmpty(txtHACity.Text))
-                    {
-                        _clientModel.city = txtHACity.Text.Trim();
-                    }
-                    if (!string.IsNullOrEmpty(txtHAdress.Text))
-                    {
-                        _clientModel.address = txtHAdress.Text.Trim();
-                    }
-                    if (!string.IsNullOrEmpty(txtHAZipCode.Text))
-                    {
-                        _clientModel.zipCode = txtHAZipCode.Text.Trim();
-                    }
-                    if (cboHAHomeType.SelectedIndex != -1)
-                    {
-                        _clientModel.home_type = cboHAHomeType.SelectedValue.ToString();
-                    }
-                    if (!string.IsNullOrEmpty(txtHAHomePhone.Text))
-                    {
-                        _clientModel.home_phone = txtHAHomePhone.Text.Trim();
-                    }
-                    if (!string.IsNullOrEmpty(txtHACellPhone.Text))
-                    {
-                        _clientModel.personal_phone = txtHACellPhone.Text.Trim();
-                    }
-                    if (!string.IsNullOrEmpty(txtHAEmail.Text))
-                    {
-                        _clientModel.e_mail = txtHAEmail.Text.Trim();
-                    }
-                    #endregion "Home Address"
-
-                    #region "Business Address"
-                    if (cboBAProvince.SelectedIndex != -1)
-                    {
-                        _clientModel.secondary_province_id = int.Parse(cboBAProvince.SelectedValue.ToString());
-                    }
-                    if (cboBADistrict.SelectedIndex != -1)
-                    {
-                        _clientModel.secondary_district_id = int.Parse(cboBADistrict.SelectedValue.ToString());
-                    }
-                    if (!string.IsNullOrEmpty(txtBACity.Text))
-                    {
-                        _clientModel.secondary_city = txtBACity.Text.Trim();
-                    }
-                    if (!string.IsNullOrEmpty(txtBAAddress.Text))
-                    {
-                        _clientModel.secondary_address = txtBAAddress.Text.Trim();
-                    }
-                    if (!string.IsNullOrEmpty(txtBAZipCode.Text))
-                    {
-                        _clientModel.secondary_zipCode = txtBAZipCode.Text.Trim();
-                    }
-                    if (cboBAHomeType.SelectedIndex != -1)
-                    {
-                        _clientModel.secondary_homeType = cboBAHomeType.SelectedValue.ToString();
-                    }
-                    if (!string.IsNullOrEmpty(txtBAHomePhone.Text))
-                    {
-                        _clientModel.secondary_home_phone = txtBAHomePhone.Text.Trim();
-                    }
-                    if (!string.IsNullOrEmpty(txtBACellPhone.Text))
-                    {
-                        _clientModel.secondary_personal_phone = txtBACellPhone.Text.Trim();
-                    }
-                    if (!string.IsNullOrEmpty(txtBAEmail.Text))
-                    {
-                        _clientModel.secondary_e_mail = txtBAEmail.Text.Trim();
-                    }
-                    #endregion "Business Address"
-
-                    rep.AddNewPerson(_clientModel);
-
-                    PersonsListForm f = (PersonsListForm)this.Owner;
-                    f.RefreshGrid();
-                    this.Close();
-
-                }
-                catch (Exception ex)
-                {
-                    Utils.ShowError(ex);
-                }
-            }
-        }
-        #region "Validation"
-        private bool IsPersonValid()
-        {
-            bool noerror = true;
-            if (string.IsNullOrEmpty(txtFirstName.Text))
-            {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtFirstName, "First Name cannot be null!");
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtLastName.Text))
-            {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtLastName, "Last Name cannot be null!");
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtFatherName.Text))
-            {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtFatherName, "Father Name cannot be null!");
-                return false;
-            }
-            if (cboGender.SelectedIndex == -1)
-            {
-                errorProvider1.Clear();
-                errorProvider1.SetError(cboGender, "Select Gender!");
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtIDNo.Text))
-            {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtIDNo, "Id No cannot be null!");
-                return false;
-            }
-            if (cboBranch.SelectedIndex == -1)
-            {
-                errorProvider1.Clear();
-                errorProvider1.SetError(cboBranch, "Select Branch!");
-                return false;
-            }
-            if (cboEconomicActivity.SelectedIndex == -1)
-            {
-                errorProvider1.Clear();
-                errorProvider1.SetError(cboEconomicActivity, "Select Economic Activity!");
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtPlaceofBirth.Text))
-            {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtPlaceofBirth, "Place of Birth cannot be null!");
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtCitizenShip.Text))
-            {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtCitizenShip, "CitizenShip cannot be null!");
-                return false;
-            }
-            return noerror;
-        }
-        #endregion "Validation"
-        private void dtpDateofBirth_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int datetoday = DateTime.Today.Year;
-                int selecteddate = dtpDateofBirth.Value.Year;
-                int noofyrs = datetoday - selecteddate;
-                lblNoofYears.Text = noofyrs.ToString() + "  Years";
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowError(ex);
-            }
-        }
-        private void AddPersonForm_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                pbPhoto.SizeMode = PictureBoxSizeMode.StretchImage;
-                lblNoofYears.Text = string.Empty;
-                txtCitizenShip.Text = RegionAndLanguageHelper.GetMachineCurrentLocation();
-
-                //Gender Combox
-                var gender = new BindingList<KeyValuePair<string, string>>();
-                gender.Add(new KeyValuePair<string, string>("M", "Male"));
-                gender.Add(new KeyValuePair<string, string>("F", "Female"));
-                cboGender.DataSource = gender;
-                cboGender.ValueMember = "Key";
-                cboGender.DisplayMember = "Value";
-                cboGender.SelectedIndex = -1;
-
-                List<ActivityModel> _EconomicActivities = rep.GetEconomicActivitiesList();
-                cboEconomicActivity.DataSource = _EconomicActivities;
-                cboEconomicActivity.ValueMember = "activityid";
-                cboEconomicActivity.DisplayMember = "name";
-                cboEconomicActivity.SelectedIndex = -1;
-
-                var _branchesquery = from br in rep.GetNonDeletedBranches()
-                                     select br;
-                List<BranchModel> _Branches = _branchesquery.ToList();
-                cboBranch.DataSource = _Branches;
-                cboBranch.ValueMember = "branchid";
-                cboBranch.DisplayMember = "name";
-                cboBranch.SelectedIndex = -1;
-
-                var _haprovincesquery = from ds in rep.GetNonDeletedProvinces()
-                                        select ds;
-                List<ProvinceModel> _haProvinces = _haprovincesquery.ToList();
-                cboHAProvince.DataSource = _haProvinces;
-                cboHAProvince.ValueMember = "provinceid";
-                cboHAProvince.DisplayMember = "name";
-                cboHAProvince.SelectedIndex = -1;
-
-                var _baprovincesquery = from ds in rep.GetNonDeletedProvinces()
-                                        select ds;
-                List<ProvinceModel> _baProvinces = _baprovincesquery.ToList();
-                cboBAProvince.DataSource = _baProvinces;
-                cboBAProvince.ValueMember = "provinceid";
-                cboBAProvince.DisplayMember = "name";
-                cboBAProvince.SelectedIndex = -1;
-
-                lblCustomFieldsName.Text = string.Empty;
-                lblCustomFieldsDescription.Text = string.Empty;
-                chkattMandatory.Checked = false;
-                chkattUnique.Checked = false;
-            }
-            catch (Exception ex)
-            {
-                Utils.ShowError(ex);
-            }
-        }
         private void cboHAProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboHAProvince.SelectedIndex != -1)
-            {
-                try
-                {
-                    ProvinceModel _Province = (ProvinceModel)cboHAProvince.SelectedItem;
-                    var _hadistrictsquery = from ds in rep.GetNonDeletedDistricts(_Province.provinceid)
-                                            select ds;
-                    List<DistrictModel> _haDistricts = _hadistrictsquery.ToList();
-                    cboHADistrict.DataSource = _haDistricts;
-                    cboHADistrict.ValueMember = "districtid";
-                    cboHADistrict.DisplayMember = "name";
-                    cboHADistrict.SelectedIndex = -1;
-                }
-                catch (Exception ex)
-                {
-                    Utils.ShowError(ex);
-                }
-            }
+            //if (cboHAProvince.SelectedIndex != -1)
+            //{
+            //    try
+            //    {
+            //        ProvinceModel _Province = (ProvinceModel)cboHAProvince.SelectedItem;
+            //        var _hadistrictsquery = from ds in rep.GetNonDeletedDistricts(_Province.provinceid)
+            //                                select ds;
+            //        List<DistrictModel> _haDistricts = _hadistrictsquery.ToList();
+            //        cboHADistrict.DataSource = _haDistricts;
+            //        cboHADistrict.ValueMember = "districtid";
+            //        cboHADistrict.DisplayMember = "name";
+            //        cboHADistrict.SelectedIndex = -1;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Utils.ShowError(ex);
+            //    }
+            //}
         }
         private void cboBAProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboBAProvince.SelectedIndex != -1)
-            {
-                try
-                {
-                    ProvinceModel _Province = (ProvinceModel)cboBAProvince.SelectedItem;
-                    var _badistrictsquery = from ds in rep.GetNonDeletedDistricts(_Province.provinceid)
-                                            select ds;
-                    List<DistrictModel> _baDistricts = _badistrictsquery.ToList();
-                    cboBADistrict.DataSource = _baDistricts;
-                    cboBADistrict.ValueMember = "districtid";
-                    cboBADistrict.DisplayMember = "name";
-                    cboBADistrict.SelectedIndex = -1;
-                }
-                catch (Exception ex)
-                {
-                    Utils.ShowError(ex);
-                }
-            }
+            //if (cboBAProvince.SelectedIndex != -1)
+            //{
+            //    try
+            //    {
+            //        ProvinceModel _Province = (ProvinceModel)cboBAProvince.SelectedItem;
+            //        var _badistrictsquery = from ds in rep.GetNonDeletedDistricts(_Province.provinceid)
+            //                                select ds;
+            //        List<DistrictModel> _baDistricts = _badistrictsquery.ToList();
+            //        cboBADistrict.DataSource = _baDistricts;
+            //        cboBADistrict.ValueMember = "districtid";
+            //        cboBADistrict.DisplayMember = "name";
+            //        cboBADistrict.SelectedIndex = -1;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Utils.ShowError(ex);
+            //    }
+            //}
         }
         #endregion "Private Methods"
 

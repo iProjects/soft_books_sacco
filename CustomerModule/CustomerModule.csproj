@@ -42,6 +42,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
@@ -193,6 +194,12 @@
     <Compile Include="Views\QuestionaireForm.Designer.cs">
       <DependentUpon>QuestionaireForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\search_clients_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\search_clients_form.Designer.cs">
+      <DependentUpon>search_clients_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SolidarityGroupsListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\QuestionaireForm.resx">
       <DependentUpon>QuestionaireForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\search_clients_form.resx">
+      <DependentUpon>search_clients_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SolidarityGroupsListForm.resx">
       <DependentUpon>SolidarityGroupsListForm.cs</DependentUpon>

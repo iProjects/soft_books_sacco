@@ -28,16 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login_form));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnclose = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBoxServerLogin = new System.Windows.Forms.GroupBox();
+            this.btndatabasecontrolpanel = new System.Windows.Forms.LinkLabel();
+            this.chkshowserverloginpassword = new System.Windows.Forms.CheckBox();
             this.txtServerLoginPassword = new System.Windows.Forms.TextBox();
             this.txtServerLoginUserName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkshowpassword = new System.Windows.Forms.CheckBox();
             this.chkremember = new System.Windows.Forms.CheckBox();
             this.chkIntegratedSecurity = new System.Windows.Forms.CheckBox();
             this.cbosystem = new System.Windows.Forms.ComboBox();
@@ -46,8 +50,8 @@
             this.txtusername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
-            this.loggedInTimer = new System.Windows.Forms.Timer();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.loggedInTimer = new System.Windows.Forms.Timer(this.components);
             this.logstatus = new System.Windows.Forms.StatusStrip();
             this.lblcopyright = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblLoggedInTime = new System.Windows.Forms.ToolStripStatusLabel();
@@ -63,7 +67,7 @@
             this.groupBox1.Controls.Add(this.btnclose);
             this.groupBox1.Controls.Add(this.btnOK);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 248);
+            this.groupBox1.Location = new System.Drawing.Point(0, 278);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(402, 63);
             this.groupBox1.TabIndex = 2;
@@ -102,17 +106,43 @@
             // 
             // groupBoxServerLogin
             // 
+            this.groupBoxServerLogin.Controls.Add(this.btndatabasecontrolpanel);
+            this.groupBoxServerLogin.Controls.Add(this.chkshowserverloginpassword);
             this.groupBoxServerLogin.Controls.Add(this.txtServerLoginPassword);
             this.groupBoxServerLogin.Controls.Add(this.txtServerLoginUserName);
             this.groupBoxServerLogin.Controls.Add(this.label4);
             this.groupBoxServerLogin.Controls.Add(this.label5);
             this.groupBoxServerLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBoxServerLogin.Location = new System.Drawing.Point(0, 148);
+            this.groupBoxServerLogin.Location = new System.Drawing.Point(0, 163);
             this.groupBoxServerLogin.Name = "groupBoxServerLogin";
-            this.groupBoxServerLogin.Size = new System.Drawing.Size(402, 100);
+            this.groupBoxServerLogin.Size = new System.Drawing.Size(402, 115);
             this.groupBoxServerLogin.TabIndex = 1;
             this.groupBoxServerLogin.TabStop = false;
             this.groupBoxServerLogin.Text = "server login";
+            // 
+            // btndatabasecontrolpanel
+            // 
+            this.btndatabasecontrolpanel.AutoSize = true;
+            this.btndatabasecontrolpanel.LinkColor = System.Drawing.Color.Yellow;
+            this.btndatabasecontrolpanel.Location = new System.Drawing.Point(235, 90);
+            this.btndatabasecontrolpanel.Name = "btndatabasecontrolpanel";
+            this.btndatabasecontrolpanel.Size = new System.Drawing.Size(119, 13);
+            this.btndatabasecontrolpanel.TabIndex = 7;
+            this.btndatabasecontrolpanel.TabStop = true;
+            this.btndatabasecontrolpanel.Text = "Database Control Panel";
+            this.btndatabasecontrolpanel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btndatabasecontrolpanel_LinkClicked);
+            // 
+            // chkshowserverloginpassword
+            // 
+            this.chkshowserverloginpassword.AutoSize = true;
+            this.chkshowserverloginpassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkshowserverloginpassword.Location = new System.Drawing.Point(98, 88);
+            this.chkshowserverloginpassword.Name = "chkshowserverloginpassword";
+            this.chkshowserverloginpassword.Size = new System.Drawing.Size(99, 17);
+            this.chkshowserverloginpassword.TabIndex = 6;
+            this.chkshowserverloginpassword.Text = "Show Password";
+            this.chkshowserverloginpassword.UseVisualStyleBackColor = true;
+            this.chkshowserverloginpassword.CheckedChanged += new System.EventHandler(this.chkshowserverloginpassword_CheckedChanged);
             // 
             // txtServerLoginPassword
             // 
@@ -159,6 +189,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.chkshowpassword);
             this.groupBox3.Controls.Add(this.chkremember);
             this.groupBox3.Controls.Add(this.chkIntegratedSecurity);
             this.groupBox3.Controls.Add(this.cbosystem);
@@ -170,22 +201,36 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(402, 148);
+            this.groupBox3.Size = new System.Drawing.Size(402, 163);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "system login";
+            // 
+            // chkshowpassword
+            // 
+            this.chkshowpassword.AutoSize = true;
+            this.chkshowpassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkshowpassword.Location = new System.Drawing.Point(251, 140);
+            this.chkshowpassword.Name = "chkshowpassword";
+            this.chkshowpassword.Size = new System.Drawing.Size(99, 17);
+            this.chkshowpassword.TabIndex = 7;
+            this.chkshowpassword.Text = "Show Password";
+            this.chkshowpassword.UseVisualStyleBackColor = true;
+            this.chkshowpassword.CheckedChanged += new System.EventHandler(this.chkshowpassword_CheckedChanged);
             // 
             // chkremember
             // 
             this.chkremember.AutoSize = true;
             this.chkremember.Checked = true;
             this.chkremember.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkremember.Location = new System.Drawing.Point(287, 117);
+            this.chkremember.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkremember.Location = new System.Drawing.Point(251, 117);
             this.chkremember.Name = "chkremember";
-            this.chkremember.Size = new System.Drawing.Size(72, 17);
-            this.chkremember.TabIndex = 4;
-            this.chkremember.Text = "remember";
+            this.chkremember.Size = new System.Drawing.Size(123, 17);
+            this.chkremember.TabIndex = 6;
+            this.chkremember.Text = "Remember Password";
             this.chkremember.UseVisualStyleBackColor = true;
+            this.chkremember.CheckedChanged += new System.EventHandler(this.chkremember_CheckedChanged);
             // 
             // chkIntegratedSecurity
             // 
@@ -278,7 +323,7 @@
             this.logstatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblcopyright,
             this.lblLoggedInTime});
-            this.logstatus.Location = new System.Drawing.Point(0, 311);
+            this.logstatus.Location = new System.Drawing.Point(0, 341);
             this.logstatus.Name = "logstatus";
             this.logstatus.Size = new System.Drawing.Size(402, 22);
             this.logstatus.TabIndex = 0;
@@ -303,7 +348,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.CornflowerBlue;
             this.CancelButton = this.btnclose;
-            this.ClientSize = new System.Drawing.Size(402, 333);
+            this.ClientSize = new System.Drawing.Size(402, 363);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBoxServerLogin);
             this.Controls.Add(this.groupBox1);
@@ -350,6 +395,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Timer loggedInTimer;
+        private System.Windows.Forms.CheckBox chkshowserverloginpassword;
+        private System.Windows.Forms.CheckBox chkshowpassword;
         private System.Windows.Forms.CheckBox chkremember;
+        private System.Windows.Forms.LinkLabel btndatabasecontrolpanel;
     }
 }

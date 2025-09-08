@@ -177,13 +177,13 @@ namespace CustomerModule.Views
                     }
                     if (!string.IsNullOrEmpty(txtHAEmail.Text))
                     {
-                        _clientModel.e_mail = txtHAEmail.Text;
+                        _clientModel.email = txtHAEmail.Text;
                     }
 
                     rep.UpdatePerson(_clientModel);
 
                     PersonsListForm f = (PersonsListForm)this.Owner;
-                    f.RefreshGrid();
+                    f.RefreshGrid(1);
                     this.Close();
 
                 }
@@ -207,6 +207,23 @@ namespace CustomerModule.Views
                 // Set filter for file extension 
                 //ofd.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png";
                 ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+                for (int i = 0; i < codecs.Count(); i++)
+                {
+                    var temp1 = codecs[0];
+                    var temp2 = codecs[1];
+                    var temp3 = codecs[2];
+                    var temp4 = codecs[3];
+                    var temp5 = codecs[4];
+
+                    codecs[0] = temp5;
+                    codecs[1] = temp2;
+                    codecs[2] = temp1;
+                    codecs[3] = temp3;
+                    codecs[4] = temp4;
+                }
+
+                //codecs = codecs.OrderByDescending(r => r.CodecName).ToArray();
                 string sep = string.Empty;
                 foreach (var c in codecs)
                 {
@@ -1226,11 +1243,11 @@ namespace CustomerModule.Views
                         _savingscontract.ibt_fee_min = _savingsproduct.ibt_fee_min;
                         _savingscontract.initial_amount_max = _savingsproduct.initial_amount_max;
                         _savingscontract.initial_amount_min = _savingsproduct.initial_amount_min;
-                        _savingscontract.interest_base = _savingsproduct.interest_base;
-                        _savingscontract.interest_frequency = _savingsproduct.interest_frequency;
+                        _savingscontract.interest_base = _savingsproduct.interest_base ?? 0;
+                        _savingscontract.interest_frequency = _savingsproduct.interest_frequency ?? 0;
                         _savingscontract.interest_rate_max = _savingsproduct.interest_rate_max;
                         _savingscontract.interest_rate_min = _savingsproduct.interest_rate_min;
-                        _savingscontract.is_ibt_fee_flat = _savingsproduct.is_ibt_fee_flat;
+                        _savingscontract.is_ibt_fee_flat = _savingsproduct.is_ibt_fee_flat ?? false;
                         _savingscontract.management_fees = _savingsproduct.management_fees;
                         _savingscontract.management_fees_freq = _savingsproduct.management_fees_freq;
                         _savingscontract.management_fees_max = _savingsproduct.management_fees_max;
@@ -1247,7 +1264,7 @@ namespace CustomerModule.Views
                         _savingscontract.reopen_fees = _savingsproduct.reopen_fees;
                         _savingscontract.reopen_fees_max = _savingsproduct.reopen_fees_max;
                         _savingscontract.reopen_fees_min = _savingsproduct.reopen_fees_min;
-                        _savingscontract.transfer_fees_type = _savingsproduct.transfer_fees_type;
+                        _savingscontract.transfer_fees_type = _savingsproduct.transfer_fees_type ?? 0;
                         _savingscontract.transfer_max = _savingsproduct.transfer_max;
                         _savingscontract.transfer_min = _savingsproduct.transfer_min;
                         _savingscontract.withdraw_fees_type = _savingsproduct.withdraw_fees_type;
@@ -2064,9 +2081,9 @@ namespace CustomerModule.Views
                 {
                     txtHACellPhone.Text = _clientModel.personal_phone.Trim();
                 }
-                if (_clientModel.e_mail != null)
+                if (_clientModel.email != null)
                 {
-                    txtHAEmail.Text = _clientModel.e_mail.Trim();
+                    txtHAEmail.Text = _clientModel.email.Trim();
                 }
                 #endregion "Home Address"
 
@@ -4911,7 +4928,7 @@ namespace CustomerModule.Views
                 Utils.ShowError(ex);
             }
         }
-        private void SaveLoansContractInstallments(ClientLoanContractModel  _loan_contract )
+        private void SaveLoansContractInstallments(ClientLoanContractModel _loan_contract)
         {
             try
             {
@@ -4995,7 +5012,7 @@ namespace CustomerModule.Views
                                     _installment.expected_date = _start_date.AddMonths(1);
                                     _installment._expected_date = _start_date.AddMonths(1);
                                     _installment.interest_repayment = decimal.Parse(interestPaid.ToString());
-                                    _installment.capital_repayment = decimal.Parse(monthly.ToString()); 
+                                    _installment.capital_repayment = decimal.Parse(monthly.ToString());
                                     _installment.number = count;
                                     _installment.paid_interest = 0M;
                                     _installment.paid_capital = 0M;
@@ -5065,7 +5082,7 @@ namespace CustomerModule.Views
                                     _installment.expected_date = _start_date.AddYears(1);
                                     _installment._expected_date = _start_date.AddYears(1);
                                     _installment.interest_repayment = decimal.Parse(interestPaid.ToString());
-                                    _installment.capital_repayment = decimal.Parse(monthly.ToString()); 
+                                    _installment.capital_repayment = decimal.Parse(monthly.ToString());
                                     _installment.number = count;
                                     _installment.paid_interest = 0M;
                                     _installment.paid_capital = 0M;
@@ -5517,10 +5534,10 @@ namespace CustomerModule.Views
                             bindingSourceInstallments.DataSource = null;
                             var _installmentsquery = from ins in rep.GetAllContractInstallments(_loancontract.contractid)
                                                      select ins;
-                            List<InstallmentsModel> _contract_installments=_installmentsquery.ToList();
+                            List<InstallmentsModel> _contract_installments = _installmentsquery.ToList();
                             _installments = new List<InstallmentsModel>();
-                             foreach(var installment in _contract_installments)
-                             {
+                            foreach (var installment in _contract_installments)
+                            {
                                 InstallmentsModel _installment = new InstallmentsModel();
                                 _installment.expected_date = installment.expected_date;
                                 _installment._expected_date = installment.expected_date;
@@ -5542,7 +5559,7 @@ namespace CustomerModule.Views
                                 _installment.installment_monthly_total = double.Parse((installment.interest_repayment + installment.capital_repayment).ToString());
                                 _installment.installmentid = installment.number;
 
-                                _installments.Add(_installment); 
+                                _installments.Add(_installment);
                             }
 
                             groupBox13.Text = _installments.Count.ToString();
@@ -5615,7 +5632,7 @@ namespace CustomerModule.Views
                             dataGridViewInstallments.DataSource = bindingSourceInstallments;
                         }
                         break;
-                } 
+                }
             }
             catch (Exception ex)
             {
@@ -7053,7 +7070,7 @@ namespace CustomerModule.Views
                     MessageBox.Show("Client cannot be null!", Utils.APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                if ( _branchmodel == null)
+                if (_branchmodel == null)
                 {
                     MessageBox.Show("Branch cannot be null!", Utils.APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;

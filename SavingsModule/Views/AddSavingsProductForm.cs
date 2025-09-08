@@ -54,7 +54,36 @@ namespace SavingsModule.Views
                         savings.code = Utils.ConvertFirstLetterToUpper(txtCode.Text);
                     }
                     savings.product_type = "B";
-                    savings.client_type = "-";
+                    foreach (Control ctrl in groupBoxClientType.Controls)
+                    {
+                        if (ctrl.GetType() == typeof(RadioButton))
+                        {
+                            if (((RadioButton)ctrl).Checked)
+                            {
+                                switch (((RadioButton)ctrl).Name)
+                                {
+                                    case "chkAllClients":
+                                        savings.client_type = Enums.Client_Types.All.ToString();
+                                        break;
+                                    case "chkSolidarityClient":
+                                        savings.client_type = Enums.Client_Types.Solidarity.ToString();
+                                        break;
+                                    case "chkNonSolidarityClient":
+                                        savings.client_type = Enums.Client_Types.NonSolidarity.ToString();
+                                        break;
+                                    case "chkIndividualClient":
+                                        savings.client_type = Enums.Client_Types.Individual.ToString();
+                                        break;
+                                    case "chkCorporateClient":
+                                        savings.client_type = Enums.Client_Types.Corporate.ToString();
+                                        break;
+                                    default:
+                                        savings.client_type = Enums.Client_Types.All.ToString();
+                                        break;
+                                }
+                            }
+                        }
+                    }
                     savings.deleted = false;
                     if (cboCurrency.SelectedIndex != -1)
                     {
@@ -387,8 +416,12 @@ namespace SavingsModule.Views
 
                     rep.AddNewSavingBookProduct(savings);
 
-                    SavingsProductsListForm f = (SavingsProductsListForm)this.Owner;
-                    f.RefreshGrid();
+                    //SavingsProductsListForm f = (SavingsProductsListForm)this.Owner;
+                    SavingsProductsListForm f = new SavingsProductsListForm(connection);
+                    if (this.Owner == f)
+                    {
+                        f.RefreshGrid();
+                    }
                     this.Close();
                 }
                 catch (Exception ex)
@@ -403,44 +436,44 @@ namespace SavingsModule.Views
             bool noerror = true;
             if (string.IsNullOrEmpty(txtName.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtName, "Name cannot be null!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtName, "Name cannot be null!");
                 return false;
             }
             if (string.IsNullOrEmpty(txtCode.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtCode, "Code cannot be null!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtCode, "Code cannot be null!");
                 return false;
             }
             if (string.IsNullOrEmpty(txtMinInitialAmount.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtMinInitialAmount, "Min Initial Amount cannot be null!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtMinInitialAmount, "Min Initial Amount cannot be null!");
                 return false;
             }
             if (string.IsNullOrEmpty(txtMaxInitialAmount.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtMaxInitialAmount, "Max Initial Amount cannot be null!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtMaxInitialAmount, "Max Initial Amount cannot be null!");
                 return false;
             }
             if (string.IsNullOrEmpty(txtMinBalance.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtMinBalance, "Min Balance Amount cannot be null!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtMinBalance, "Min Balance Amount cannot be null!");
                 return false;
             }
             if (string.IsNullOrEmpty(txtMaxBalance.Text))
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(txtMaxBalance, "Max Balance Amount cannot be null!");
+                errorProvider.Clear();
+                errorProvider.SetError(txtMaxBalance, "Max Balance Amount cannot be null!");
                 return false;
             }
             if (cboCurrency.SelectedIndex == -1)
             {
-                errorProvider1.Clear();
-                errorProvider1.SetError(cboCurrency, "Select Currency!");
+                errorProvider.Clear();
+                errorProvider.SetError(cboCurrency, "Select Currency!");
                 return false;
             }
             return noerror;
