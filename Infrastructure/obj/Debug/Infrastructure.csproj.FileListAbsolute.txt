@@ -481,3 +481,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\SPlogo.jpg
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Infrastructure.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Infrastructure.pdb
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Infrastructure\obj\Debug\Infrastructure.dll
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Infrastructure\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache

@@ -611,6 +611,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="libs\System.Data.SQLite.dll.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -760,6 +761,11 @@
     <Content Include="Help\js\utilz.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="libs\AxShockwaveFlashObjects.dll" />
+    <Content Include="libs\CrystalDecisions.CrystalReports.Engine.dll" />
+    <Content Include="libs\CrystalDecisions.ReportSource.dll" />
+    <Content Include="libs\CrystalDecisions.Shared.dll" />
+    <Content Include="libs\CrystalDecisions.Windows.Forms.dll" />
     <Content Include="libs\EFWinforms.dll" />
     <Content Include="libs\EnvDTE.dll" />
     <Content Include="libs\EnvDTE80.dll" />
@@ -848,9 +854,29 @@
     <Content Include="libs\Microsoft.VisualStudio.Tools.Applications.ServerDocument.v9.0.dll" />
     <Content Include="libs\Microsoft.VisualStudio.VSHelp.dll" />
     <Content Include="libs\Microsoft.VisualStudio.VSHelp80.dll" />
+    <Content Include="libs\MongoDB.Bson.dll" />
+    <Content Include="libs\MongoDB.Bson.xml" />
+    <Content Include="libs\MongoDB.Driver.dll" />
+    <Content Include="libs\MongoDB.Driver.xml" />
+    <Content Include="libs\MongoDB.Embedded.dll" />
+    <Content Include="libs\Mono.Security.dll" />
+    <Content Include="libs\MySql.Data.dll" />
+    <Content Include="libs\MySql.Data.Entity.dll" />
+    <Content Include="libs\MySql.Data.xml" />
+    <Content Include="libs\Npgsql.dll" />
+    <Content Include="libs\Npgsql.xml" />
     <Content Include="libs\office.dll" />
     <Content Include="libs\PDUConverter.dll" />
+    <Content Include="libs\SQLite.Designer.dll" />
+    <Content Include="libs\SQLite.Designer.xml" />
+    <Content Include="libs\SQLite.Interop.dll" />
     <Content Include="libs\stdole.dll" />
+    <Content Include="libs\System.Data.SQLite.dll" />
+    <Content Include="libs\System.Data.SQLite.EF6.dll" />
+    <Content Include="libs\System.Data.SQLite.EF6.xml" />
+    <Content Include="libs\System.Data.SQLite.Linq.dll" />
+    <Content Include="libs\System.Data.SQLite.Linq.xml" />
+    <Content Include="libs\System.Data.SQLite.xml" />
     <Content Include="libs\System.Windows.Forms.Calendar.dll" />
     <Content Include="libs\TSWizards.dll" />
     <Content Include="libs\VSLangProj.dll" />

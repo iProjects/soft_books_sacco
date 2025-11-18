@@ -529,3 +529,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\Database.ico
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\DatabaseAdministrationModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\DatabaseAdministrationModule.pdb
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\DatabaseAdministrationModule\obj\Debug\DatabaseAdministrationModule.dll
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SQLite.Interop.dll

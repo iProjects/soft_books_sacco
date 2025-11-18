@@ -360,7 +360,10 @@ namespace WinSBSacco
                 _notificationdto.TAG = args.TAG;
 
                 _lstnotificationdto.Add(_notificationdto);
+
                 Console.WriteLine(args.message);
+
+                //helper_utils.getInstance(_notificationmessageEventname).log_messages(args.message, TAG);
 
                 Log.Write_To_Log_File_temp_dir(new Exception(_logtext));
 

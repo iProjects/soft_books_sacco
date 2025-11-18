@@ -844,3 +844,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\AdminstratorModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\AdminstratorModule.pdb
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\AdminstratorModule\obj\Debug\AdminstratorModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\AdminstratorModule\obj\Debug\AdminstratorModule.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SQLite.Interop.dll

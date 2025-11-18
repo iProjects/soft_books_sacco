@@ -20,3 +20,5 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\CommonLib.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\CommonLib.pdb
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\CommonLib\obj\Debug\CommonLib.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\CommonLib\obj\Debug\CommonLib.pdb
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\CommonLib\obj\Debug\CommonLib.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SQLite.Interop.dll

@@ -560,6 +560,7 @@ namespace Splash
             try
             {
                 NotifyMessage(Utils.APP_NAME, "System Launching...");
+                Console.WriteLine("System Launching...");
 
                 lblappname.Text = Utils.APP_NAME;
                 lblappname.BackColor = Color.Black;
@@ -575,11 +576,12 @@ namespace Splash
                 string AssemblyCompany = app_assembly_info.AssemblyCompany;
                 this.Text = AssemblyProduct;
                 this.lblcopyright.Text = "Copyright ©  " + DateTime.Now.Year.ToString() + "  " + AssemblyCompany + " - All Rights Reserved";
+                Console.WriteLine("Copyright ©  " + DateTime.Now.Year.ToString() + "  " + AssemblyCompany + " - All Rights Reserved");
 
                 //app version
                 var _buid_version = Application.ProductVersion;
-                lblbuildversion.Text = "build version - " + assembly_version;
-
+                lblbuildversion.Text = "Build version - " + assembly_version;
+                Console.WriteLine("Build version - " + assembly_version);
             }
             catch (Exception ex)
             {

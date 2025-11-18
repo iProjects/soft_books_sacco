@@ -504,3 +504,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\help_icon.ico
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\reports.ico
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\settings.ico
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\new_splash_screen.jpg
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SQLite.Interop.dll

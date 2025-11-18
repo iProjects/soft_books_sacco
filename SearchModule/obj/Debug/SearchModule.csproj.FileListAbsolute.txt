@@ -503,3 +503,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\Resources\SPlogo.jpg
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SearchModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SearchModule.pdb
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\SearchModule\obj\Debug\SearchModule.dll
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SQLite.Interop.dll

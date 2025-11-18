@@ -513,3 +513,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SavingsModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SavingsModule.pdb
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\SavingsModule\obj\Debug\SavingsModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\SavingsModule\obj\Debug\SavingsModule.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SQLite.Interop.dll

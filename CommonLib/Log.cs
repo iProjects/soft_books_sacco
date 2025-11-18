@@ -384,6 +384,61 @@ namespace CommonLib
             }
         }
 
+        public static bool Write_To_Log_File_web(Exception sourceException)
+        {
+            string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log", "log.txt");
+
+            Console.WriteLine(filePath);
+
+            var directory = Path.GetDirectoryName(filePath);
+
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Create(filePath);
+            }
+
+            FileStream fs = null;
+            StreamWriter sw = null;
+            try
+            {
+                fs = new FileStream(filePath, FileMode.Append, FileAccess.Write);
+                sw = new StreamWriter(fs);
+                sw.WriteLine("==================================================================");
+                sw.WriteLine("ERROR OCCOURED AT :" + DateTime.Now.ToString());
+                sw.WriteLine("SOURCE:" + sourceException.Source);
+                sw.WriteLine("MESSAGE:" + sourceException.Message);
+                sw.WriteLine("Whole Exception:" + sourceException.ToString());
+                sw.WriteLine("==================================================================");
+                sw.WriteLine("");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sw != null)
+                {
+                    sw.Close();
+                }
+
+                if (fs != null)
+                {
+                    fs.Close();
+                }
+            }
+        }
+
+
+
+
+
 
 
     }

@@ -505,3 +505,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\TellersModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\TellersModule.pdb
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\TellersModule\obj\Debug\TellersModule.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\TellersModule\obj\Debug\TellersModule.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SQLite.Interop.dll

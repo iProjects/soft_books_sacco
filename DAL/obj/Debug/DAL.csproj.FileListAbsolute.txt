@@ -28,3 +28,4 @@ D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\DAL.pdb
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\DAL\obj\Debug\DAL.dll
 D:\wakxpx\csharp\visualstudio\2010\SBSacco\DAL\obj\Debug\DAL.pdb
+D:\wakxpx\csharp\visualstudio\2010\SBSacco\Build\Debug\SQLite.Interop.dll

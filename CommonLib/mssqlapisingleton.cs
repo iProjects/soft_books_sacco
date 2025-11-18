@@ -29,6 +29,7 @@ namespace CommonLib
         private const string db_name = "SBSchoolDB";//DBContract.DATABASE_NAME;
         private event EventHandler<notificationmessageEventArgs> _notificationmessageEventname;
         private string TAG;
+        mssqlconnectionstringdto _connectionstringdto = new mssqlconnectionstringdto();
 
         private mssqlapisingleton(EventHandler<notificationmessageEventArgs> notificationmessageEventname)
         {
@@ -50,6 +51,34 @@ namespace CommonLib
         {
 
         }
+        public responsedto set_up_database_on_load()
+        {
+            responsedto _responsedto = new responsedto();
+
+            responsedto _database_responsedto = createdatabaseonfirstload();
+            responsedto _tables_responsedto = createtablesonfirstload();
+
+            if (!string.IsNullOrEmpty(_database_responsedto.responsesuccessmessage))
+            {
+                _responsedto.responsesuccessmessage += _database_responsedto.responsesuccessmessage + Environment.NewLine;
+            }
+            if (!string.IsNullOrEmpty(_database_responsedto.responseerrormessage))
+            {
+                _responsedto.responseerrormessage += _database_responsedto.responseerrormessage + Environment.NewLine;
+            }
+
+            if (!string.IsNullOrEmpty(_tables_responsedto.responsesuccessmessage))
+            {
+                _responsedto.responsesuccessmessage += _tables_responsedto.responsesuccessmessage;
+            }
+            if (!string.IsNullOrEmpty(_tables_responsedto.responseerrormessage))
+            {
+                _responsedto.responseerrormessage += _tables_responsedto.responseerrormessage;
+            }
+
+            return _responsedto;
+        }
+
         private void setconnectionstring()
         {
             try
@@ -79,33 +108,33 @@ namespace CommonLib
             "Password=" + _connectionstringdto.password;
             return CONNECTION_STRING;
         }
-        void createdatabaseonfirstload()
+        private responsedto createdatabaseonfirstload()
         {
-            mssqlconnectionstringdto _connectionstringdto = new mssqlconnectionstringdto();
+            _connectionstringdto = new mssqlconnectionstringdto();
 
             _connectionstringdto.datasource = System.Configuration.ConfigurationManager.AppSettings["mssql_datasource"];
             _connectionstringdto.database = System.Configuration.ConfigurationManager.AppSettings["mssql_database"];
             _connectionstringdto.userid = System.Configuration.ConfigurationManager.AppSettings["mssql_userid"];
             _connectionstringdto.password = System.Configuration.ConfigurationManager.AppSettings["mssql_password"];
             _connectionstringdto.port = System.Configuration.ConfigurationManager.AppSettings["mssql_port"];
-            _connectionstringdto.new_database_name = System.Configuration.ConfigurationManager.AppSettings["mssql_database"];
 
-            createdatabasegivenname(_connectionstringdto);
+            responsedto _responsedto = create_database_given_name(_connectionstringdto);
+            return _responsedto;
         }
-        void createtablesonfirstload()
+        private responsedto createtablesonfirstload()
         {
-            mssqlconnectionstringdto _connectionstringdto = new mssqlconnectionstringdto();
+            _connectionstringdto = new mssqlconnectionstringdto();
 
             _connectionstringdto.datasource = System.Configuration.ConfigurationManager.AppSettings["mssql_datasource"];
             _connectionstringdto.database = System.Configuration.ConfigurationManager.AppSettings["mssql_database"];
             _connectionstringdto.userid = System.Configuration.ConfigurationManager.AppSettings["mssql_userid"];
             _connectionstringdto.password = System.Configuration.ConfigurationManager.AppSettings["mssql_password"];
             _connectionstringdto.port = System.Configuration.ConfigurationManager.AppSettings["mssql_port"];
-            _connectionstringdto.new_database_name = System.Configuration.ConfigurationManager.AppSettings["mssql_database"];
 
-            createtables(_connectionstringdto);
+            responsedto _responsedto = create_tables(_connectionstringdto);
+            return _responsedto;
         }
-        public responsedto createdatabasegivenname(mssqlconnectionstringdto _connectionstringdto)
+        public responsedto create_database_given_name(mssqlconnectionstringdto _connectionstringdto)
         {
             responsedto _responsedto = new responsedto();
             try
@@ -158,7 +187,7 @@ namespace CommonLib
                 return false;
             }
         }
-        public responsedto createtables(mssqlconnectionstringdto _connectionstringdto)
+        public responsedto create_tables(mssqlconnectionstringdto _connectionstringdto)
         {
             responsedto _responsedto = new responsedto();
             responsedto _innerresponsedto = new responsedto();
@@ -344,7 +373,7 @@ namespace CommonLib
                 "User Id=" + _connectionstringdto.userid + ";" +
                 "Password=" + _connectionstringdto.password;
 
-                string query = DBContract.SELECT_ALL_QUERY;
+                string query = DBContract.logs_entity_table.SELECT_ALL_QUERY;
 
                 int count = getrecordscountgiventable(DBContract.error_entity_table.TABLE_NAME, CONNECTION_STRING);
 
@@ -443,16 +472,16 @@ namespace CommonLib
         }
         public DataTable getallrecordsglobal()
         {
-            DataTable dt = getallrecordsglobal(DBContract.SELECT_ALL_QUERY);
+            DataTable dt = getallrecordsglobal(DBContract.logs_entity_table.SELECT_ALL_QUERY);
             return dt;
         }
 
-        public List<error_logger_dto> getallweights()
+        public List<error_logger_dto> getalllogss()
         {
             List<error_logger_dto> weights = new List<error_logger_dto>();
             using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
             {
-                using (SqlCommand cmd = new SqlCommand(DBContract.SELECT_ALL_QUERY, conn))
+                using (SqlCommand cmd = new SqlCommand(DBContract.logs_entity_table.SELECT_ALL_QUERY, conn))
                 {
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -530,209 +559,6 @@ namespace CommonLib
                 }
             }
         }
-
-        public responsedto createweightindatabase(error_logger_dto _weight_record_dto)
-        {
-            responsedto _responsedto = new responsedto();
-            try
-            {
-                string query = "INSERT INTO " +
-                DBContract.error_entity_table.TABLE_NAME +
-                " ( " +
-                DBContract.error_entity_table.WEIGHT_WEIGHT + ", " +
-                DBContract.error_entity_table.WEIGHT_DATE + ", " +
-                DBContract.error_entity_table.WEIGHT_STATUS + ", " +
-                DBContract.error_entity_table.CREATED_DATE + ", " +
-                DBContract.error_entity_table.WEIGHT_APP +
-                " ) VALUES(@weight_weight, @weight_date, @weight_status, @created_date, @weight_app)";
-
-                //here we are setting the parameter values that will be actually replaced in the query in Execute method
-                var args = new Dictionary<string, object>
-			    {
-				    {"@weight_weight", _weight_record_dto.error_description},
-				    {"@weight_date", _weight_record_dto.error_date},
-                    {"@weight_status", "active"},
-				    {"@created_date", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt")},
-                    {"@weight_app", _weight_record_dto.error_source}
-			    };
-
-                int numberOfRowsAffected = insertgeneric(query, args, CONNECTION_STRING);
-                if (numberOfRowsAffected != 1)
-                {
-                    _responsedto.isresponseresultsuccessful = false;
-                    _responsedto.responseerrormessage = "Record creation failed in " + DBContract.mssql + ".";
-                    this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(_responsedto.responseerrormessage, TAG));
-                    return _responsedto;
-                }
-                else
-                {
-                    _responsedto.isresponseresultsuccessful = true;
-                    _responsedto.responsesuccessmessage = "Record created successfully in " + DBContract.mssql + ".";
-                    this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(_responsedto.responsesuccessmessage, TAG));
-                    return _responsedto;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.Message, TAG));
-                _responsedto.isresponseresultsuccessful = false;
-                _responsedto.responseerrormessage = ex.Message;
-                return _responsedto;
-            }
-        }
-        public responsedto updateweightindatabase(error_logger_dto _weight_record_dto)
-        {
-            responsedto _responsedto = new responsedto();
-            try
-            {
-                string query = "UPDATE " +
-                DBContract.error_entity_table.TABLE_NAME +
-                " SET " +
-                DBContract.error_entity_table.WEIGHT_WEIGHT + " = @weight_weight, " +
-                DBContract.error_entity_table.WEIGHT_DATE + " = @weight_date " +
-                "WHERE " +
-                DBContract.error_entity_table.WEIGHT_ID + " = @weight_id";
-
-                //here we are setting the parameter values that will be actually replaced in the query in Execute method
-                var args = new Dictionary<string, object>
-			    {
-				    {"@weight_id", _weight_record_dto.error_id},
-				    {"@weight_weight", _weight_record_dto.error_description},
-				    {"@weight_date", _weight_record_dto.error_date}
-			    };
-
-                int numberOfRowsAffected = updategeneric(query, args);
-                if (numberOfRowsAffected != 1)
-                {
-                    _responsedto.isresponseresultsuccessful = false;
-                    _responsedto.responseerrormessage = "Record update failed in " + DBContract.mssql + ".";
-                    this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(_responsedto.responseerrormessage, TAG));
-                    return _responsedto;
-                }
-                else
-                {
-                    _responsedto.isresponseresultsuccessful = true;
-                    _responsedto.responsesuccessmessage = "Record updated successfully in " + DBContract.mssql + ".";
-                    this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(_responsedto.responsesuccessmessage, TAG));
-                    return _responsedto;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.Message, TAG));
-                _responsedto.isresponseresultsuccessful = false;
-                _responsedto.responseerrormessage = ex.Message;
-                return _responsedto;
-            }
-        }
-        public int updategeneric(string query, Dictionary<string, object> args)
-        {
-            int numberOfRowsAffected;
-            //setup the connection to the database
-            using (var con = new SqlConnection(CONNECTION_STRING))
-            {
-                con.Open();
-                //open a new command
-                using (var cmd = new SqlCommand(query, con))
-                {
-                    //set the arguments given in the query
-                    foreach (var pair in args)
-                    {
-                        cmd.Parameters.AddWithValue(pair.Key, pair.Value);
-                    }
-                    //execute the query and get the number of row affected
-                    numberOfRowsAffected = cmd.ExecuteNonQuery();
-                }
-                return numberOfRowsAffected;
-            }
-        }
-        public responsedto delete_weight_by_changing_status_in_database(error_logger_dto _weight_record_dto)
-        {
-            responsedto _responsedto = new responsedto();
-            try
-            {
-                string query = "UPDATE " +
-                DBContract.error_entity_table.TABLE_NAME +
-                " SET " +
-                DBContract.error_entity_table.WEIGHT_STATUS + " = @weight_status " +
-                "WHERE " +
-                DBContract.error_entity_table.WEIGHT_ID + " = @weight_id";
-
-                //here we are setting the parameter values that will be actually replaced in the query in Execute method
-                var args = new Dictionary<string, object>
-			    {
-				    {"@weight_id", _weight_record_dto.error_id},
-				    {"@weight_status", "inactive"}
-			    };
-
-                int numberOfRowsAffected = updategeneric(query, args);
-                if (numberOfRowsAffected != 1)
-                {
-                    _responsedto.isresponseresultsuccessful = false;
-                    _responsedto.responseerrormessage = "Record delete failed in " + DBContract.mssql + ".";
-                    this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(_responsedto.responseerrormessage, TAG));
-                    return _responsedto;
-                }
-                else
-                {
-                    _responsedto.isresponseresultsuccessful = true;
-                    _responsedto.responsesuccessmessage = "Record deleted successfully in " + DBContract.mssql + ".";
-                    this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(_responsedto.responsesuccessmessage, TAG));
-                    return _responsedto;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.Message, TAG));
-                _responsedto.isresponseresultsuccessful = false;
-                _responsedto.responseerrormessage = ex.Message;
-                return _responsedto;
-            }
-        }
-        public responsedto deleteweightindatabase(error_logger_dto _weight_record_dto)
-        {
-            responsedto _responsedto = new responsedto();
-            try
-            {
-                string query = "DELETE FROM " +
-                DBContract.error_entity_table.TABLE_NAME +
-                " WHERE " +
-                DBContract.error_entity_table.WEIGHT_ID + " = @weight_id";
-
-                //here we are setting the parameter values that will be actually replaced in the query in Execute method
-                var args = new Dictionary<string, object>
-				{
-					{"@weight_id", _weight_record_dto.error_id}  
-				};
-
-                int numberOfRowsAffected = deletegeneric(query, args);
-                if (numberOfRowsAffected != 1)
-                {
-                    _responsedto.isresponseresultsuccessful = false;
-                    _responsedto.responseerrormessage = "Record delete failed in " + DBContract.mssql + ".";
-                    this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(_responsedto.responseerrormessage, TAG));
-                    return _responsedto;
-                }
-                else
-                {
-                    _responsedto.isresponseresultsuccessful = true;
-                    _responsedto.responsesuccessmessage = "Record deleted successfully in " + DBContract.mssql + ".";
-                    this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(_responsedto.responsesuccessmessage, TAG));
-                    return _responsedto;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.Message, TAG));
-                _responsedto.isresponseresultsuccessful = false;
-                _responsedto.responseerrormessage = ex.Message;
-                return _responsedto;
-            }
-        }
         public int deletegeneric(string query, Dictionary<string, object> args)
         {
             int numberOfRowsAffected;
@@ -754,6 +580,83 @@ namespace CommonLib
                 return numberOfRowsAffected;
             }
         }
+
+        public int updategeneric(string query, Dictionary<string, object> args)
+        {
+            int numberOfRowsAffected;
+            //setup the connection to the database
+            using (var con = new SqlConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                //open a new command
+                using (var cmd = new SqlCommand(query, con))
+                {
+                    //set the arguments given in the query
+                    foreach (var pair in args)
+                    {
+                        cmd.Parameters.AddWithValue(pair.Key, pair.Value);
+                    }
+                    //execute the query and get the number of row affected
+                    numberOfRowsAffected = cmd.ExecuteNonQuery();
+                }
+                return numberOfRowsAffected;
+            }
+        }
+
+        #region "logs"
+        public responsedto create_log_in_database(log_dto _dto)
+        {
+            responsedto _responsedto = new responsedto();
+            try
+            {
+                string query = "INSERT INTO " +
+                DBContract.logs_entity_table.TABLE_NAME +
+                " ( " +
+                DBContract.logs_entity_table.MESSAGE + ", " +
+                DBContract.logs_entity_table.TIMESTAMP + ", " +
+                DBContract.logs_entity_table.TAG + ", " +
+                DBContract.logs_entity_table.STATUS + ", " +
+                DBContract.logs_entity_table.CREATED_DATE +
+                " ) VALUES(@message, @timestamp, @tag, @status, @created_date)";
+
+                //here we are setting the parameter values that will be actually replaced in the query in Execute method
+                var args = new Dictionary<string, object>
+			    {
+				    {"@message", _dto.message},
+				    {"@timestamp", _dto.timestamp},
+                    {"@tag", _dto.tag},  
+                    {"@status", "active"},
+				    {"@created_date", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss tt")}
+			    };
+
+                int numberOfRowsAffected = insertgeneric(query, args, CONNECTION_STRING);
+                if (numberOfRowsAffected != 1)
+                {
+                    _responsedto.isresponseresultsuccessful = false;
+                    //_responsedto.responseerrormessage = "Record creation failed in " + DBContract.mysql + ".";
+                    _responsedto.responseerrormessage = "Record creation failed.";
+                    this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(_responsedto.responseerrormessage, TAG));
+                    return _responsedto;
+                }
+                else
+                {
+                    _responsedto.isresponseresultsuccessful = true;
+                    //_responsedto.responsesuccessmessage = "Record created successfully in " + DBContract.mysql + ".";
+                    _responsedto.responsesuccessmessage = "Record created successfully.";
+                    this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(_responsedto.responsesuccessmessage, TAG));
+                    return _responsedto;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this._notificationmessageEventname.Invoke(this, new notificationmessageEventArgs(ex.Message, TAG));
+                _responsedto.isresponseresultsuccessful = false;
+                _responsedto.responseerrormessage = ex.Message;
+                return _responsedto;
+            }
+        }
+        #endregion "logs"
 
 
 
