@@ -1,14 +1,14 @@
-# Soft Books SACCO Management System
+# Soft Books Sacco Management System
 
-## 💰 The Low-Cost, Dynamic SACCO Management Solution
+## 💰 The Low-Cost, Dynamic Sacco Management Solution
 
-The **Soft Books SACCO Management System** is a comprehensive, multi-user, client/server solution for small to large organizations. Built to be dynamic and compliant with Kenyan financial regulations, it promotes **accountability**, **transparency**, and **efficiency** in SACCO operations.
+The **Soft Books Sacco Management System** is a comprehensive, multi-user, client/server solution for small to large organizations. Built to be dynamic and compliant with Kenyan financial regulations, it promotes **accountability**, **transparency**, and **efficiency** in Sacco operations.
 
 -----
 
 ## ✨ Key Features
 
-This system integrates all aspects of SACCO functions, offering unparalleled flexibility and control:
+This system integrates all aspects of Sacco functions, offering unparalleled flexibility and control:
 
   - **Unlimited Capacity**: Supports an unlimited number of members and users.
   - **Client/Server Architecture**: A desktop application built with **C\# Windows Forms** connects to a central **Microsoft SQL Server database** for secure, multi-user access.
